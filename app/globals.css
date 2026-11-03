@@ -247,7 +247,10 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
 .instrument-menu button:hover{color:var(--trace);border-color:var(--trace)}
 .instrument-menu button.active{color:var(--trace);border-color:var(--trace);background:rgba(78,197,255,.08)}
 
-.instrument-panels{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.instrument-panels{
+  position:relative;z-index:4;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;
+}
 .instrument{border:1px solid var(--edge);border-radius:4px;background:var(--panel-t);padding:16px}
 .instrument-head{
   display:flex;align-items:baseline;justify-content:space-between;gap:10px;
