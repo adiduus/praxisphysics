@@ -529,6 +529,8 @@ Physics that depends on a draggable bench object's position (the photogate's bea
 
 ## Bench layout
 
+Instrument panels render above the pinned apparatus when they overlap it, so their readings remain usable instead of being hidden by the apparatus background.
+
 The experiment pages render `ExperimentWorkspace` outside `.wrap` in a `.bench-wrap` (full viewport width less a small gutter — the 1160px cap is for prose). On wide screens the bench column is its own sticky, viewport-high panel that scrolls internally; inside it (and under the header on narrow screens) the bench's `.bench-pinned` region — the apparatus frame — stays put while the bench's panels scroll beneath. The pin is sticky within the bench, so it lets go where the bench ends and the plot scrolls up into the whole column — nobody needs the apparatus while plotting; the plot canvas is capped so the whole plot block fits that column height. The workspace uses `overflow:clip`, not `hidden`, which would break that sticky. Canvases are 4:3 from width but capped at 45vh (min 280px), the lab pane at 900px content; both canvases already fit their drawing to any box. The pages are `section.bench-page`: a compact title and no lede (each part's problem statement is the opening context), so the bench starts ~70px under the header and pins almost from load. Nothing permanent sits between the apparatus and the readings: the how-to note is a dismissible BenchHint, and stock/instrument pickers are one-row trays that scroll sideways, never wrap.
 
 Popovers never take layout height and never cover the apparatus. Every

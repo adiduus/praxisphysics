@@ -8,7 +8,7 @@ import { LabelText, foldLabel, hasMarkup, sciParts } from '@/lib/experiment/tabl
 // character into the focused cell/header, which stays free text. This base
 // is on every table; `symbols` (from the experiment's data file) adds that
 // experiment's own letters after it.
-const BASE_SYMBOLS = ['Δ', '±', '°', '²', '³', '₀'];
+const BASE_SYMBOLS = ['Δ', 'θ', 'φ', 'λ', 'ω', 'Ω', 'µ', 'α', 'β', 'γ', '±', '°', '²', '³', '⁰', '¹', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', '₀', '₁', '₂'];
 
 // An input with an optional rendered `view` laid over it while it isn't
 // focused — the header's maths, a cell's ×10ⁿ. Display only: the input
@@ -56,6 +56,7 @@ export default function DataTable({
   addRow,
   deleteRow,
   setCell,
+  onTableChange,
   symbols = [],
 }) {
   // The last cell/header input focused, remembered past blur so a keyboard
@@ -135,7 +136,10 @@ export default function DataTable({
                       view={hasMarkup(c.label) && <LabelText src={c.label} />}
                       data-col={c.id}
                       value={c.label}
-                      onChange={(e) => renameColumn(c.id, e.target.value)}
+                      onChange={(e) => {
+                    renameColumn(c.id, e.target.value);
+                    if (onTableChange) onTableChange({ type: 'renameColumn', columnId: c.id, label: e.target.value });
+                  }}
                       aria-label="Column name"
                     />
                     <button
@@ -150,7 +154,7 @@ export default function DataTable({
                 </th>
               ))}
               <th className="add-col-head">
-                <button type="button" onClick={addColumn}>
+                <button type="button" onClick={() => { addColumn(); if (onTableChange) onTableChange({ type: 'addColumn' }); }}>
                   + COL
                 </button>
               </th>
@@ -165,7 +169,10 @@ export default function DataTable({
                     <button
                       type="button"
                       className="cell-del"
-                      onClick={() => deleteRow(r.id)}
+                      onClick={() => {
+                      deleteRow(r.id);
+                      if (onTableChange) onTableChange({ type: 'deleteRow', rowId: r.id });
+                    }}
                       aria-label={`Delete row ${i + 1}`}
                     >
                       ×
@@ -190,7 +197,7 @@ export default function DataTable({
           </tbody>
         </table>
       </div>
-      <button type="button" className="pendulum-add-row" onClick={addRow}>
+      <button type="button" className="pendulum-add-row" onClick={() => { addRow(); if (onTableChange) onTableChange({ type: 'addRow' }); }}>
         + ROW
       </button>
     </div>
