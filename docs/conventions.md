@@ -54,8 +54,8 @@ app/
                           before a bench mounts it; unlinked and noindex
   instruments/goniometer/ the microwave goniometer alone, the same way, held to a bench
                           column's width (952px)
-  simulations/microwave/ the microwave optics experiment (MicrowaveExperiment); not yet in
-                          data/simulations.js and noindex, so unlisted until released
+  simulations/microwave/ the microwave optics experiment (MicrowaveExperiment), listed under
+                          'waves-optics' in data/simulations.js
   guide/                 long-form practical-skills guide: page.js is the contents,
                           [slug]/ one page per section (outline from data/guide.js, prose
                           from content/guide/<slug>.js). layout.js loads Plex Sans italic
@@ -132,7 +132,11 @@ components/
                           the problem pane via ExperimentWorkspace's `ProblemTools`; it reads
                           "Back to the walkthrough" while GUIDED, so the pane keeps its
                           height). Mode + step persist at praxis:<experimentId>-mode, in a
-                          module-level store both offers share. Escape = SWITCH TO SELF
+                          module-level store both offers share. A GUIDED / SELF toggle
+                          (`.mode-switch`) at the end of the bench's menu row, under the
+                          pinned region, reads and sets the same store, so it shows the mode
+                          and switches it whether or not a walkthrough is running (Part A
+                          only). On a phone it takes a 40 px row of its own under the menu. Escape = SWITCH TO SELF
                           (unless an instrument note is open, which takes Escape itself).
                           A twelve-step tutorial through one way of doing Part A, Part A
                           only (`pendulumWalkthroughPart`): no offer and no marks on Part B,
@@ -333,7 +337,10 @@ data/
                           anchor id, plus guideHref(slug, id), which throws on an unknown id.
                           These ids are the deep-link contract experiment hints point at —
                           don't rename one without updating its links. Kept free of prose so
-                          a client component can import guideHref cheaply
+                          a client component can import guideHref cheaply. A subsection's
+                          optional `group` labels a run of them (the worked examples, by
+                          experiment); the page prints the label where it changes, in the
+                          sidebar and the body, without renumbering or moving an anchor
 content/guide/            the guide's prose, one file per section: `intro` + `bodies` keyed by
                           data/guide.js's subsection ids (missing key → "Not written yet."
                           stub). Authoring conventions in content/guide/README.md.
@@ -584,7 +591,14 @@ no Playwright dependency. Options: `--sizes` (comma-separated, e.g.
   new panel, the panel before it and the menu row are wholly on screen
   and clear of the pinned region with no scrolling, then records how far
   the bench can scroll on before the stopwatch passes under
-  (`scrollWhileClear`). The older `reach` checks only ask whether a
+  (`scrollWhileClear`). It also checks the GUIDED / SELF toggle: where it
+  is at load and once scrolled to (on screen, painted on top, clear of the
+  pinned region), and that GUIDED and SELF set the stored mode and show or
+  clear the coach mark (`modeToggleReach`, `modeToggle`). With the taller
+  pendulum canvas from main's CSS (min 340px, max 52vh), placing a panel
+  leaves no room for the menu row above it at 1440×900, 1280×800 and
+  390×844, so the row and its toggle go under the pinned region until the
+  student scrolls back up; the baseline records that. The older `reach` checks only ask whether a
   panel appears when scrolled to, which passed throughout the two months
   the panels could not be read with the strip up.
 - `layout-audit.mjs --pages caliper` audits the vernier caliper on its own

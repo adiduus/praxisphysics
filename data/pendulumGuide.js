@@ -13,9 +13,8 @@
 // plot too. The formulae give the governing relation only, unrearranged.
 //
 // Help beyond the task follows docs/conventions.md's tiers: Part B has one opt-in
-// `stuckHint`, Part A none; both parts end with the same two guide links
-// (`footer`): the worked solution, with a nudge to try first, and error
-// analysis.
+// `stuckHint`, Part A none; both parts end with the same guide link
+// (`footer`): the worked solution, with a nudge to try first.
 //
 // Imported by the pendulum's page (a Server Component) and passed down as a
 // prop, so the maths is KaTeX rendered on the server and no KaTeX JS ships
@@ -46,7 +45,6 @@ const footer = (
       To see a worked solution, go to {guideLink('worked-examples')}. It is highly recommended to
       first try the experiment yourself.
     </p>
-    <p>For a guide on error analysis, see {guideLink('error-analysis')}.</p>
   </>
 );
 

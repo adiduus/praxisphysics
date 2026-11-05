@@ -35,6 +35,8 @@ export default async function GuideSectionPage({ params }) {
   const next = guideSections[at + 1];
   // "2.3" — short enough for a hint to cite ("see §2.3") alongside its link.
   const num = (i) => `${Number(section.index)}.${i + 1}`;
+  // A subsection's `group` label, printed where the group changes.
+  const groupStart = (i) => section.subsections[i].group && section.subsections[i].group !== section.subsections[i - 1]?.group;
 
   return (
     <section className="guide">
@@ -45,14 +47,19 @@ export default async function GuideSectionPage({ params }) {
           </Link>
           <span className="tag">ON THIS PAGE</span>
           <ol>
-            {section.subsections.map((sub, i) => (
+            {section.subsections.map((sub, i) => [
+              groupStart(i) && (
+                <li key={`${sub.id}:group`} className="guide-toc-group">
+                  {sub.group}
+                </li>
+              ),
               <li key={sub.id}>
                 <a href={`#${sub.id}`}>
                   <span>{num(i)}</span>
                   {sub.short ?? sub.title}
                 </a>
-              </li>
-            ))}
+              </li>,
+            ])}
           </ol>
         </nav>
 
@@ -67,6 +74,7 @@ export default async function GuideSectionPage({ params }) {
 
           {section.subsections.map((sub, i) => (
             <div className="guide-sub" key={sub.id}>
+              {groupStart(i) && <p className="guide-group">{sub.group}</p>}
               <h2 id={sub.id}>
                 <a href={`#${sub.id}`}>
                   <span className="guide-num">{num(i)}</span>

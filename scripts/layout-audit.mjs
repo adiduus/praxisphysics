@@ -337,7 +337,8 @@ for (const s of SIZES) {
   // placed before) is wholly on screen, below the header and clear of the
   // pinned apparatus, without the student scrolling. Then how far a
   // student can scroll the bench, from where placing left it, before the
-  // first panel passes under (scrollWhileClear).
+  // first panel passes under (scrollWhileClear). Also the walkthrough's
+  // GUIDED / SELF toggle in the menu row (modeToggle).
   await open('/simulations/pendulum');
   if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
   await sleep(300);
@@ -351,6 +352,27 @@ for (const s of SIZES) {
   })()`;
   const HINT = `document.querySelector('.bench-hint') ? 'strip' : document.querySelector('.bench-hint-reopen') ? 'collapsed to ?' : 'none'`;
   const panels = { hintBefore: await ev(HINT) };
+  // The walkthrough's GUIDED / SELF toggle at the end of the menu row:
+  // where it is at load, and once a student scrolls to it (nearest), on
+  // screen, painted on top and clear of the pinned region; then, after
+  // the panels are placed, driving the stored mode (and the coach marks)
+  // both ways.
+  const TOGGLE = `(() => {
+    const e = document.querySelector('.mode-switch'); if (!e) return { present: false };
+    const r = e.getBoundingClientRect();
+    const head = document.querySelector('header').getBoundingClientRect().bottom;
+    const pin = document.querySelector('.bench-pinned').getBoundingClientRect();
+    const h = document.elementFromPoint((r.left + r.right) / 2, (r.top + r.bottom) / 2);
+    return { present: true, at: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)], clear: r.top >= pin.bottom - 0.5 && r.top >= head - 0.5 && r.bottom <= innerHeight + 0.5 && r.right <= document.documentElement.clientWidth, painted: !!h && e.contains(h), pressed: [...e.querySelectorAll('button')].filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => b.textContent.trim()) };
+  })()`;
+  const MODE = `(() => { try { return JSON.parse(localStorage.getItem('praxis:pendulum-mode'))?.mode ?? null; } catch { return null; } })()`;
+  const MARK_UP = `!!document.querySelector('.coach-mark')`;
+  panels.modeToggleReach = { atLoad: await ev(TOGGLE) };
+  await ev(`document.querySelector('.mode-switch').scrollIntoView({ block: 'nearest', behavior: 'instant' })`);
+  await sleep(300);
+  panels.modeToggleReach.scrolledTo = await ev(TOGGLE);
+  await ev(RESET_SCROLL);
+  await sleep(300);
   await clickText('.instrument-menu button', 'STOPWATCH');
   await sleep(700);
   panels.stopwatch = { panel: await ev(CLEAR(panelSel('STOPWATCH'))), menu: await ev(CLEAR(`document.querySelector('.instrument-menu')`)), hint: await ev(HINT) };
@@ -360,6 +382,23 @@ for (const s of SIZES) {
   await sleep(700);
   panels.photogate = { panel: await ev(CLEAR(panelSel('PHOTOGATE'))), stopwatchStill: await ev(CLEAR(panelSel('STOPWATCH'))), menu: await ev(CLEAR(`document.querySelector('.instrument-menu')`)) };
   await ev(`document.querySelector('.instrument-popover button')?.click()`);
+  await sleep(200);
+  // Where placing left the page, put back afterwards: a coach mark may
+  // scroll to its target, and scrollWhileClear below starts from here.
+  const SCROLLS = `(() => { const c = document.querySelector('.pendulum-col-right'); return { page: scrollY, col: c ? c.scrollTop : 0 }; })()`;
+  const savedScroll = await ev(SCROLLS);
+  panels.modeToggle = { afterPanels: await ev(TOGGLE), stored: await ev(MODE) };
+  await clickText('.mode-switch button', 'GUIDED');
+  await sleep(600);
+  panels.modeToggle.guided = { stored: await ev(MODE), coachMark: await ev(MARK_UP), toggle: await ev(TOGGLE) };
+  if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
+  await sleep(300);
+  await ev(`document.querySelector('.mode-switch').scrollIntoView({ block: 'nearest', behavior: 'instant' })`);
+  await sleep(200);
+  await clickText('.mode-switch button', 'SELF');
+  await sleep(400);
+  panels.modeToggle.self = { stored: await ev(MODE), coachMark: await ev(MARK_UP), toggle: await ev(TOGGLE) };
+  await ev(`(() => { const c = document.querySelector('.pendulum-col-right'); if (c) c.scrollTop = ${savedScroll.col}; window.scrollTo({ top: ${savedScroll.page}, behavior: 'instant' }); })()`);
   await sleep(200);
   // Scroll on from there, 4 px at a time, until the stopwatch passes under.
   panels.scrollWhileClear = await ev(`(async () => {

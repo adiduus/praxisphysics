@@ -1,9 +1,7 @@
 import MicrowaveExperiment from '@/components/MicrowaveExperiment';
 import { microwaveParts, microwaveSymbols } from '@/data/microwaveGuide';
 
-// Not yet listed in data/simulations.js, and not indexed, until it is
-// released; adding the entry under 'waves-optics' is what lists it.
-export const metadata = { title: 'Microwave Optics — Praxis', robots: { index: false, follow: false } };
+export const metadata = { title: 'Microwave Optics — Praxis' };
 
 export default function MicrowavePage() {
   return (

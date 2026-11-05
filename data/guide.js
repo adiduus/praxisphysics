@@ -9,7 +9,11 @@
 // `anchors` lists the <h3 id>s inside a subsection that a hint may link to
 // directly (`guideHref('error-analysis', 'max-min-method')`); the content
 // file must give its <h3> the same id. `short` is an optional label for the
-// page's sidebar when the heading itself is too long to sit there.
+// page's sidebar when the heading itself is too long to sit there. `group`
+// is an optional label for a run of subsections that belong together (the
+// worked examples, by experiment): the page prints it where it changes, in
+// the sidebar and the body. Numbering still counts the flat list, so a
+// group never renumbers a subsection or moves an anchor.
 export const guideSections = [
   {
     slug: 'measurement',
@@ -92,10 +96,10 @@ export const guideSections = [
     blurb:
       'Real readings taken all the way through — table, graph, gradient, and a result with its uncertainty — using the methods of the sections before.',
     subsections: [
-      { id: 'worked-example', title: 'Worked example: a pendulum’s T² against L' },
-      { id: 'two-stage-fits', title: 'When one straight line is not enough' },
-      { id: 'two-minima', title: 'Two minima, and an answer that must be a whole number' },
-      { id: 'straight-and-wrong', title: 'When a straight line is wrong: frustrated total internal reflection' },
+      { id: 'worked-example', title: 'Worked example: a pendulum’s T² against L', group: 'Pendulum' },
+      { id: 'two-stage-fits', title: 'When one straight line is not enough', group: 'Pendulum' },
+      { id: 'two-minima', title: 'Two minima, and an answer that must be a whole number', group: 'Microwave optics' },
+      { id: 'straight-and-wrong', title: 'When a straight line is wrong: frustrated total internal reflection', group: 'Microwave optics' },
     ],
   },
 ];

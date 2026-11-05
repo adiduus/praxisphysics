@@ -259,7 +259,24 @@ export default function PendulumLab({ dataTable, experimentId = 'pendulum', part
         </BenchHint>
       </div>
 
-      <InstrumentMenu items={INSTRUMENTS} open={open} onToggle={toggleInstrument} />
+      {/* The menu row, under the pinned region rather than in it, ends in
+          the walkthrough's GUIDED / SELF toggle: the same stored mode as the
+          offers and the coach marks (useWalkthroughMode), so it shows and
+          sets the mode whether or not a walkthrough is running. Part A
+          only, like the offers: Part B has no walkthrough. */}
+      <div className="bench-tools">
+        <InstrumentMenu items={INSTRUMENTS} open={open} onToggle={toggleInstrument} />
+        {onWalkPart && (
+          <div className="mode-switch" role="group" aria-label="Walkthrough mode">
+            <button type="button" aria-pressed={walk.mode === 'guided'} className={walk.mode === 'guided' ? 'active' : ''} onClick={() => walk.mode !== 'guided' && walk.start()}>
+              GUIDED
+            </button>
+            <button type="button" aria-pressed={walk.mode === 'self'} className={walk.mode === 'self' ? 'active' : ''} onClick={() => walk.mode !== 'self' && walk.exit()}>
+              SELF
+            </button>
+          </div>
+        )}
+      </div>
 
       <div className="instrument-panels">
         {open.stopwatch && <Stopwatch onStop={onStopwatchStop} />}

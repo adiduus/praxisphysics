@@ -247,6 +247,18 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
 }
 .instrument-menu button:hover{color:var(--trace);border-color:var(--trace)}
 .instrument-menu button.active{color:var(--trace);border-color:var(--trace);background:rgba(78,197,255,.08)}
+/* The menu row: the instrument menu, then (the pendulum) the walkthrough's
+   GUIDED / SELF toggle at its end, a pill like the part switch. */
+.bench-tools{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px 12px}
+.bench-tools .instrument-menu{flex:1 1 auto;min-width:0}
+.mode-switch{display:inline-flex;gap:2px;padding:3px;margin-left:auto;border:1px solid var(--edge);border-radius:20px;background:var(--panel-t);flex:none}
+.mode-switch button{
+  padding:5px 12px;border-radius:16px;border:0;background:transparent;
+  font-family:var(--font-mono),monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);cursor:pointer;transition:.16s;
+}
+.mode-switch button:hover{color:var(--trace)}
+.mode-switch button.active{background:var(--trace);color:#04202F}
+.mode-switch button:focus-visible{outline:1px solid var(--trace);outline-offset:2px}
 
 .instrument-panels{
   position:relative;z-index:4;
@@ -982,6 +994,18 @@ section.bench-page{padding-top:18px}
 .guide-toc ol{list-style:none;margin:0;padding:0}
 .guide-toc a{font-size:13.5px}
 .guide-toc .tag{margin:22px 0 10px}
+/* A run of subsections that belong together (data/guide.js's `group`):
+   a label above them in the sidebar and in the body. */
+.guide-toc-group{
+  font-family:var(--font-mono),monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--chalk);margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--edge);
+}
+.guide-toc-group:first-child{margin-top:0;padding-top:0;border-top:0}
+.guide-group{
+  font-family:var(--font-mono),monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--trace);margin:3.2em 0 0;padding-top:1.2em;border-top:1px solid var(--edge);
+}
+.guide-sub .guide-group + h2{margin-top:.55em}
 .guide-back{font-family:var(--font-mono),monospace;font-size:11px;letter-spacing:.12em;color:var(--muted);text-decoration:none}
 .guide-back:hover{color:var(--trace)}
 @media(max-width:999px){
