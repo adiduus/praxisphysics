@@ -94,6 +94,8 @@ export const guideSections = [
     subsections: [
       { id: 'worked-example', title: 'Worked example: a pendulum’s T² against L' },
       { id: 'two-stage-fits', title: 'When one straight line is not enough' },
+      { id: 'two-minima', title: 'Two minima, and an answer that must be a whole number' },
+      { id: 'straight-and-wrong', title: 'When a straight line is wrong: frustrated total internal reflection' },
     ],
   },
 ];

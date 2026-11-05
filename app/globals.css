@@ -9,6 +9,7 @@
   --trace-soft:rgba(78,197,255,.30);
   --chalk:#E6EDF3;
   --muted:#7A8B9C;
+  --warn:#FF8A80;
   --wrap:1160px;
   --head-h:63px; /* sticky site header: .top-in's 62px + its 1px border */
   --font-sans:"IBM Plex Sans",system-ui,sans-serif;
@@ -333,6 +334,45 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
   border-radius:3px;padding:7px 12px;cursor:pointer;transition:.16s;
 }
 .instrument-controls button:hover{color:var(--trace);border-color:var(--trace)}
+.instrument-controls button.active{color:var(--trace);border-color:var(--trace);background:rgba(78,197,255,.08)}
+/* The vernier caliper (components/instruments/VernierCaliper.js): the
+   whole instrument across a full row of the panels grid, its canvas as
+   tall as its width needs. pan-y keeps a vertical swipe scrolling the page
+   on a phone; a sideways one drags the jaw. Its magnifier is an
+   AnchoredPopover sized by its canvas rather than the note's 280px. */
+.instrument.caliper,.instrument.rule{grid-column:1/-1}
+.rule-canvas{display:block;width:100%}
+.caliper-canvas{display:block;width:100%;touch-action:pan-y;cursor:ew-resize}
+.caliper-canvas:focus-visible{outline:1px solid var(--trace);outline-offset:2px}
+.anchored-popover.caliper-magnifier{width:auto;max-width:calc(100vw - 16px)}
+.caliper-magnifier canvas{display:block;max-width:100%;touch-action:none;cursor:ew-resize;background:var(--ink);border:1px solid var(--edge);border-radius:3px}
+.caliper-magnifier-foot{display:flex;align-items:center;gap:10px;width:100%}
+.caliper-magnifier-foot p{margin:0;flex:1;font-size:12.5px;line-height:1.45;color:var(--chalk)}
+/* On a phone, under a pinned apparatus, the magnifier needs every pixel:
+   its foot goes, and the panel's MAGNIFIER button (just above it) closes it. */
+@media(max-width:600px){.caliper-magnifier-foot{display:none}}
+/* The microwave goniometer (components/Goniometer.js), the bench's pinned
+   apparatus: sized like #pendulum-canvas, from the viewport as well as the
+   width. Its host page holds it to the width of a bench column. */
+.goniometer-host{max-width:952px;margin-inline:auto}
+.goniometer-frame{border:1px solid var(--edge);border-radius:4px;overflow:hidden}
+.goniometer-canvas{
+  display:block;width:100%;aspect-ratio:4/3;min-height:280px;max-height:45vh;
+  touch-action:none;cursor:grab;
+}
+.goniometer-canvas.dragging{cursor:grabbing}
+.goniometer-canvas.in-line{cursor:default}
+/* Part B's gap adjuster, in the goniometer's controls strip: a bare slider,
+   no value shown (components/MicrowaveBench.js). */
+.gap-control{display:flex;align-items:center;gap:10px;flex:1;max-width:320px}
+.gap-control span{color:var(--muted)}
+.gap-control input{flex:1;accent-color:var(--trace)}
+.goniometer-canvas:focus-visible{outline:1px solid var(--trace);outline-offset:-2px}
+.goniometer-controls{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-top:1px solid var(--edge);padding:10px 16px;
+  font-family:var(--font-mono),monospace;font-size:11px;letter-spacing:.1em;color:var(--chalk);
+}
 .photogate-log{
   max-height:260px;overflow-y:auto;margin-top:8px;
   font-family:var(--font-mono),monospace;font-size:12px;

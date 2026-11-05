@@ -6,7 +6,8 @@
 // is teaching, not something this shell should encode. A `task` says what to
 // produce, never how; `answer` (on the part, or on a single task item) adds
 // a commit-once answer box, and `startOver` a confirmed reset of the whole
-// part below that. `stuckHint` is a single hint under the task, collapsed
+// part below that. `equipment`, a sentence, lists what the part puts on
+// the bench, under its own heading before the task. `stuckHint` is a single hint under the task, collapsed
 // in a native <details> (as GuideQ does) so reading it is a deliberate act
 // — see docs/conventions.md on the three tiers. A task item's `answer` may be one
 // spec or an array (B3's α and β). `footer` closes the pane at body-text
@@ -71,6 +72,13 @@ export default function ExperimentGuide({ def, answer, onStartOver }) {
               </li>
             ))}
           </ul>
+        </>
+      )}
+
+      {def.equipment && (
+        <>
+          <h4>Equipment</h4>
+          <p className="pendulum-equipment">{def.equipment}</p>
         </>
       )}
 

@@ -21,6 +21,11 @@ import { useState } from 'react';
 // that symbol's record from useCommittedAnswer (answerFor); `commit` writes
 // one record. ExperimentWorkspace holds the hook so the part's "start over"
 // can clear every symbol on that part together.
+//
+// `integer: true` is an exact whole number with no uncertainty (an order of
+// interference): no ± field, a value that must be an integer, and a check
+// of equality rather than coverage. `accept` lists every value that counts
+// as right (either order in the scan); without it, `trueValue` alone does.
 
 const parse = (s) => {
   const t = s.trim();
@@ -40,6 +45,23 @@ export default function AnswerBox({ spec, answer, commit }) {
 
   const symbol = spec.label ?? spec.symbol;
   const unitShown = spec.unitLabel ?? spec.unit;
+
+  if (answer && spec.integer) {
+    const v = parse(answer.value);
+    const accepted = [].concat(spec.accept ?? answer.trueValue);
+    return (
+      <div className="answer-box answer-committed">
+        <p className="answer-line">
+          <em>{symbol}</em> = {answer.value}
+        </p>
+        <p>
+          The simulation uses <em>{symbol}</em> = {accepted.join(' or ')}. Yours{' '}
+          {accepted.includes(v) ? 'is' : 'is not'} {accepted.length > 1 ? 'one of them' : 'it'}.
+        </p>
+        {spec.afterCommit && <p className="answer-after">{spec.afterCommit}</p>}
+      </div>
+    );
+  }
 
   if (answer) {
     const v = parse(answer.value);
@@ -67,14 +89,14 @@ export default function AnswerBox({ spec, answer, commit }) {
 
   const v = parse(value);
   const u = parse(uncertainty);
-  const valid = Number.isFinite(v) && Number.isFinite(u) && u > 0;
+  const valid = spec.integer ? Number.isInteger(v) : Number.isFinite(v) && Number.isFinite(u) && u > 0;
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!valid) return;
     commit({
       value: value.trim(),
-      uncertainty: uncertainty.trim(),
+      uncertainty: spec.integer ? '' : uncertainty.trim(),
       trueValue: typeof spec.trueValue === 'function' ? spec.trueValue() : spec.trueValue,
       committedAt: new Date().toISOString(),
     });
@@ -87,19 +109,23 @@ export default function AnswerBox({ spec, answer, commit }) {
         <span>=</span>
         <input
           type="text"
-          inputMode="decimal"
+          inputMode={spec.integer ? 'numeric' : 'decimal'}
           aria-label={`Value of ${spec.symbol}`}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <span>±</span>
-        <input
-          type="text"
-          inputMode="decimal"
-          aria-label={`Uncertainty in ${spec.symbol}`}
-          value={uncertainty}
-          onChange={(e) => setUncertainty(e.target.value)}
-        />
+        {!spec.integer && (
+          <>
+            <span>±</span>
+            <input
+              type="text"
+              inputMode="decimal"
+              aria-label={`Uncertainty in ${spec.symbol}`}
+              value={uncertainty}
+              onChange={(e) => setUncertainty(e.target.value)}
+            />
+          </>
+        )}
         {spec.unit && <span>{unitShown}</span>}
       </div>
       <div className="answer-actions">

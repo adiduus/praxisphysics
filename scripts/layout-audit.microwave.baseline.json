@@ -1,0 +1,1681 @@
+{
+ "results": {
+  "microwave-1920x1080": {
+   "first": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1458,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1905,
+     "h": 63,
+     "w": 1905
+    },
+    "workspace": {
+     "top": 134,
+     "bottom": 1271,
+     "left": 28,
+     "right": 1877,
+     "h": 1137,
+     "w": 1849
+    },
+    "pinned": {
+     "top": 161,
+     "bottom": 760,
+     "left": 904,
+     "right": 1804,
+     "h": 598,
+     "w": 900
+    },
+    "canvas": {
+     "top": 162,
+     "bottom": 648,
+     "left": 905,
+     "right": 1803,
+     "h": 486,
+     "w": 898
+    },
+    "controls": {
+     "top": 648,
+     "bottom": 691,
+     "left": 905,
+     "right": 1803,
+     "h": 43,
+     "w": 898
+    },
+    "hint": {
+     "top": 691,
+     "bottom": 759,
+     "left": 905,
+     "right": 1803,
+     "h": 67,
+     "w": 898
+    },
+    "menu": {
+     "top": 776,
+     "bottom": 813,
+     "left": 904,
+     "right": 1804,
+     "h": 37,
+     "w": 900
+    },
+    "meter": null,
+    "meterRead": null,
+    "caliper": null,
+    "rule": null
+   },
+   "hintDismissed": true,
+   "notes": {
+    "goniometer": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      612,
+      642,
+      892,
+      875
+     ],
+     "pinned": [
+      904,
+      161,
+      1804,
+      692
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "multimeter": {
+     "present": true,
+     "side": "right",
+     "visible": "visible",
+     "rect": [
+      1207,
+      761,
+      1487,
+      882
+     ],
+     "pinned": [
+      904,
+      161,
+      1804,
+      692
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "caliper": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      612,
+      877,
+      892,
+      1072
+     ],
+     "pinned": [
+      904,
+      161,
+      1804,
+      692
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "rule": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      612,
+      952,
+      892,
+      1072
+     ],
+     "pinned": [
+      904,
+      135,
+      1804,
+      666
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    }
+   },
+   "partA": {
+    "empty": 0.027,
+    "scan": {
+     "30": 0.388,
+     "37": 0.068,
+     "45": 0.564,
+     "59": 0.039,
+     "60": 0.15,
+     "70": 0.864,
+     "36.5": 0.028
+    },
+    "threeReads": [
+     0.619,
+     0.636,
+     0.627
+    ],
+    "blocked": 0.028,
+    "magnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      242,
+      787,
+      892,
+      1047
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "ruleMagnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      242,
+      720,
+      892,
+      952
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 1920,
+     "vh": 1080,
+     "docH": 1458,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 1905,
+      "h": 63,
+      "w": 1905
+     },
+     "workspace": {
+      "top": 134,
+      "bottom": 1271,
+      "left": 28,
+      "right": 1877,
+      "h": 1137,
+      "w": 1849
+     },
+     "pinned": {
+      "top": 135,
+      "bottom": 666,
+      "left": 904,
+      "right": 1804,
+      "h": 531,
+      "w": 900
+     },
+     "canvas": {
+      "top": 136,
+      "bottom": 622,
+      "left": 905,
+      "right": 1803,
+      "h": 486,
+      "w": 898
+     },
+     "controls": {
+      "top": 622,
+      "bottom": 665,
+      "left": 905,
+      "right": 1803,
+      "h": 43,
+      "w": 898
+     },
+     "hint": null,
+     "menu": {
+      "top": 164,
+      "bottom": 201,
+      "left": 904,
+      "right": 1804,
+      "h": 37,
+      "w": 900
+     },
+     "meter": {
+      "top": 217,
+      "bottom": 353,
+      "left": 904,
+      "right": 1195,
+      "h": 136,
+      "w": 291
+     },
+     "meterRead": {
+      "top": 266,
+      "bottom": 294,
+      "left": 921,
+      "right": 1178,
+      "h": 28,
+      "w": 257
+     },
+     "caliper": {
+      "top": 367,
+      "bottom": 665,
+      "left": 904,
+      "right": 1804,
+      "h": 297,
+      "w": 900
+     },
+     "rule": {
+      "top": 679,
+      "bottom": 832,
+      "left": 904,
+      "right": 1804,
+      "h": 154,
+      "w": 900
+     }
+    },
+    "reach": {
+     "meterRead": true,
+     "meterRead@": [
+      739,
+      767
+     ],
+     "pinned@": [
+      90,
+      621
+     ],
+     "view@": [
+      63,
+      1080
+     ],
+     "scroll": {
+      "page": 71,
+      "max": 378,
+      "col": 0,
+      "colMax": 1298
+     }
+    }
+   },
+   "partB": {
+    "empty": 1.044,
+    "gapControl": {
+     "text": "GAP",
+     "valuetext": "gap adjuster"
+    },
+    "gaps": {
+     "0": 1.031,
+     "1": 0.224,
+     "2": 0.068,
+     "0.6": 0.408,
+     "1.4": 0.129
+    },
+    "magnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      242,
+      787,
+      892,
+      1047
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 1920,
+     "vh": 1080,
+     "docH": 1341,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 1905,
+      "h": 63,
+      "w": 1905
+     },
+     "workspace": {
+      "top": 134,
+      "bottom": 1153,
+      "left": 28,
+      "right": 1877,
+      "h": 1019,
+      "w": 1849
+     },
+     "pinned": {
+      "top": 135,
+      "bottom": 666,
+      "left": 904,
+      "right": 1804,
+      "h": 531,
+      "w": 900
+     },
+     "canvas": {
+      "top": 136,
+      "bottom": 622,
+      "left": 905,
+      "right": 1803,
+      "h": 486,
+      "w": 898
+     },
+     "controls": {
+      "top": 622,
+      "bottom": 665,
+      "left": 905,
+      "right": 1803,
+      "h": 43,
+      "w": 898
+     },
+     "hint": null,
+     "menu": {
+      "top": 475,
+      "bottom": 512,
+      "left": 904,
+      "right": 1804,
+      "h": 37,
+      "w": 900
+     },
+     "meter": {
+      "top": 528,
+      "bottom": 664,
+      "left": 904,
+      "right": 1195,
+      "h": 136,
+      "w": 291
+     },
+     "meterRead": {
+      "top": 577,
+      "bottom": 605,
+      "left": 921,
+      "right": 1178,
+      "h": 28,
+      "w": 257
+     },
+     "caliper": {
+      "top": 678,
+      "bottom": 976,
+      "left": 904,
+      "right": 1804,
+      "h": 297,
+      "w": 900
+     },
+     "rule": null
+    }
+   },
+   "answers": [
+    1,
+    2
+   ],
+   "equipment": "The goniometer, the rotating table, the polymer slab, the multimeter, a beam block, and something to measure thickness with.",
+   "quickEntry": true
+  },
+  "microwave-1440x900": {
+   "first": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 1530,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1425,
+     "h": 63,
+     "w": 1425
+    },
+    "workspace": {
+     "top": 134,
+     "bottom": 1343,
+     "left": 23,
+     "right": 1402,
+     "h": 1208,
+     "w": 1379
+    },
+    "pinned": {
+     "top": 161,
+     "bottom": 697,
+     "left": 662,
+     "right": 1360,
+     "h": 535,
+     "w": 698
+    },
+    "canvas": {
+     "top": 162,
+     "bottom": 567,
+     "left": 663,
+     "right": 1359,
+     "h": 405,
+     "w": 696
+    },
+    "controls": {
+     "top": 567,
+     "bottom": 610,
+     "left": 663,
+     "right": 1359,
+     "h": 43,
+     "w": 696
+    },
+    "hint": {
+     "top": 610,
+     "bottom": 696,
+     "left": 663,
+     "right": 1359,
+     "h": 85,
+     "w": 696
+    },
+    "menu": {
+     "top": 713,
+     "bottom": 750,
+     "left": 662,
+     "right": 1360,
+     "h": 37,
+     "w": 698
+    },
+    "meter": null,
+    "meterRead": null,
+    "caliper": null,
+    "rule": null
+   },
+   "hintDismissed": true,
+   "notes": {
+    "goniometer": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      370,
+      561,
+      650,
+      794
+     ],
+     "pinned": [
+      662,
+      161,
+      1360,
+      611
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "multimeter": {
+     "present": true,
+     "side": "right",
+     "visible": "visible",
+     "rect": [
+      897,
+      680,
+      1177,
+      801
+     ],
+     "pinned": [
+      662,
+      161,
+      1360,
+      611
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "caliper": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      370,
+      697,
+      650,
+      892
+     ],
+     "pinned": [
+      662,
+      161,
+      1360,
+      611
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "rule": {
+     "present": true,
+     "side": "above",
+     "visible": "visible",
+     "rect": [
+      1080,
+      732,
+      1360,
+      853
+     ],
+     "pinned": [
+      662,
+      135,
+      1360,
+      585
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    }
+   },
+   "partA": {
+    "empty": 0.028,
+    "scan": {
+     "30": 0.381,
+     "37": 0.065,
+     "45": 0.572,
+     "59": 0.044,
+     "60": 0.152,
+     "70": 0.879,
+     "36.5": 0.031
+    },
+    "threeReads": [
+     0.628,
+     0.623,
+     0.629
+    ],
+    "blocked": 0.029,
+    "magnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      13,
+      632,
+      650,
+      892
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "ruleMagnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      13,
+      634,
+      650,
+      866
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 1440,
+     "vh": 900,
+     "docH": 1530,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 1425,
+      "h": 63,
+      "w": 1425
+     },
+     "workspace": {
+      "top": 134,
+      "bottom": 1343,
+      "left": 23,
+      "right": 1402,
+      "h": 1208,
+      "w": 1379
+     },
+     "pinned": {
+      "top": 135,
+      "bottom": 585,
+      "left": 662,
+      "right": 1360,
+      "h": 450,
+      "w": 698
+     },
+     "canvas": {
+      "top": 136,
+      "bottom": 541,
+      "left": 663,
+      "right": 1359,
+      "h": 405,
+      "w": 696
+     },
+     "controls": {
+      "top": 541,
+      "bottom": 584,
+      "left": 663,
+      "right": 1359,
+      "h": 43,
+      "w": 696
+     },
+     "hint": null,
+     "menu": {
+      "top": 127,
+      "bottom": 164,
+      "left": 662,
+      "right": 1360,
+      "h": 37,
+      "w": 698
+     },
+     "meter": {
+      "top": 180,
+      "bottom": 316,
+      "left": 662,
+      "right": 885,
+      "h": 136,
+      "w": 223
+     },
+     "meterRead": {
+      "top": 229,
+      "bottom": 257,
+      "left": 679,
+      "right": 868,
+      "h": 28,
+      "w": 189
+     },
+     "caliper": {
+      "top": 330,
+      "bottom": 583,
+      "left": 662,
+      "right": 1360,
+      "h": 253,
+      "w": 698
+     },
+     "rule": {
+      "top": 597,
+      "bottom": 741,
+      "left": 662,
+      "right": 1360,
+      "h": 143,
+      "w": 698
+     }
+    },
+    "reach": {
+     "meterRead": true,
+     "meterRead@": [
+      658,
+      686
+     ],
+     "pinned@": [
+      90,
+      540
+     ],
+     "view@": [
+      63,
+      900
+     ],
+     "scroll": {
+      "page": 71,
+      "max": 630,
+      "col": 0,
+      "colMax": 1363
+     }
+    }
+   },
+   "partB": {
+    "empty": 1.032,
+    "gapControl": {
+     "text": "GAP",
+     "valuetext": "gap adjuster"
+    },
+    "gaps": {
+     "0": 1.028,
+     "1": 0.223,
+     "2": 0.064,
+     "0.6": 0.399,
+     "1.4": 0.126
+    },
+    "magnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      13,
+      632,
+      650,
+      892
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 1440,
+     "vh": 900,
+     "docH": 1302,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 1425,
+      "h": 63,
+      "w": 1425
+     },
+     "workspace": {
+      "top": 134,
+      "bottom": 1115,
+      "left": 23,
+      "right": 1402,
+      "h": 981,
+      "w": 1379
+     },
+     "pinned": {
+      "top": 135,
+      "bottom": 585,
+      "left": 662,
+      "right": 1360,
+      "h": 450,
+      "w": 698
+     },
+     "canvas": {
+      "top": 136,
+      "bottom": 541,
+      "left": 663,
+      "right": 1359,
+      "h": 405,
+      "w": 696
+     },
+     "controls": {
+      "top": 541,
+      "bottom": 584,
+      "left": 663,
+      "right": 1359,
+      "h": 43,
+      "w": 696
+     },
+     "hint": null,
+     "menu": {
+      "top": 394,
+      "bottom": 431,
+      "left": 662,
+      "right": 1360,
+      "h": 37,
+      "w": 698
+     },
+     "meter": {
+      "top": 447,
+      "bottom": 583,
+      "left": 662,
+      "right": 885,
+      "h": 136,
+      "w": 223
+     },
+     "meterRead": {
+      "top": 496,
+      "bottom": 524,
+      "left": 679,
+      "right": 868,
+      "h": 28,
+      "w": 189
+     },
+     "caliper": {
+      "top": 597,
+      "bottom": 850,
+      "left": 662,
+      "right": 1360,
+      "h": 253,
+      "w": 698
+     },
+     "rule": null
+    }
+   },
+   "answers": [
+    1,
+    2
+   ],
+   "equipment": "The goniometer, the rotating table, the polymer slab, the multimeter, a beam block, and something to measure thickness with.",
+   "quickEntry": true
+  },
+  "microwave-1280x800": {
+   "first": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 1571,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1265,
+     "h": 63,
+     "w": 1265
+    },
+    "workspace": {
+     "top": 134,
+     "bottom": 1384,
+     "left": 20,
+     "right": 1245,
+     "h": 1250,
+     "w": 1224
+    },
+    "pinned": {
+     "top": 161,
+     "bottom": 652,
+     "left": 591,
+     "right": 1203,
+     "h": 490,
+     "w": 611
+    },
+    "canvas": {
+     "top": 162,
+     "bottom": 522,
+     "left": 592,
+     "right": 1202,
+     "h": 360,
+     "w": 609
+    },
+    "controls": {
+     "top": 522,
+     "bottom": 565,
+     "left": 592,
+     "right": 1202,
+     "h": 43,
+     "w": 609
+    },
+    "hint": {
+     "top": 565,
+     "bottom": 651,
+     "left": 592,
+     "right": 1202,
+     "h": 85,
+     "w": 609
+    },
+    "menu": {
+     "top": 668,
+     "bottom": 705,
+     "left": 591,
+     "right": 1203,
+     "h": 37,
+     "w": 611
+    },
+    "meter": null,
+    "meterRead": null,
+    "caliper": null,
+    "rule": null
+   },
+   "hintDismissed": true,
+   "notes": {
+    "goniometer": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      299,
+      516,
+      579,
+      749
+     ],
+     "pinned": [
+      591,
+      161,
+      1203,
+      566
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "multimeter": {
+     "present": true,
+     "side": "right",
+     "visible": "visible",
+     "rect": [
+      902,
+      635,
+      1182,
+      756
+     ],
+     "pinned": [
+      591,
+      161,
+      1203,
+      566
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "caliper": {
+     "present": true,
+     "side": "above",
+     "visible": "visible",
+     "rect": [
+      923,
+      578,
+      1203,
+      774
+     ],
+     "pinned": [
+      591,
+      161,
+      1203,
+      566
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 0
+    },
+    "rule": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      299,
+      662,
+      579,
+      782
+     ],
+     "pinned": [
+      591,
+      63,
+      1203,
+      468
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 72
+    }
+   },
+   "partA": {
+    "empty": 0.025,
+    "scan": {
+     "30": 0.385,
+     "37": 0.068,
+     "45": 0.581,
+     "59": 0.046,
+     "60": 0.149,
+     "70": 0.867,
+     "36.5": 0.031
+    },
+    "threeReads": [
+     0.64,
+     0.625,
+     0.628
+    ],
+    "blocked": 0.028,
+    "magnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      12,
+      532,
+      579,
+      792
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "ruleMagnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      12,
+      515,
+      579,
+      747
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 72,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 1280,
+     "vh": 800,
+     "docH": 1571,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 1265,
+      "h": 63,
+      "w": 1265
+     },
+     "workspace": {
+      "top": 134,
+      "bottom": 1384,
+      "left": 20,
+      "right": 1245,
+      "h": 1250,
+      "w": 1224
+     },
+     "pinned": {
+      "top": 135,
+      "bottom": 540,
+      "left": 591,
+      "right": 1203,
+      "h": 405,
+      "w": 611
+     },
+     "canvas": {
+      "top": 136,
+      "bottom": 496,
+      "left": 592,
+      "right": 1202,
+      "h": 360,
+      "w": 609
+     },
+     "controls": {
+      "top": 496,
+      "bottom": 539,
+      "left": 592,
+      "right": 1202,
+      "h": 43,
+      "w": 609
+     },
+     "hint": null,
+     "menu": {
+      "top": 101,
+      "bottom": 138,
+      "left": 591,
+      "right": 1203,
+      "h": 37,
+      "w": 611
+     },
+     "meter": {
+      "top": 154,
+      "bottom": 290,
+      "left": 591,
+      "right": 890,
+      "h": 136,
+      "w": 299
+     },
+     "meterRead": {
+      "top": 203,
+      "bottom": 231,
+      "left": 608,
+      "right": 873,
+      "h": 28,
+      "w": 265
+     },
+     "caliper": {
+      "top": 304,
+      "bottom": 539,
+      "left": 591,
+      "right": 1203,
+      "h": 234,
+      "w": 611
+     },
+     "rule": {
+      "top": 553,
+      "bottom": 691,
+      "left": 591,
+      "right": 1203,
+      "h": 139,
+      "w": 611
+     }
+    },
+    "reach": {
+     "meterRead": true,
+     "meterRead@": [
+      613,
+      641
+     ],
+     "pinned@": [
+      90,
+      495
+     ],
+     "view@": [
+      63,
+      800
+     ],
+     "scroll": {
+      "page": 71,
+      "max": 771,
+      "col": 0,
+      "colMax": 1380
+     }
+    }
+   },
+   "partB": {
+    "empty": 1.035,
+    "gapControl": {
+     "text": "GAP",
+     "valuetext": "gap adjuster"
+    },
+    "gaps": {
+     "0": 1.032,
+     "1": 0.228,
+     "2": 0.065,
+     "0.6": 0.395,
+     "1.4": 0.129
+    },
+    "magnifier": {
+     "present": true,
+     "side": "left",
+     "visible": "visible",
+     "rect": [
+      12,
+      532,
+      579,
+      792
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 0,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 1280,
+     "vh": 800,
+     "docH": 1344,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 1265,
+      "h": 63,
+      "w": 1265
+     },
+     "workspace": {
+      "top": 134,
+      "bottom": 1156,
+      "left": 20,
+      "right": 1245,
+      "h": 1022,
+      "w": 1224
+     },
+     "pinned": {
+      "top": 135,
+      "bottom": 540,
+      "left": 591,
+      "right": 1203,
+      "h": 405,
+      "w": 611
+     },
+     "canvas": {
+      "top": 136,
+      "bottom": 496,
+      "left": 592,
+      "right": 1202,
+      "h": 360,
+      "w": 609
+     },
+     "controls": {
+      "top": 496,
+      "bottom": 539,
+      "left": 592,
+      "right": 1202,
+      "h": 43,
+      "w": 609
+     },
+     "hint": null,
+     "menu": {
+      "top": 349,
+      "bottom": 386,
+      "left": 591,
+      "right": 1203,
+      "h": 37,
+      "w": 611
+     },
+     "meter": {
+      "top": 402,
+      "bottom": 538,
+      "left": 591,
+      "right": 890,
+      "h": 136,
+      "w": 299
+     },
+     "meterRead": {
+      "top": 451,
+      "bottom": 479,
+      "left": 608,
+      "right": 873,
+      "h": 28,
+      "w": 265
+     },
+     "caliper": {
+      "top": 552,
+      "bottom": 787,
+      "left": 591,
+      "right": 1203,
+      "h": 234,
+      "w": 611
+     },
+     "rule": null
+    }
+   },
+   "answers": [
+    1,
+    2
+   ],
+   "equipment": "The goniometer, the rotating table, the polymer slab, the multimeter, a beam block, and something to measure thickness with.",
+   "quickEntry": true
+  },
+  "microwave-390x844": {
+   "first": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 1051,
+    "header": {
+     "top": 152,
+     "bottom": 215,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 835,
+     "left": 12,
+     "right": 378,
+     "h": 707,
+     "w": 366
+    },
+    "pinned": {
+     "top": 243,
+     "bottom": 743,
+     "left": 35,
+     "right": 355,
+     "h": 500,
+     "w": 320
+    },
+    "canvas": {
+     "top": 244,
+     "bottom": 524,
+     "left": 36,
+     "right": 354,
+     "h": 280,
+     "w": 318
+    },
+    "controls": {
+     "top": 524,
+     "bottom": 567,
+     "left": 36,
+     "right": 354,
+     "h": 43,
+     "w": 318
+    },
+    "hint": {
+     "top": 567,
+     "bottom": 742,
+     "left": 36,
+     "right": 354,
+     "h": 175,
+     "w": 318
+    },
+    "menu": {
+     "top": 759,
+     "bottom": 796,
+     "left": 35,
+     "right": 355,
+     "h": 37,
+     "w": 320
+    },
+    "meter": null,
+    "meterRead": null,
+    "caliper": null,
+    "rule": null
+   },
+   "hintDismissed": true,
+   "notes": {
+    "goniometer": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      75,
+      548,
+      355,
+      781
+     ],
+     "pinned": [
+      35,
+      211,
+      355,
+      536
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 32
+    },
+    "multimeter": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      75,
+      633,
+      355,
+      753
+     ],
+     "pinned": [
+      35,
+      91,
+      355,
+      416
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 152
+    },
+    "caliper": {
+     "present": true,
+     "side": "above",
+     "visible": "visible",
+     "rect": [
+      75,
+      428,
+      355,
+      623
+     ],
+     "pinned": [
+      35,
+      91,
+      355,
+      416
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 152
+    },
+    "rule": {
+     "present": true,
+     "side": "above",
+     "visible": "visible",
+     "rect": [
+      75,
+      588,
+      355,
+      709
+     ],
+     "pinned": [
+      35,
+      63,
+      355,
+      388
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 251
+    }
+   },
+   "partA": {
+    "empty": 0.025,
+    "scan": {
+     "30": 0.396,
+     "37": 0.074,
+     "45": 0.584,
+     "59": 0.044,
+     "60": 0.148,
+     "70": 0.864,
+     "36.5": 0.033
+    },
+    "threeReads": [
+     0.629,
+     0.634,
+     0.636
+    ],
+    "blocked": 0.029,
+    "magnifier": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      8,
+      616,
+      382,
+      838
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 353,
+     "panelClear": true
+    },
+    "ruleMagnifier": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      8,
+      617,
+      382,
+      811
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 490,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 390,
+     "vh": 844,
+     "docH": 1334,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 390,
+      "h": 63,
+      "w": 390
+     },
+     "workspace": {
+      "top": 128,
+      "bottom": 1118,
+      "left": 12,
+      "right": 378,
+      "h": 990,
+      "w": 366
+     },
+     "pinned": {
+      "top": 243,
+      "bottom": 568,
+      "left": 35,
+      "right": 355,
+      "h": 325,
+      "w": 320
+     },
+     "canvas": {
+      "top": 244,
+      "bottom": 524,
+      "left": 36,
+      "right": 354,
+      "h": 280,
+      "w": 318
+     },
+     "controls": {
+      "top": 524,
+      "bottom": 567,
+      "left": 36,
+      "right": 354,
+      "h": 43,
+      "w": 318
+     },
+     "hint": null,
+     "menu": {
+      "top": 584,
+      "bottom": 621,
+      "left": 35,
+      "right": 355,
+      "h": 37,
+      "w": 320
+     },
+     "meter": {
+      "top": 637,
+      "bottom": 773,
+      "left": 35,
+      "right": 355,
+      "h": 136,
+      "w": 320
+     },
+     "meterRead": {
+      "top": 686,
+      "bottom": 714,
+      "left": 52,
+      "right": 338,
+      "h": 28,
+      "w": 286
+     },
+     "caliper": {
+      "top": 787,
+      "bottom": 957,
+      "left": 35,
+      "right": 355,
+      "h": 170,
+      "w": 320
+     },
+     "rule": {
+      "top": 971,
+      "bottom": 1095,
+      "left": 35,
+      "right": 355,
+      "h": 123,
+      "w": 320
+     }
+    },
+    "reach": {
+     "meterRead": true,
+     "meterRead@": [
+      621,
+      649
+     ],
+     "pinned@": [
+      178,
+      503
+     ],
+     "view@": [
+      63,
+      844
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 490,
+      "col": 0,
+      "colMax": 0
+     }
+    }
+   },
+   "partB": {
+    "empty": 1.005,
+    "gapControl": {
+     "text": "GAP",
+     "valuetext": "gap adjuster"
+    },
+    "gaps": {
+     "0": 1.03,
+     "1": 0.223,
+     "2": 0.064,
+     "0.6": 0.413,
+     "1.4": 0.129
+    },
+    "magnifier": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      8,
+      616,
+      382,
+      838
+     ],
+     "onScreen": true,
+     "overlapsPanel": false,
+     "scrollY": 353,
+     "panelClear": true
+    },
+    "geom": {
+     "vw": 390,
+     "vh": 844,
+     "docH": 1197,
+     "header": {
+      "top": 0,
+      "bottom": 63,
+      "left": 0,
+      "right": 390,
+      "h": 63,
+      "w": 390
+     },
+     "workspace": {
+      "top": 128,
+      "bottom": 980,
+      "left": 12,
+      "right": 378,
+      "h": 852,
+      "w": 366
+     },
+     "pinned": {
+      "top": 243,
+      "bottom": 568,
+      "left": 35,
+      "right": 355,
+      "h": 325,
+      "w": 320
+     },
+     "canvas": {
+      "top": 244,
+      "bottom": 524,
+      "left": 36,
+      "right": 354,
+      "h": 280,
+      "w": 318
+     },
+     "controls": {
+      "top": 524,
+      "bottom": 567,
+      "left": 36,
+      "right": 354,
+      "h": 43,
+      "w": 318
+     },
+     "hint": null,
+     "menu": {
+      "top": 584,
+      "bottom": 621,
+      "left": 35,
+      "right": 355,
+      "h": 37,
+      "w": 320
+     },
+     "meter": {
+      "top": 637,
+      "bottom": 773,
+      "left": 35,
+      "right": 355,
+      "h": 136,
+      "w": 320
+     },
+     "meterRead": {
+      "top": 686,
+      "bottom": 714,
+      "left": 52,
+      "right": 338,
+      "h": 28,
+      "w": 286
+     },
+     "caliper": {
+      "top": 787,
+      "bottom": 957,
+      "left": 35,
+      "right": 355,
+      "h": 170,
+      "w": 320
+     },
+     "rule": null
+    }
+   },
+   "answers": [
+    1,
+    2
+   ],
+   "equipment": "The goniometer, the rotating table, the polymer slab, the multimeter, a beam block, and something to measure thickness with.",
+   "quickEntry": true
+  }
+ },
+ "errs": []
+}

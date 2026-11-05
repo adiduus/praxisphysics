@@ -50,7 +50,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -96,7 +96,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -142,7 +142,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -189,7 +189,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -235,7 +235,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -281,7 +281,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -327,7 +327,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -373,7 +373,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -419,7 +419,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -445,9 +445,9 @@
       ],
       "pinned": [
        591,
-       161,
+       147,
        1203,
-       597
+       583
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -465,7 +465,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -492,9 +492,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -512,7 +512,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -538,9 +538,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -558,7 +558,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -584,9 +584,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -604,7 +604,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1132.6,
+      "dataPane": 1153.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -631,9 +631,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -651,7 +651,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1132.6,
+      "dataPane": 1153.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -667,7 +667,7 @@
     "menu": 37,
     "lab": 625.9,
     "simPane": 677.9,
-    "dataPane": 1054.6,
+    "dataPane": 1075.4,
     "problemPane": 777.3,
     "workspace": 833.3,
     "doc": 1155
@@ -680,7 +680,7 @@
     "menu": 37,
     "lab": 625.9,
     "simPane": 677.9,
-    "dataPane": 1054.6,
+    "dataPane": 1075.4,
     "problemPane": 777.3,
     "workspace": 833.3,
     "doc": 1155
@@ -714,7 +714,7 @@
      "menu": 37,
      "lab": 641,
      "simPane": 693,
-     "dataPane": 1327.6,
+     "dataPane": 1348.4,
      "problemPane": 777.3,
      "workspace": 833.3,
      "doc": 1155
@@ -789,7 +789,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -835,7 +835,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -881,7 +881,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -928,7 +928,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -974,7 +974,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1020,7 +1020,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1066,7 +1066,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1112,7 +1112,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1158,7 +1158,7 @@
       "menu": 37,
       "lab": 505,
       "simPane": 557,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1184,9 +1184,9 @@
       ],
       "pinned": [
        591,
-       161,
+       147,
        1203,
-       597
+       583
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -1204,7 +1204,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1231,9 +1231,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -1251,7 +1251,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1277,9 +1277,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -1297,7 +1297,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1054.6,
+      "dataPane": 1075.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1323,9 +1323,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -1343,7 +1343,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1132.6,
+      "dataPane": 1153.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1370,9 +1370,9 @@
       ],
       "pinned": [
        591,
-       -14,
+       -35,
        1203,
-       422
+       401
       ],
       "onScreen": true,
       "overlapsApparatus": false,
@@ -1390,7 +1390,7 @@
       "menu": 37,
       "lab": 641,
       "simPane": 693,
-      "dataPane": 1132.6,
+      "dataPane": 1153.4,
       "problemPane": 777.3,
       "workspace": 833.3,
       "doc": 1155
@@ -1406,7 +1406,7 @@
     "menu": 37,
     "lab": 505,
     "simPane": 557,
-    "dataPane": 1054.6,
+    "dataPane": 1075.4,
     "problemPane": 777.3,
     "workspace": 833.3,
     "doc": 1155
@@ -1419,7 +1419,7 @@
     "menu": 37,
     "lab": 505,
     "simPane": 557,
-    "dataPane": 1054.6,
+    "dataPane": 1075.4,
     "problemPane": 777.3,
     "workspace": 833.3,
     "doc": 1155
@@ -1453,7 +1453,7 @@
      "menu": 37,
      "lab": 641,
      "simPane": 693,
-     "dataPane": 1327.6,
+     "dataPane": 1348.4,
      "problemPane": 777.3,
      "workspace": 833.3,
      "doc": 1155
@@ -1964,9 +1964,9 @@
       "visible": "visible",
       "rect": [
        8,
-       469,
+       489,
        382,
-       623
+       644
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -1985,10 +1985,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1128,
+      "dataPane": 1169.6,
       "problemPane": "hidden",
-      "workspace": 1222,
-      "doc": 1566
+      "workspace": 1263.6,
+      "doc": 1608
      },
      "stored": "{\"mode\":\"guided\",\"step\":9}"
     },
@@ -2005,9 +2005,9 @@
       "visible": "visible",
       "rect": [
        8,
-       469,
+       489,
        382,
-       670
+       690
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2026,10 +2026,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1128,
+      "dataPane": 1169.6,
       "problemPane": "hidden",
-      "workspace": 1222,
-      "doc": 1566
+      "workspace": 1263.6,
+      "doc": 1608
      },
      "stored": "{\"mode\":\"guided\",\"step\":10}"
     },
@@ -2046,9 +2046,9 @@
       "visible": "visible",
       "rect": [
        8,
-       547,
+       567,
        382,
-       768
+       789
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2067,10 +2067,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1206,
+      "dataPane": 1247.6,
       "problemPane": "hidden",
-      "workspace": 1300,
-      "doc": 1644
+      "workspace": 1341.6,
+      "doc": 1686
      },
      "stored": "{\"mode\":\"guided\",\"step\":11}"
     },
@@ -2088,9 +2088,9 @@
       "visible": "visible",
       "rect": [
        8,
-       547,
+       567,
        382,
-       659
+       680
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2109,10 +2109,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1206,
+      "dataPane": 1247.6,
       "problemPane": "hidden",
-      "workspace": 1300,
-      "doc": 1644
+      "workspace": 1341.6,
+      "doc": 1686
      },
      "stored": "{\"mode\":\"guided\",\"step\":12}"
     }
@@ -2172,10 +2172,10 @@
      "menu": "hidden",
      "lab": "hidden",
      "simPane": "hidden",
-     "dataPane": 1401,
+     "dataPane": 1442.6,
      "problemPane": "hidden",
-     "workspace": 1495,
-     "doc": 1839
+     "workspace": 1536.6,
+     "doc": 1881
     }
    },
    "partB": {
@@ -2697,9 +2697,9 @@
       "visible": "visible",
       "rect": [
        8,
-       469,
+       489,
        382,
-       623
+       644
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2718,10 +2718,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1128,
+      "dataPane": 1169.6,
       "problemPane": "hidden",
-      "workspace": 1222,
-      "doc": 1566
+      "workspace": 1263.6,
+      "doc": 1608
      },
      "stored": "{\"mode\":\"guided\",\"step\":9}"
     },
@@ -2738,9 +2738,9 @@
       "visible": "visible",
       "rect": [
        8,
-       469,
+       489,
        382,
-       670
+       690
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2759,10 +2759,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1128,
+      "dataPane": 1169.6,
       "problemPane": "hidden",
-      "workspace": 1222,
-      "doc": 1566
+      "workspace": 1263.6,
+      "doc": 1608
      },
      "stored": "{\"mode\":\"guided\",\"step\":10}"
     },
@@ -2779,9 +2779,9 @@
       "visible": "visible",
       "rect": [
        8,
-       547,
+       567,
        382,
-       768
+       789
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2800,10 +2800,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1206,
+      "dataPane": 1247.6,
       "problemPane": "hidden",
-      "workspace": 1300,
-      "doc": 1644
+      "workspace": 1341.6,
+      "doc": 1686
      },
      "stored": "{\"mode\":\"guided\",\"step\":11}"
     },
@@ -2821,9 +2821,9 @@
       "visible": "visible",
       "rect": [
        8,
-       547,
+       567,
        382,
-       659
+       680
       ],
       "pinned": "hidden",
       "onScreen": true,
@@ -2842,10 +2842,10 @@
       "menu": "hidden",
       "lab": "hidden",
       "simPane": "hidden",
-      "dataPane": 1206,
+      "dataPane": 1247.6,
       "problemPane": "hidden",
-      "workspace": 1300,
-      "doc": 1644
+      "workspace": 1341.6,
+      "doc": 1686
      },
      "stored": "{\"mode\":\"guided\",\"step\":12}"
     }
@@ -2905,10 +2905,10 @@
      "menu": "hidden",
      "lab": "hidden",
      "simPane": "hidden",
-     "dataPane": 1401,
+     "dataPane": 1442.6,
      "problemPane": "hidden",
-     "workspace": 1495,
-     "doc": 1839
+     "workspace": 1536.6,
+     "doc": 1881
     }
    },
    "partB": {
@@ -2943,6 +2943,14 @@
     "backText": "Back to the walkthrough (step 1 of 12)",
     "backTo": "sim"
    }
+  },
+  "1280x800-t0Reveal": {
+   "used": "1.2217",
+   "finite": true
+  },
+  "390x844-t0Reveal": {
+   "used": "1.2217",
+   "finite": true
   }
  },
  "errs": []

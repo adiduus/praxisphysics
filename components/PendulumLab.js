@@ -11,6 +11,7 @@ import PendulumWalkthrough, { useWalkthroughMode } from './PendulumWalkthrough';
 import { pendulumWalkthrough, pendulumWalkthroughPart } from '@/data/pendulumWalkthrough';
 import { usePendulumPhysics } from '@/lib/pendulum/usePendulumPhysics';
 import { setBenchLength } from '@/lib/pendulum/benchLength';
+import { revealBelowPinned } from '@/lib/experiment/revealBelowPinned';
 import { sessionRandom, sessionUniform } from '@/lib/instruments/rng';
 import { SCALE_EDGE_X_M, SCALE_WIDTH_M } from '@/lib/pendulum/scene';
 
@@ -42,6 +43,9 @@ const PLATE_OFFSET_MAX_RAD = (1 * Math.PI) / 180;
 // none: they're part of the apparatus, fixed relative to the pivot, so the
 // menu only toggles whether each is mounted, never where.
 const PHOTOGATE_DEFAULT = { xM: 0.08, yM: 0.34 };
+
+// The instruments that come with a panel, by the name in its header.
+const PANELS = { stopwatch: 'STOPWATCH', photogate: 'PHOTOGATE' };
 
 const INSTRUMENTS = [
   { key: 'stopwatch', label: 'STOPWATCH' },
@@ -93,6 +97,41 @@ export default function PendulumLab({ dataTable, experimentId = 'pendulum', part
       return { ...prev, [key]: turningOn };
     });
   }, []);
+
+  // A panel just placed is brought wholly into view under the pinned
+  // apparatus, and the first one collapses the how-to strip to its "?"
+  // (as the walkthrough does): with the strip up, the window under the
+  // pinned region is too short for a panel on a laptop or a phone. See
+  // lib/experiment/revealBelowPinned.js.
+  const [panelPlaced, setPanelPlaced] = useState(false);
+  const prevOpenRef = useRef(open);
+  useEffect(() => {
+    const placed = Object.keys(PANELS).filter((k) => open[k] && !prevOpenRef.current[k]);
+    prevOpenRef.current = open;
+    if (!placed.length) return undefined;
+    setPanelPlaced(true);
+    const name = PANELS[placed[placed.length - 1]];
+    // Wait until the panel has stopped moving for two frames: the strip's
+    // collapse is a render of its own, and a fixed two-frame wait sometimes
+    // measured before it landed (1 run in 3 at 1280×800) and scrolled too
+    // little. At most ~20 frames.
+    let raf = 0;
+    let lastTop = null;
+    let still = 0;
+    let frames = 0;
+    const tick = () => {
+      const el = [...(labRef.current?.querySelectorAll('.instrument-panels .instrument') ?? [])].find(
+        (e) => e.querySelector('.instrument-head b')?.textContent === name
+      );
+      const top = el?.getBoundingClientRect().top ?? null;
+      still = top !== null && top === lastTop ? still + 1 : 0;
+      lastTop = top;
+      if (still >= 2 || ++frames >= 20) revealBelowPinned(el);
+      else raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [open]);
 
   const visible = useMemo(
     () => ({ scale: !!open.scale, anglePlate: !!open.anglePlate, photogate: !!open.photogate }),
@@ -211,7 +250,7 @@ export default function PendulumLab({ dataTable, experimentId = 'pendulum', part
             </button>
           </div>
         </div>
-        <BenchHint id="pendulum" collapse={walk.mode === 'guided' && onWalkPart}>
+        <BenchHint id="pendulum" collapse={(walk.mode === 'guided' && onWalkPart) || panelPlaced}>
           Drag the bob to set a release angle (capped at {DRAG_CAP_DEG}°), then press Release.
           Stop halts it where it is, so you can reposition it; Hang straight brings it to rest
           on the vertical, for reading a length or the angle plate&rsquo;s zero. Bring instruments

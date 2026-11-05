@@ -1,6 +1,16 @@
 // Layout audit: renders the pendulum (Part A, stopwatch running, pendulum
-// swinging) and circuits problem 2 (Part A thermistor divider, voltmeter
-// placed, heater on) at four viewport sizes. Saves a viewport screenshot
+// swinging; and its panels placed from a fresh load against the pinned
+// region) and circuits problem 2 (Part A thermistor divider, voltmeter
+// placed, heater on) at four viewport sizes. `--pages caliper` instead
+// audits the vernier caliper on its own page (jaws closed, magnifier open,
+// jaws opened under it), against its own baseline,
+// scripts/layout-audit.caliper.baseline.json; `--pages goniometer` audits
+// the microwave goniometer on its own page (table and arm dragged, keys,
+// the table's stops), against scripts/layout-audit.goniometer.baseline.json;
+// `--pages microwave` takes the microwave bench through Part A and Part B
+// (specimens, meter, beam block, caliper on the slab and in the gap, the
+// metre rule against the slab),
+// against scripts/layout-audit.microwave.baseline.json. Saves a viewport screenshot
 // (the fold) and a full-page screenshot of each, and prints element
 // geometry so "what's above the fold" and "can the apparatus and the
 // instrument be seen together" are measured, not eyeballed.
@@ -15,7 +25,7 @@ import { mkdtempSync } from 'node:fs';
 // `npm run dev`):
 //   node scripts/layout-audit.mjs [--base http://localhost:3000] [--sizes 1920x1080,1440x900,1280x800,390x844]
 //        [--out scripts/audit-output/layout] [--json scripts/audit-output/layout-audit.json]
-//        [--edge <path to msedge/chrome>]
+//        [--edge <path to msedge/chrome>] [--pages pendulum,circuits,builder | caliper | goniometer | microwave]
 // Drives a headless Chromium (Edge by default on Windows; --edge or
 // $AUDIT_BROWSER for anything else) over the DevTools protocol — no
 // Playwright dependency. Screenshots go to --out, which is gitignored;
@@ -28,8 +38,10 @@ const { values: opt } = parseArgs({
     out: { type: 'string', default: 'scripts/audit-output/layout' },
     json: { type: 'string', default: 'scripts/audit-output/layout-audit.json' },
     edge: { type: 'string', default: process.env.AUDIT_BROWSER || 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' },
+    pages: { type: 'string', default: 'pendulum,circuits,builder' },
   },
 });
+const PAGES = opt.pages.split(',');
 const edge = opt.edge;
 const profile = mkdtempSync(join(tmpdir(), 'praxis-audit-'));
 const base = opt.base;
@@ -94,6 +106,46 @@ async function setSizeAgain() { await setSize(current); } // full-page capture c
 const clickText = (sel, txt) => ev(`(() => { const b = [...document.querySelectorAll(${JSON.stringify(sel)})].find(b => b.textContent.trim() === ${JSON.stringify(txt)}); if (!b) throw new Error('no ' + ${JSON.stringify(txt)}); b.click(); })()`);
 
 const results = {};
+
+// The caliper's drawing extent (lib/instruments/caliperScene.js's
+// CALIPER_EXTENT), to find its slider on the canvas, and the session seed
+// its audit runs at.
+const CALIPER_LEFT_CM = -1.7;
+const CALIPER_WIDTH_CM = 15 + 5.5 - CALIPER_LEFT_CM;
+const CALIPER_SEED = 2006;
+// The goniometer's drawing extent and fill (lib/microwave/goniometerScene.js's
+// GONIOMETER_EXTENT, components/Goniometer.js's FILL), to find its table
+// and arm on the canvas.
+const GON_EXTENT = { left: -1.55, right: 1.55, top: -1.55, bottom: 1.06 };
+const GON_FILL = 0.96;
+// An AnchoredPopover's placement: which side, wholly on screen below the
+// header, and whether it covers the panel (the caliper's by default). `dismiss` presses its
+// first button (a note's GOT IT).
+const popoverAt = (sel, dismiss, panelSel = '.instrument.caliper') => `(() => {
+  const pop = document.querySelector(${JSON.stringify(sel)});
+  if (!pop) return { present: false };
+  const r = pop.getBoundingClientRect();
+  const head = document.querySelector('header').getBoundingClientRect().bottom;
+  const panel = document.querySelector(${JSON.stringify(panelSel)}).getBoundingClientRect();
+  const out = {
+    present: true, side: pop.dataset.side, visible: getComputedStyle(pop).visibility,
+    rect: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)],
+    onScreen: r.left >= 0 && r.right <= document.documentElement.clientWidth && r.top >= head && r.bottom <= innerHeight,
+    overlapsPanel: r.left < panel.right && r.right > panel.left && r.top < panel.bottom && r.bottom > panel.top,
+    scrollY: Math.round(scrollY),
+  };
+  if (${dismiss}) pop.querySelector('button').click();
+  return out;
+})()`;
+// A screenshot of one element, as it sits in the viewport (a fixed
+// popover moves if the capture is taken beyond the viewport).
+async function clip(sel, name) {
+  await ev(`window.scrollTo({ top: 0, behavior: 'instant' })`);
+  await sleep(200);
+  const b = await ev(`(() => { const r = document.querySelector(${JSON.stringify(sel)}).getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height, scale: 1 }; })()`);
+  const r = await send('Page.captureScreenshot', { format: 'png', clip: b });
+  writeFileSync(join(outDir, `${name}.png`), Buffer.from(r.result.data, 'base64'));
+}
 
 const PENDULUM_SELS = {
   header: 'header',
@@ -218,6 +270,7 @@ for (const s of SIZES) {
   const tag = `${s.w}x${s.h}`;
   await setSize(s);
 
+  if (PAGES.includes('pendulum')) {
   // ---------- pendulum ----------
   await open('/simulations/pendulum');
   if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
@@ -274,7 +327,61 @@ for (const s of SIZES) {
   const pTwo = await ev(GEOM(PENDULUM_SELS));
   const pReachTwo = await reach('.instrument-panels .instrument:nth-child(2)', { canvas: '#pendulum-canvas', stopwatch: '.instrument-panels .instrument', photogate: '.instrument-panels .instrument:nth-child(2)' });
   results[`pendulum-${tag}`] = { hintDismissed: pHintDismissed, before: pBefore, withStopwatch: pWithStopwatch, active: pActive, withPhotogateToo: pTwo, firstUse: { stopwatchCard: pStopwatchCard, stopwatch: pStopwatchFirstUse.stopwatch, photogateCard: pPhotogateCard, photogate: pPhotogateFirstUse.photogate }, atFold: pAtFold, reach: { ...pReach, toPhotogateWithStopwatch: pReachTwo } };
+  }
 
+  if (PAGES.includes('pendulum')) {
+  // ---------- pendulum: instrument panels against the pinned region ----------
+  // From a fresh load with the how-to strip still up, as a first-time
+  // student finds it: place the stopwatch, then the photogate, and after
+  // each check the new panel (and the menu row above it, and the panel
+  // placed before) is wholly on screen, below the header and clear of the
+  // pinned apparatus, without the student scrolling. Then how far a
+  // student can scroll the bench, from where placing left it, before the
+  // first panel passes under (scrollWhileClear).
+  await open('/simulations/pendulum');
+  if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
+  await sleep(300);
+  const panelSel = (name) => `[...document.querySelectorAll('.instrument-panels .instrument')].find((e) => e.querySelector('.instrument-head b')?.textContent === '${name}')`;
+  const CLEAR = (sel) => `(() => {
+    const e = ${sel}; if (!e) return null;
+    const r = e.getBoundingClientRect();
+    const head = document.querySelector('header').getBoundingClientRect().bottom;
+    const pin = document.querySelector('.bench-pinned').getBoundingClientRect();
+    return { at: [Math.round(r.top), Math.round(r.bottom)], pinned: [Math.round(pin.top), Math.round(pin.bottom)], clear: r.top >= pin.bottom - 0.5 && r.top >= head - 0.5 && r.bottom <= innerHeight + 0.5 };
+  })()`;
+  const HINT = `document.querySelector('.bench-hint') ? 'strip' : document.querySelector('.bench-hint-reopen') ? 'collapsed to ?' : 'none'`;
+  const panels = { hintBefore: await ev(HINT) };
+  await clickText('.instrument-menu button', 'STOPWATCH');
+  await sleep(700);
+  panels.stopwatch = { panel: await ev(CLEAR(panelSel('STOPWATCH'))), menu: await ev(CLEAR(`document.querySelector('.instrument-menu')`)), hint: await ev(HINT) };
+  await ev(`document.querySelector('.instrument-popover button')?.click()`);
+  await sleep(200);
+  await clickText('.instrument-menu button', 'PHOTOGATE');
+  await sleep(700);
+  panels.photogate = { panel: await ev(CLEAR(panelSel('PHOTOGATE'))), stopwatchStill: await ev(CLEAR(panelSel('STOPWATCH'))), menu: await ev(CLEAR(`document.querySelector('.instrument-menu')`)) };
+  await ev(`document.querySelector('.instrument-popover button')?.click()`);
+  await sleep(200);
+  // Scroll on from there, 4 px at a time, until the stopwatch passes under.
+  panels.scrollWhileClear = await ev(`(async () => {
+    const col = document.querySelector('.pendulum-col-right');
+    const sc = col && getComputedStyle(col).overflowY === 'auto' ? col : null;
+    const e = ${panelSel('STOPWATCH')};
+    const head = document.querySelector('header').getBoundingClientRect().bottom;
+    let n = 0;
+    for (; n < 2000; n += 4) {
+      const r = e.getBoundingClientRect(), pin = document.querySelector('.bench-pinned').getBoundingClientRect();
+      if (!(r.top >= pin.bottom - 0.5 && r.top >= head - 0.5 && r.bottom <= innerHeight + 0.5)) break;
+      const before = sc ? sc.scrollTop : scrollY;
+      if (sc) sc.scrollTop += 4; else window.scrollBy(0, 4);
+      await new Promise((r) => requestAnimationFrame(r));
+      if ((sc ? sc.scrollTop : scrollY) === before) return { px: n, end: 'scroll ended first' };
+    }
+    return { px: n };
+  })()`);
+  results[`pendulum-panels-${tag}`] = panels;
+  }
+
+  if (PAGES.includes('circuits')) {
   // ---------- circuits problem 2, Part A ----------
   await open('/simulations/circuits-nonlinear');
   if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
@@ -335,7 +442,9 @@ for (const s of SIZES) {
   const cTwo = await ev(GEOM(CIRCUIT_SELS));
   cTwo.metersListed = await ev(`document.querySelectorAll('.circuit-meters li').length`);
   results[`circuits-thermistor-${tag}`] = { hintDismissed: cHintDismissed, before: cBefore, active: cActive, withSecondVoltmeter: cTwo, atFold: cAtFold, reach: cReach };
+  }
 
+  if (PAGES.includes('builder')) {
   // ---------- circuit builder: oscilloscope expanded ----------
   await open('/simulations/circuit-builder');
   await dismissHint();
@@ -358,6 +467,257 @@ for (const s of SIZES) {
   await sleep(400);
   const bClosed = await ev(GEOM({ canvas: '#circuit-canvas', inventory: '.circuit-inventory', scope: '.circuit-scope' }));
   results[`builder-scope-${tag}`] = { collapsed: bCollapsed, expanded: bExpanded, atFold: bAtFold, reach: bReach, closedAgain: bClosed };
+  }
+
+  if (PAGES.includes('caliper')) {
+  // ---------- vernier caliper, on its own page ----------
+  // A fixed session seed, so the jaw zero (and so every reading) is the
+  // same on every run and the baseline can carry it.
+  await send('Page.navigate', { url: base + '/instruments/caliper' });
+  await sleep(2500);
+  await ev(`(() => { Object.keys(localStorage).filter(k => k.startsWith('praxis:')).forEach(k => localStorage.removeItem(k)); sessionStorage.setItem('praxis:session-seed', '${CALIPER_SEED}'); })()`);
+  await send('Page.reload');
+  await sleep(3500);
+  const K_SELS = { header: 'header', panel: '.instrument.caliper', canvas: '.caliper-canvas', controls: '.instrument.caliper .instrument-controls' };
+  const kFirst = await ev(GEOM(K_SELS));
+  // The note opens on first use (there's no bench strip here to wait for).
+  const kNote = await ev(popoverAt('.instrument-popover', true));
+  await sleep(200);
+  const kNoNote = await ev(GEOM(K_SELS));
+  // Grab the slider just right of the moving jaw's face and drag it.
+  const jawX = (cm) => ev(`(() => { const r = document.querySelector('.caliper-canvas').getBoundingClientRect(); const ppc = r.width / ${CALIPER_WIDTH_CM}; return { x: r.left + (${cm} - ${CALIPER_LEFT_CM}) * ppc, y: r.top + r.height * 0.55 }; })()`);
+  const dragJaw = async (fromCm, toCm) => {
+    await ev(`document.querySelector('.caliper-canvas').scrollIntoView({ block: 'center', behavior: 'instant' })`);
+    await sleep(200);
+    const a = await jawX(fromCm + 0.7);
+    const b = await jawX(toCm + 0.7);
+    await mouse('mouseMoved', a.x, a.y); await mouse('mousePressed', a.x, a.y);
+    for (let i = 1; i <= 12; i++) { await mouse('mouseMoved', a.x + ((b.x - a.x) * i) / 12, a.y); await sleep(15); }
+    await mouse('mouseReleased', b.x, b.y);
+    await sleep(200);
+  };
+  await dragJaw(3, -1); // from 3 cm open to past zero: the jaws stop shut
+  await clickText('.instrument.caliper .instrument-controls button', 'MAGNIFIER');
+  await sleep(500);
+  const kMag = await ev(popoverAt('.caliper-magnifier', false));
+  const kWithMag = await ev(GEOM(K_SELS));
+  await shots(`caliper-closed-${tag}`);
+  await clip('.caliper-magnifier canvas', `caliper-closed-mag-${tag}`);
+  // Look along the scales, then open the jaws to 10 cm with it still open.
+  const m = await ev(`(() => { const r = document.querySelector('.caliper-magnifier canvas').getBoundingClientRect(); return { x: r.left + r.width * 0.7, y: r.top + r.height / 2 }; })()`);
+  await mouse('mouseMoved', m.x, m.y); await mouse('mousePressed', m.x, m.y);
+  for (let i = 1; i <= 8; i++) { await mouse('mouseMoved', m.x - 15 * i, m.y); await sleep(15); }
+  await mouse('mouseReleased', m.x - 120, m.y);
+  await sleep(200);
+  await dragJaw(0, 10);
+  const kMagOpen = await ev(popoverAt('.caliper-magnifier', false));
+  await clip('.caliper-magnifier canvas', `caliper-open-mag-${tag}`);
+  await clip('.instrument.caliper', `caliper-open-panel-${tag}`);
+  await clickText('.caliper-magnifier button', 'CLOSE');
+  await sleep(300);
+  const kClosed = await ev(GEOM(K_SELS));
+  results[`caliper-${tag}`] = { first: kFirst, noteCard: kNote, afterNote: kNoNote, magnifier: kMag, withMagnifier: kWithMag, magnifierAfterOpening: kMagOpen, magnifierClosed: kClosed };
+  }
+
+  if (PAGES.includes('goniometer')) {
+  // ---------- microwave goniometer, on its own page ----------
+  // The same fixed seed as the caliper's (the goniometer itself has no
+  // session values). data-table is the table pointer's reading.
+  await send('Page.navigate', { url: base + '/instruments/goniometer' });
+  await sleep(2500);
+  await ev(`(() => { Object.keys(localStorage).filter(k => k.startsWith('praxis:')).forEach(k => localStorage.removeItem(k)); sessionStorage.setItem('praxis:session-seed', '${CALIPER_SEED}'); })()`);
+  await send('Page.reload');
+  await sleep(3500);
+  const G_SELS = { header: 'header', frame: '.goniometer-frame', canvas: '.goniometer-canvas', controls: '.goniometer-controls' };
+  const gFirst = await ev(GEOM(G_SELS));
+  const gNote = await ev(popoverAt('.instrument-popover', true, '.goniometer-frame'));
+  await sleep(200);
+  const gNoNote = await ev(GEOM(G_SELS));
+  const tableAt = () => ev(`Number(document.querySelector('.goniometer-canvas').dataset.table)`);
+  // A viewport point at radius r (in circle radii) and true angle deg, as
+  // drawn: 0 points left, 90 up.
+  const gonPoint = (r, deg) => ev(`(() => { const c = document.querySelector('.goniometer-canvas').getBoundingClientRect(); const E = ${JSON.stringify(GON_EXTENT)}; const R = Math.min(c.width * ${GON_FILL} / (E.right - E.left), c.height * ${GON_FILL} / (E.bottom - E.top)); const cx = c.left + c.width / 2 - (E.left + E.right) / 2 * R, cy = c.top + c.height / 2 - (E.top + E.bottom) / 2 * R; const a = ${deg} * Math.PI / 180; return { x: cx - Math.cos(a) * ${r} * R, y: cy - Math.sin(a) * ${r} * R }; })()`);
+  // Drag round an arc about the centre, from one true angle to another.
+  const dragArc = async (r, fromDeg, toDeg) => {
+    await ev(`window.scrollTo({ top: 0, behavior: 'instant' })`);
+    await sleep(200);
+    const a = await gonPoint(r, fromDeg);
+    await mouse('mouseMoved', a.x, a.y); await mouse('mousePressed', a.x, a.y);
+    let p = a;
+    for (let i = 1; i <= 16; i++) { p = await gonPoint(r, fromDeg + ((toDeg - fromDeg) * i) / 16); await mouse('mouseMoved', p.x, p.y); await sleep(15); }
+    await mouse('mouseReleased', p.x, p.y);
+    await sleep(200);
+  };
+  const gStart = await tableAt();
+  await shots(`goniometer-start-${tag}`);
+  // The table by its disc, 15 degrees back; then the detector arm by its
+  // far end, 60 degrees on, which turns the table through half that.
+  await dragArc(0.25, 135, 120);
+  const gAfterTable = await tableAt();
+  await clip('.goniometer-frame', `goniometer-table-${tag}`);
+  const gArm = 2 * gAfterTable; // near enough to grab: the offset is at most a degree
+  await dragArc(1.15, gArm, gArm + 60);
+  const gAfterArm = await tableAt();
+  await clip('.goniometer-frame', `goniometer-arm-${tag}`);
+  await ev(`document.querySelector('.goniometer-canvas').focus()`);
+  for (let i = 0; i < 3; i++) {
+    await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'ArrowUp', code: 'ArrowUp', windowsVirtualKeyCode: 38 });
+    await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'ArrowUp', code: 'ArrowUp', windowsVirtualKeyCode: 38 });
+  }
+  await sleep(200);
+  const gAfterKeys = await tableAt();
+  // Past either stop: the table holds at 90 and at 15.
+  await dragArc(0.25, 100, 175);
+  const gAtMax = await tableAt();
+  await clip('.goniometer-frame', `goniometer-max-${tag}`);
+  await dragArc(0.25, 100, 10);
+  const gAtMin = await tableAt();
+  await clip('.goniometer-frame', `goniometer-min-${tag}`);
+  const gLast = await ev(GEOM(G_SELS));
+  results[`goniometer-${tag}`] = { first: gFirst, noteCard: gNote, afterNote: gNoNote, last: gLast, table: { start: gStart, afterTableDrag: gAfterTable, afterArmDrag: gAfterArm, afterKeys: gAfterKeys, atMax: gAtMax, atMin: gAtMin } };
+  }
+
+  if (PAGES.includes('microwave')) {
+  // ---------- microwave bench, Part A then Part B ----------
+  // At the caliper's seed, so the dark current and the jaw zero are the
+  // same every run; the meter's noise is not seeded,
+  // so its readings are recorded but only their range is meant to hold.
+  await send('Page.navigate', { url: base + '/simulations/microwave' });
+  await sleep(2500);
+  await ev(`(() => { Object.keys(localStorage).filter(k => k.startsWith('praxis:')).forEach(k => localStorage.removeItem(k)); sessionStorage.setItem('praxis:session-seed', '${CALIPER_SEED}'); })()`);
+  await send('Page.reload');
+  await sleep(3500);
+  if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
+  await sleep(300);
+  const M_SELS = { header: 'header', workspace: '.pendulum-workspace', pinned: '.bench-pinned', canvas: '.goniometer-canvas', controls: '.goniometer-controls', hint: '.bench-hint', menu: '.instrument-menu', meter: '.instrument.multimeter', meterRead: '.instrument.multimeter .instrument-read', caliper: '.instrument.caliper', rule: '.instrument.rule' };
+  const mFirst = await ev(GEOM(M_SELS));
+  const mHint = await dismissHint();
+  await sleep(300);
+  const notes = { goniometer: await dismissNote() };
+  const place = async (label, noteKey) => {
+    await clickText('.instrument-menu button', label);
+    await sleep(400);
+    if (noteKey) notes[noteKey] = await dismissNote();
+    await sleep(200);
+  };
+  const meterAt = () => ev(`(() => { const e = document.querySelector('.instrument.multimeter .instrument-read'); return e ? Number(e.firstChild.textContent) : null; })()`);
+  const key = async (k, n) => {
+    await ev(`document.querySelector('.goniometer-canvas').focus({ preventScroll: true })`);
+    const code = k === 'up' ? ['ArrowUp', 38] : ['ArrowDown', 40];
+    for (let i = 0; i < n; i++) {
+      await send('Input.dispatchKeyEvent', { type: 'keyDown', key: code[0], code: code[0], windowsVirtualKeyCode: code[1] });
+      await send('Input.dispatchKeyEvent', { type: 'keyUp', key: code[0], code: code[0], windowsVirtualKeyCode: code[1] });
+    }
+    await sleep(150);
+  };
+  const tableNow = () => ev(`Number(document.querySelector('.goniometer-canvas').dataset.table)`);
+  const setTableTo = async (p) => { const now = await tableNow(); const n = Math.round((p - now) / 0.5); await key(n > 0 ? 'up' : 'down', Math.abs(n)); return tableNow(); };
+  const pressRead = () => clickText('.instrument.multimeter button', 'READ');
+  // Whether the caliper's canvas is still in view, clear of the pinned
+  // apparatus, with its magnifier open: the jaws are dragged there.
+  const panelClear = () => ev(`(() => { const c = document.querySelector('.caliper-canvas').getBoundingClientRect(); const pin = document.querySelector('.bench-pinned').getBoundingClientRect(); return c.top >= pin.bottom - 1 && c.bottom <= innerHeight + 1; })()`);
+  // Scroll a panel up to just under the pinned apparatus, where a student
+  // reading it would bring it, before a popover is opened from it.
+  const underPinned = async (sel) => {
+    await ev(`(() => { const e = document.querySelector(${JSON.stringify(sel)}).getBoundingClientRect(); const pin = document.querySelector('.bench-pinned').getBoundingClientRect(); const col = document.querySelector('.pendulum-col-right'); const by = e.top - pin.bottom - 12; if (col && getComputedStyle(col).overflowY === 'auto') col.scrollTop += by; else window.scrollBy({ top: by, behavior: 'instant' }); })()`);
+    await sleep(250);
+  };
+
+  // Part A: nothing mounted, then the slab; a reading at each of a few
+  // printed angles, three READs at one, and the beam block.
+  await place('MULTIMETER', 'multimeter');
+  const aEmpty = await meterAt();
+  await place('SLAB');
+  const scan = {};
+  for (const p of [30, 36.5, 37, 45, 59, 60, 70]) { await setTableTo(p); scan[p] = await meterAt(); }
+  await setTableTo(50);
+  const threeReads = [];
+  for (let i = 0; i < 3; i++) { await pressRead(); await sleep(100); threeReads.push(await meterAt()); }
+  await place('BEAM BLOCK');
+  const blocked = await meterAt();
+  await place('BEAM BLOCK');
+  await place('CALIPER', 'caliper');
+  await clickText('.instrument.caliper .instrument-controls button', 'ON THE SLAB');
+  await sleep(200);
+  // The jaws dragged shut onto the slab, then the magnifier on the reading.
+  const jawAt = (cm) => ev(`(() => { const r = document.querySelector('.caliper-canvas').getBoundingClientRect(); const ppc = r.width / ${CALIPER_WIDTH_CM}; return { x: r.left + (${cm} - ${CALIPER_LEFT_CM}) * ppc, y: r.top + r.height * 0.55 }; })()`);
+  // Dragged with the panel just under the pinned goniometer: centred, it
+  // would sit behind it.
+  const dragJawM = async (fromCm, toCm) => {
+    await underPinned('.instrument.caliper');
+    const a = await jawAt(fromCm + 0.7);
+    const b = await jawAt(toCm + 0.7);
+    await mouse('mouseMoved', a.x, a.y); await mouse('mousePressed', a.x, a.y);
+    for (let i = 1; i <= 12; i++) { await mouse('mouseMoved', a.x + ((b.x - a.x) * i) / 12, a.y); await sleep(15); }
+    await mouse('mouseReleased', b.x, b.y);
+    await sleep(200);
+  };
+  await dragJawM(11.03, 2);
+  await underPinned('.instrument.caliper');
+  await clickText('.instrument.caliper .instrument-controls button', 'MAGNIFIER');
+  await sleep(500);
+  const aMag = { ...(await ev(popoverAt('.caliper-magnifier', false))), panelClear: await panelClear() };
+  await clip('.caliper-magnifier canvas', `microwave-slab-mag-${tag}`);
+  await clickText('.caliper-magnifier button', 'CLOSE');
+  await sleep(200);
+  // The metre rule laid against the slab, and its magnifier on the far face.
+  await place('METRE RULE', 'rule');
+  await clickText('.instrument.rule .instrument-controls button', 'ON THE SLAB');
+  await sleep(200);
+  await underPinned('.instrument.rule');
+  await clickText('.instrument.rule .instrument-controls button', 'MAGNIFIER');
+  await sleep(500);
+  const ruleClear = await ev(`(() => { const c = document.querySelector('.rule-canvas').getBoundingClientRect(); const pin = document.querySelector('.bench-pinned').getBoundingClientRect(); return c.top >= pin.bottom - 1 && c.bottom <= innerHeight + 1; })()`);
+  const aRuleMag = { ...(await ev(popoverAt('.rule-magnifier', false, '.instrument.rule'))), panelClear: ruleClear };
+  await clip('.rule-magnifier canvas', `microwave-rule-mag-${tag}`);
+  await clickText('.rule-magnifier button', 'CLOSE');
+  await sleep(200);
+  const aGeom = await ev(GEOM(M_SELS));
+  const aReach = await reach('.instrument.multimeter .instrument-read', { meterRead: '.instrument.multimeter .instrument-read' });
+  await shots(`microwave-a-${tag}`);
+  await clip('.goniometer-frame', `microwave-a-frame-${tag}`);
+
+  // Part B: the arms in line; nothing mounted, then the prisms, the
+  // reading at a few gaps set on the bare slider, and the caliper in the gap.
+  await ev(RESET_SCROLL);
+  await clickText('.pendulum-part-switch button', 'PART B');
+  await sleep(400);
+  if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
+  await place('MULTIMETER');
+  const bEmpty = await meterAt();
+  await place('PRISMS');
+  const gapShown = await ev(`(() => { const g = document.querySelector('.gap-control'); return g ? { text: g.textContent.trim(), valuetext: g.querySelector('input').getAttribute('aria-valuetext') } : null; })()`);
+  const setGap = (v) => ev(`(() => { const i = document.querySelector('.gap-control input'); Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(i, '${v}'); i.dispatchEvent(new Event('input', { bubbles: true })); })()`);
+  const gaps = {};
+  for (const d of [0, 0.6, 1.0, 1.4, 2.0]) { await setGap(d); await sleep(150); gaps[d] = await meterAt(); }
+  await place('CALIPER');
+  await clickText('.instrument.caliper .instrument-controls button', 'IN THE GAP');
+  await sleep(200);
+  await dragJawM(0, 5); // opened past the 2.0 cm gap: the jaws stop on its faces
+  await underPinned('.instrument.caliper');
+  await clickText('.instrument.caliper .instrument-controls button', 'MAGNIFIER');
+  await sleep(500);
+  const bMag = { ...(await ev(popoverAt('.caliper-magnifier', false))), panelClear: await panelClear() };
+  // The viewport as it stands, panel under the apparatus and magnifier open
+  // (clip() would scroll the page to the top first).
+  { const r = await send('Page.captureScreenshot', { format: 'png' }); writeFileSync(join(outDir, `microwave-gap-view-${tag}.png`), Buffer.from(r.result.data, 'base64')); }
+  await clip('.caliper-magnifier canvas', `microwave-gap-mag-${tag}`);
+  await clickText('.caliper-magnifier button', 'CLOSE');
+  await sleep(200);
+  const bGeom = await ev(GEOM(M_SELS));
+  await shots(`microwave-b-${tag}`);
+  await clip('.goniometer-frame', `microwave-b-frame-${tag}`);
+
+  // The answer boxes: Part A's order takes a whole number, no ±.
+  await clickText('.pendulum-part-switch button', 'PART A');
+  await sleep(300);
+  if (s.mobile) await clickText('.pendulum-tabs button', 'PROBLEM');
+  const answers = await ev(`[...document.querySelectorAll('.answer-box')].map((b) => b.querySelectorAll('input').length)`);
+  const equipment = await ev(`document.querySelector('.pendulum-equipment')?.textContent ?? null`);
+  if (s.mobile) await clickText('.pendulum-tabs button', 'DATA');
+  const quick = await ev(`!!document.querySelector('.quick-strip, .quick-empty')`);
+  results[`microwave-${tag}`] = { first: mFirst, hintDismissed: mHint, notes, partA: { empty: aEmpty, scan, threeReads, blocked, magnifier: aMag, ruleMagnifier: aRuleMag, geom: aGeom, reach: aReach }, partB: { empty: bEmpty, gapControl: gapShown, gaps, magnifier: bMag, geom: bGeom }, answers, equipment, quickEntry: quick };
+  }
 }
 
 writeFileSync(outJson, JSON.stringify({ results, errs }, null, 1));

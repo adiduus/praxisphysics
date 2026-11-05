@@ -1,0 +1,773 @@
+{
+ "results": {
+  "caliper-1920x1080": {
+   "first": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 628,
+     "left": 28,
+     "right": 1892,
+     "h": 508,
+     "w": 1864
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 569,
+     "left": 45,
+     "right": 1875,
+     "h": 400,
+     "w": 1830
+    },
+    "controls": {
+     "top": 581,
+     "bottom": 611,
+     "left": 45,
+     "right": 1875,
+     "h": 30,
+     "w": 1830
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     1612,
+     640,
+     1892,
+     835
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 628,
+     "left": 28,
+     "right": 1892,
+     "h": 508,
+     "w": 1864
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 569,
+     "left": 45,
+     "right": 1875,
+     "h": 400,
+     "w": 1830
+    },
+    "controls": {
+     "top": 581,
+     "bottom": 611,
+     "left": 45,
+     "right": 1875,
+     "h": 30,
+     "w": 1830
+    }
+   },
+   "magnifier": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     640,
+     658,
+     900
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "withMagnifier": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 628,
+     "left": 28,
+     "right": 1892,
+     "h": 508,
+     "w": 1864
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 569,
+     "left": 45,
+     "right": 1875,
+     "h": 400,
+     "w": 1830
+    },
+    "controls": {
+     "top": 581,
+     "bottom": 611,
+     "left": 45,
+     "right": 1875,
+     "h": 30,
+     "w": 1830
+    }
+   },
+   "magnifierAfterOpening": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     640,
+     658,
+     900
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "magnifierClosed": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 628,
+     "left": 28,
+     "right": 1892,
+     "h": 508,
+     "w": 1864
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 569,
+     "left": 45,
+     "right": 1875,
+     "h": 400,
+     "w": 1830
+    },
+    "controls": {
+     "top": 581,
+     "bottom": 611,
+     "left": 45,
+     "right": 1875,
+     "h": 30,
+     "w": 1830
+    }
+   }
+  },
+  "caliper-1440x900": {
+   "first": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 525,
+     "left": 23,
+     "right": 1417,
+     "h": 405,
+     "w": 1394
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 466,
+     "left": 40,
+     "right": 1400,
+     "h": 297,
+     "w": 1360
+    },
+    "controls": {
+     "top": 478,
+     "bottom": 508,
+     "left": 40,
+     "right": 1400,
+     "h": 30,
+     "w": 1360
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     1137,
+     537,
+     1417,
+     733
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 525,
+     "left": 23,
+     "right": 1417,
+     "h": 405,
+     "w": 1394
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 466,
+     "left": 40,
+     "right": 1400,
+     "h": 297,
+     "w": 1360
+    },
+    "controls": {
+     "top": 478,
+     "bottom": 508,
+     "left": 40,
+     "right": 1400,
+     "h": 30,
+     "w": 1360
+    }
+   },
+   "magnifier": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     537,
+     658,
+     797
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "withMagnifier": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 525,
+     "left": 23,
+     "right": 1417,
+     "h": 405,
+     "w": 1394
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 466,
+     "left": 40,
+     "right": 1400,
+     "h": 297,
+     "w": 1360
+    },
+    "controls": {
+     "top": 478,
+     "bottom": 508,
+     "left": 40,
+     "right": 1400,
+     "h": 30,
+     "w": 1360
+    }
+   },
+   "magnifierAfterOpening": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     537,
+     658,
+     797
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "magnifierClosed": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 525,
+     "left": 23,
+     "right": 1417,
+     "h": 405,
+     "w": 1394
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 466,
+     "left": 40,
+     "right": 1400,
+     "h": 297,
+     "w": 1360
+    },
+    "controls": {
+     "top": 478,
+     "bottom": 508,
+     "left": 40,
+     "right": 1400,
+     "h": 30,
+     "w": 1360
+    }
+   }
+  },
+  "caliper-1280x800": {
+   "first": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 492,
+     "left": 20,
+     "right": 1260,
+     "h": 371,
+     "w": 1239
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 433,
+     "left": 37,
+     "right": 1243,
+     "h": 263,
+     "w": 1205
+    },
+    "controls": {
+     "top": 445,
+     "bottom": 475,
+     "left": 37,
+     "right": 1243,
+     "h": 30,
+     "w": 1205
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     980,
+     504,
+     1260,
+     699
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 492,
+     "left": 20,
+     "right": 1260,
+     "h": 371,
+     "w": 1239
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 433,
+     "left": 37,
+     "right": 1243,
+     "h": 263,
+     "w": 1205
+    },
+    "controls": {
+     "top": 445,
+     "bottom": 475,
+     "left": 37,
+     "right": 1243,
+     "h": 30,
+     "w": 1205
+    }
+   },
+   "magnifier": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     504,
+     658,
+     764
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "withMagnifier": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 492,
+     "left": 20,
+     "right": 1260,
+     "h": 371,
+     "w": 1239
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 433,
+     "left": 37,
+     "right": 1243,
+     "h": 263,
+     "w": 1205
+    },
+    "controls": {
+     "top": 445,
+     "bottom": 475,
+     "left": 37,
+     "right": 1243,
+     "h": 30,
+     "w": 1205
+    }
+   },
+   "magnifierAfterOpening": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     504,
+     658,
+     764
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "magnifierClosed": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "panel": {
+     "top": 120,
+     "bottom": 492,
+     "left": 20,
+     "right": 1260,
+     "h": 371,
+     "w": 1239
+    },
+    "canvas": {
+     "top": 169,
+     "bottom": 433,
+     "left": 37,
+     "right": 1243,
+     "h": 263,
+     "w": 1205
+    },
+    "controls": {
+     "top": 445,
+     "bottom": 475,
+     "left": 37,
+     "right": 1243,
+     "h": 30,
+     "w": 1205
+    }
+   }
+  },
+  "caliper-390x844": {
+   "first": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "panel": {
+     "top": 114,
+     "bottom": 295,
+     "left": 12,
+     "right": 378,
+     "h": 181,
+     "w": 366
+    },
+    "canvas": {
+     "top": 163,
+     "bottom": 236,
+     "left": 29,
+     "right": 361,
+     "h": 73,
+     "w": 332
+    },
+    "controls": {
+     "top": 248,
+     "bottom": 278,
+     "left": 29,
+     "right": 361,
+     "h": 30,
+     "w": 332
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     98,
+     307,
+     378,
+     502
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "panel": {
+     "top": 114,
+     "bottom": 295,
+     "left": 12,
+     "right": 378,
+     "h": 181,
+     "w": 366
+    },
+    "canvas": {
+     "top": 163,
+     "bottom": 236,
+     "left": 29,
+     "right": 361,
+     "h": 73,
+     "w": 332
+    },
+    "controls": {
+     "top": 248,
+     "bottom": 278,
+     "left": 29,
+     "right": 361,
+     "h": 30,
+     "w": 332
+    }
+   },
+   "magnifier": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     307,
+     382,
+     529
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "withMagnifier": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "panel": {
+     "top": 114,
+     "bottom": 295,
+     "left": 12,
+     "right": 378,
+     "h": 181,
+     "w": 366
+    },
+    "canvas": {
+     "top": 163,
+     "bottom": 236,
+     "left": 29,
+     "right": 361,
+     "h": 73,
+     "w": 332
+    },
+    "controls": {
+     "top": 248,
+     "bottom": 278,
+     "left": 29,
+     "right": 361,
+     "h": 30,
+     "w": 332
+    }
+   },
+   "magnifierAfterOpening": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     8,
+     307,
+     382,
+     529
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "magnifierClosed": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "panel": {
+     "top": 114,
+     "bottom": 295,
+     "left": 12,
+     "right": 378,
+     "h": 181,
+     "w": 366
+    },
+    "canvas": {
+     "top": 163,
+     "bottom": 236,
+     "left": 29,
+     "right": 361,
+     "h": 73,
+     "w": 332
+    },
+    "controls": {
+     "top": 248,
+     "bottom": 278,
+     "left": 29,
+     "right": 361,
+     "h": 30,
+     "w": 332
+    }
+   }
+  }
+ },
+ "errs": []
+}

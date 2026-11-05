@@ -260,8 +260,33 @@ async function run(s, hintUp) {
   results[tag] = out;
 }
 
+// Part B's T₀ reveal reads the bench's length (lib/pendulum/benchLength.js),
+// which only PendulumLab publishes: a lab that stops publishing it commits
+// NaN and marks every T₀ wrong. A pass of its own, from a fresh load, so a
+// walkthrough that fails can't hide it: commit one T₀ and check the
+// reveal's true value is a number.
+async function t0Check(s) {
+  await send('Emulation.setDeviceMetricsOverride', { width: s.w, height: s.h, deviceScaleFactor: s.mobile ? 2 : 1, mobile: s.mobile });
+  await send('Page.navigate', { url: base + '/simulations/pendulum' });
+  await sleep(2500);
+  await ev(`Object.keys(localStorage).filter(k => k.startsWith('praxis:')).forEach(k => localStorage.removeItem(k))`);
+  await send('Page.reload');
+  await sleep(3500);
+  await partPill('PART B'); await sleep(400);
+  await ev(`(() => { const f = [...document.querySelectorAll('form.answer-box')].find((b) => /T/.test(b.textContent)); const [v, u] = f.querySelectorAll('input'); const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set; set.call(v, '1.30'); v.dispatchEvent(new Event('input', { bubbles: true })); set.call(u, '0.01'); u.dispatchEvent(new Event('input', { bubbles: true })); })()`);
+  await sleep(200);
+  await ev(`[...document.querySelectorAll('form.answer-box')].find((b) => /T/.test(b.textContent)).querySelector('button[type=submit]').click()`);
+  await sleep(400);
+  const reveal = await ev(`document.querySelector('.answer-committed')?.textContent ?? ''`);
+  const used = reveal.split('uses')[1]?.match(/=\s*(\S+)/)?.[1] ?? null;
+  return { used, finite: used !== null && Number.isFinite(Number(used)) };
+}
+
 for (const s of SIZES) for (const hintUp of [true, false]) {
   try { await run(s, hintUp); } catch (e) { results[`${s.w}x${s.h}-${hintUp ? 'hint' : 'nohint'}-FAILED`] = { error: String(e).slice(0, 400), at: await ev(MARK) }; }
+}
+for (const s of SIZES) {
+  try { results[`${s.w}x${s.h}-t0Reveal`] = await t0Check(s); } catch (e) { results[`${s.w}x${s.h}-t0Reveal-FAILED`] = { error: String(e).slice(0, 400) }; }
 }
 
 writeFileSync(outJson, JSON.stringify({ results, errs }, null, 1));

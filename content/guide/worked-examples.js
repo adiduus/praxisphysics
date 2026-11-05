@@ -23,6 +23,8 @@ import Fig from '@/components/Fig';
 import GuideQ from '@/components/GuideQ';
 import PartBStageOne from './figures/PartBStageOne';
 import PartBStageTwo from './figures/PartBStageTwo';
+import MicrowavePartA from './figures/MicrowavePartA';
+import MicrowavePartB from './figures/MicrowavePartB';
 import { guideHref } from '@/data/guide';
 
 export const intro = (
@@ -35,9 +37,11 @@ export const intro = (
       <Link href={guideHref('error-analysis', 'reporting')}>reporting the result</Link>.
     </p>
     <p>
-      Both examples use the pendulum because it is the experiment on this site, and because it
-      exercises every step: a table, a linearisation, a gradient, an uncertainty, and a result
-      that has to be reported. Nothing in the method is specific to it.
+      The first two examples use the pendulum because it exercises every step: a table, a
+      linearisation, a gradient, an uncertainty, and a result that has to be reported. The other
+      two are the microwave experiment: Part A, where the answer has to be a whole number, and
+      Part B, where the line comes out straight and the answer still comes out wrong. Nothing in
+      the method is specific to either experiment.
     </p>
   </>
 );
@@ -626,6 +630,298 @@ export const bodies = {
         next to the bars to measure; above about 60° the next term bends the line. Finding that
         window from your own data, rather than taking it on trust, is most of what this part of the
         experiment is for.
+      </p>
+    </>
+  ),
+
+  // Every number in this example comes from scripts/worked-example-microwave.mjs
+  // at its fixed seed (2006), Part A of its output; Fig. 5.3 is its Table A.
+  // Rerun it before changing any figure here. The seed was fixed before the
+  // first run and not chosen for the result.
+  'two-minima': (
+    <>
+      <p>
+        Part A of the microwave experiment reflects the beam from a polymer slab of thickness{' '}
+        <M>{String.raw`t`}</M> and asks for its refractive index. Part of the wave reflects from the
+        front surface and part from the back, and the two interfere. The receiver output{' '}
+        <M>{String.raw`S`}</M> is recorded against the angle of incidence{' '}
+        <M>{String.raw`\theta`}</M>, from 30° to 70° in the goniometer’s 0.5° steps.
+      </p>
+
+      <h3>The readings</h3>
+      <p>
+        The caliper reads 0.005 cm with its jaws closed and 10.035 cm on the slab, so{' '}
+        <M>{String.raw`t = 10.030 \pm 0.005\ \text{cm}`}</M>. The wavelength is given:{' '}
+        <M>{String.raw`\lambda = 2.850 \pm 0.005\ \text{cm}`}</M>. At each angle the meter is read
+        three times and the readings averaged. All 81 angles are in Fig. 5.3. Here are the
+        readings around the two places where the output falls lowest:
+      </p>
+      <div className="guide-table">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <M>{String.raw`\theta`}</M> (°)
+              </th>
+              <th>
+                <M>{String.raw`S_1`}</M> (mA)
+              </th>
+              <th>
+                <M>{String.raw`S_2`}</M> (mA)
+              </th>
+              <th>
+                <M>{String.raw`S_3`}</M> (mA)
+              </th>
+              <th>
+                mean <M>{String.raw`S`}</M> (mA)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>35.0</td><td>0.119</td><td>0.124</td><td>0.118</td><td>0.1203</td></tr>
+            <tr><td>35.5</td><td>0.080</td><td>0.084</td><td>0.087</td><td>0.0837</td></tr>
+            <tr><td>36.0</td><td>0.045</td><td>0.051</td><td>0.045</td><td>0.0470</td></tr>
+            <tr><td>36.5</td><td>0.016</td><td>0.014</td><td>0.013</td><td>0.0143</td></tr>
+            <tr><td>37.0</td><td>0.051</td><td>0.055</td><td>0.053</td><td>0.0530</td></tr>
+            <tr><td>37.5</td><td>0.095</td><td>0.098</td><td>0.093</td><td>0.0953</td></tr>
+            <tr><td>38.0</td><td>0.133</td><td>0.135</td><td>0.136</td><td>0.1347</td></tr>
+            <tr><td>57.5</td><td>0.225</td><td>0.218</td><td>0.219</td><td>0.2207</td></tr>
+            <tr><td>58.0</td><td>0.154</td><td>0.155</td><td>0.158</td><td>0.1557</td></tr>
+            <tr><td>58.5</td><td>0.095</td><td>0.096</td><td>0.094</td><td>0.0950</td></tr>
+            <tr><td>59.0</td><td>0.026</td><td>0.024</td><td>0.031</td><td>0.0270</td></tr>
+            <tr><td>59.5</td><td>0.066</td><td>0.063</td><td>0.061</td><td>0.0633</td></tr>
+            <tr><td>60.0</td><td>0.135</td><td>0.136</td><td>0.141</td><td>0.1373</td></tr>
+            <tr><td>60.5</td><td>0.208</td><td>0.206</td><td>0.208</td><td>0.2073</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Fig
+        num="5.3"
+        id="fig-microwave-parta"
+        caption="The whole scan. The output falls to a sharp minimum at 36.5° and again at 59.0°. The sides are straight rather than rounded because the meter reads amplitude, the square root of intensity, so each minimum can be read to the nearest division."
+      >
+        <MicrowavePartA />
+      </Fig>
+
+      <p>
+        Each minimum is the lowest reading, with its neighbours on both sides well above it, so
+        the true minimum lies within one division:{' '}
+        <M>{String.raw`\theta_1 = 36.5 \pm 0.5^\circ`}</M> and{' '}
+        <M>{String.raw`\theta_2 = 59.0 \pm 0.5^\circ`}</M>.
+      </p>
+
+      <GuideQ q="There are two minima, and the order of neither is known. How do you get n?">
+        <p>
+          The beam reflected from the front surface picks up an extra half wavelength, so a minimum
+          is where the path difference is a whole number of wavelengths. Moving to a larger angle
+          shortens the path difference, so if the first minimum has order <M>{String.raw`m`}</M>,
+          the second has order <M>{String.raw`m - 1`}</M>:
+        </p>
+        <Eq>{String.raw`2t\sqrt{n^2 - \sin^2\theta_1} = m\lambda, \qquad 2t\sqrt{n^2 - \sin^2\theta_2} = (m-1)\lambda`}</Eq>
+        <p>
+          Two equations, two unknowns. Square both and subtract, and <M>{String.raw`n`}</M>{' '}
+          disappears:
+        </p>
+        <Eq>{String.raw`\sin^2\theta_2 - \sin^2\theta_1 = \frac{(2m-1)\,\lambda^2}{4t^2}`}</Eq>
+      </GuideQ>
+
+      <p>
+        With these readings, <M>{String.raw`\sin^2\theta_1 = 0.35381`}</M> and{' '}
+        <M>{String.raw`\sin^2\theta_2 = 0.73474`}</M>, a difference of 0.38092, and{' '}
+        <M>{String.raw`4t^2/\lambda^2 = 49.5418`}</M>. So
+      </p>
+      <Eq>{String.raw`2m - 1 = 18.872 \pm 0.567`}</Eq>
+
+      <GuideQ q="18.872 is not an integer, and 2m − 1 must be odd. What do you do with it?">
+        <p>
+          Round it to the nearest odd integer, 19. So <M>{String.raw`m = 10`}</M> at the first
+          minimum and 9 at the second. The order is exact: it has no uncertainty of its own.
+        </p>
+        <p>
+          The rounding is safe because the uncertainty, ±0.567, is well inside the ±1 that would
+          reach the next odd integer.
+        </p>
+      </GuideQ>
+
+      <h3>The result</h3>
+      <p>
+        With the order known, either minimum gives <M>{String.raw`n`}</M>:
+      </p>
+      <Eq>{String.raw`n = \sqrt{\sin^2\theta + \left(\frac{m\lambda}{2t}\right)^2}`}</Eq>
+      <p>
+        That is 1.54023 from the first minimum and 1.53939 from the second. The uncertainty takes
+        the general partial-derivative formula, one term each for <M>{String.raw`\theta`}</M>,{' '}
+        <M>{String.raw`t`}</M> and <M>{String.raw`\lambda`}</M>:
+      </p>
+      <div className="guide-table">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>36.5°, order 10</th>
+              <th>59.0°, order 9</th>
+              <th>mean</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>n</td><td>1.54023</td><td>1.53939</td><td>1.53981</td></tr>
+            <tr><td>angle term</td><td>0.00271</td><td>0.00250</td><td>0.00184</td></tr>
+            <tr><td>thickness term</td><td>0.00065</td><td>0.00053</td><td>0.00059</td></tr>
+            <tr><td>wavelength term</td><td>0.00230</td><td>0.00186</td><td>0.00208</td></tr>
+            <tr><td>in quadrature</td><td>0.00361</td><td>0.00316</td><td>0.00284</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The mean is <M>{String.raw`1.53981 \pm 0.00284`}</M>, reported as
+      </p>
+      <Eq>{String.raw`n = 1.540 \pm 0.003`}</Eq>
+      <p>The simulation’s true value is 1.54.</p>
+
+      <h3>Which term dominates</h3>
+      <p>
+        For either minimum on its own, the angle term is the largest: 0.00271 and 0.00250. For the
+        mean, the wavelength is: 0.00208, ahead of 0.00184 for the angle and 0.00059 for the
+        thickness. The two angle readings are independent, so their terms combine in quadrature
+        and halve. The thickness and the wavelength are the same numbers in both minima, so their
+        terms simply average, and taking a second minimum does nothing to reduce them. At ±0.25°
+        instead of ±0.5° the angle terms would halve, and the wavelength would lead everywhere.
+      </p>
+    </>
+  ),
+
+  // Every number in this example comes from scripts/worked-example-microwave.mjs
+  // at its fixed seed (2006); the cross-seed figures from the same script
+  // with SWEEP=1. Rerun it before changing any figure here. The seed was fixed
+  // before the first run and not chosen for the result. This is the worked
+  // example only: the dark current is on the experiment's deliberately-not-
+  // provided list, so none of this goes in data/microwaveGuide.js.
+  'straight-and-wrong': (
+    <>
+      <p>
+        Part B of the microwave experiment sends the beam through two wax prisms with an air gap
+        of width <M>{String.raw`d`}</M> between them, and asks for the refractive index of the
+        wax. Across the gap the transmitted intensity falls as
+      </p>
+      <Eq>{String.raw`I_t = I_0\, e^{-2\gamma d}, \qquad \gamma = \frac{2\pi}{\lambda}\sqrt{n^2\sin^2\theta - 1}`}</Eq>
+      <p>
+        with <M>{String.raw`\theta = 60^\circ`}</M>, fixed by the prisms’ shape. The meter reads
+        the amplitude of the wave, so the intensity is the square of the reading:{' '}
+        <M>{String.raw`I = S^2`}</M>.
+      </p>
+
+      <h3>The readings</h3>
+      <p>
+        The gap runs from 0.6 cm to 1.4 cm in 0.1 cm steps, measured with the caliper after
+        checking its zero. Two runs, each the mean of three meter readings. Before either, the beam
+        is blocked and the meter read three times: 0.008, 0.009 and 0.011 mA. That is the dark
+        current, <M>{String.raw`0.0093 \pm 0.0015\ \text{mA}`}</M>, and it is in every reading, so
+        it is subtracted before squaring. The uncertainty in each <M>{String.raw`S`}</M> is half the
+        difference between the two runs plus the dark current’s own, and{' '}
+        <M>{String.raw`\Delta(\ln I) = 2\,\Delta S / S`}</M>.
+      </p>
+      <div className="guide-table">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <M>{String.raw`d`}</M> (cm)
+              </th>
+              <th>run 1 (mA)</th>
+              <th>run 2 (mA)</th>
+              <th>
+                <M>{String.raw`S`}</M> (mA)
+              </th>
+              <th>
+                <M>{String.raw`\ln I`}</M>
+              </th>
+              <th>
+                <M>{String.raw`\Delta(\ln I)`}</M>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0.600</td><td>0.3917</td><td>0.3890</td><td>0.3810</td><td>−1.930</td><td>0.015</td></tr>
+            <tr><td>0.700</td><td>0.3323</td><td>0.3267</td><td>0.3202</td><td>−2.278</td><td>0.027</td></tr>
+            <tr><td>0.800</td><td>0.2903</td><td>0.2817</td><td>0.2767</td><td>−2.570</td><td>0.042</td></tr>
+            <tr><td>0.900</td><td>0.2383</td><td>0.2400</td><td>0.2298</td><td>−2.941</td><td>0.020</td></tr>
+            <tr><td>1.000</td><td>0.2057</td><td>0.2163</td><td>0.2017</td><td>−3.202</td><td>0.068</td></tr>
+            <tr><td>1.100</td><td>0.1770</td><td>0.1813</td><td>0.1698</td><td>−3.546</td><td>0.043</td></tr>
+            <tr><td>1.200</td><td>0.1530</td><td>0.1513</td><td>0.1428</td><td>−3.892</td><td>0.033</td></tr>
+            <tr><td>1.300</td><td>0.1330</td><td>0.1307</td><td>0.1225</td><td>−4.199</td><td>0.044</td></tr>
+            <tr><td>1.400</td><td>0.1133</td><td>0.1150</td><td>0.1048</td><td>−4.511</td><td>0.045</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <GuideQ q="The intensity falls exponentially with the gap. What do you plot to get a straight line, and what does its gradient give you?">
+        <p>Take the natural log of both sides:</p>
+        <Eq>{String.raw`\ln I_t = \ln I_0 - 2\gamma\, d`}</Eq>
+        <p>
+          So <M>{String.raw`\ln I`}</M> against <M>{String.raw`d`}</M> is a straight line of
+          gradient <M>{String.raw`-2\gamma`}</M>. Plotting <M>{String.raw`\ln S`}</M> instead gives
+          a line too, but half as steep, and a <M>{String.raw`\gamma`}</M> half the size.
+        </p>
+      </GuideQ>
+
+      <p>
+        Through every error bar: steepest gradient <M>{String.raw`-3.336`}</M>, shallowest{' '}
+        <M>{String.raw`-3.147`}</M>, best <M>{String.raw`-3.242 \pm 0.094\ \text{cm}^{-1}`}</M>.
+        Then
+      </p>
+      <Eq>{String.raw`\gamma = 1.621 \pm 0.047\ \text{cm}^{-1}, \qquad n = \frac{\sqrt{k^2 + \gamma^2}}{k\sin\theta}, \quad k = \frac{2\pi}{\lambda}`}</Eq>
+      <p>
+        The steepest and shallowest lines give 1.4480 and 1.4187, so
+      </p>
+      <Eq>{String.raw`n = 1.433 \pm 0.015`}</Eq>
+      <p>
+        The simulation’s true value is 1.434, inside the interval. The wavelength’s own uncertainty
+        would add only 0.0009, so the lines are what limit this.
+      </p>
+
+      <h3>The same readings, dark current left in</h3>
+      <p>
+        Skip the blocked-beam readings and carry the same two runs through without subtracting
+        anything. The log-linear plot is still straight. Over the near half of the range, 0.6 to
+        1.0 cm, the gradient is <M>{String.raw`-3.076`}</M>; over the far half, 1.0 to 1.4 cm, it
+        is <M>{String.raw`-3.071`}</M>. There is no bend to see.
+      </p>
+      <p>
+        It is the wrong line. End to end it gives <M>{String.raw`n = 1.4075`}</M>, 1.6% below the
+        corrected readings’ 1.4308 over the same span, and 1.9% below the true value. The dark
+        current adds more to <M>{String.raw`\ln I`}</M> where the signal is small, and over this
+        range the extra grows steadily with <M>{String.raw`d`}</M>, from 0.048 at 0.6 cm to 0.171 at
+        1.4 cm, so it tilts the line rather than visibly curving it.
+      </p>
+
+      <Fig
+        num="5.4"
+        id="fig-microwave-partb"
+        caption="Both sets of readings, ln I against d: filled with the dark current subtracted, hollow with it left in. Gradients −3.24 ± 0.09 and −3.07 per cm, giving n = 1.433 ± 0.015 and n = 1.408. The lower panel is the difference between them: it grows across the range, so the red line is tilted rather than bent, and its two halves give −3.08 and −3.07."
+      >
+        <MicrowavePartB />
+      </Fig>
+      <p>
+        With this data, something does object. Without the dark current’s uncertainty the bars are
+        narrower, and no straight line passes through all of them: they would have to be 1.60 times
+        wider to admit one. But that is all the test reports — that the line is inconsistent with
+        the scatter. It does not say the zero is wrong, and it does not say what to do about it.
+      </p>
+      <p>
+        Nor can it be relied on to say even that much. Run the same experiment thirteen times, each
+        with its own dark current and its own noise, and the uncorrected data fails the test in nine
+        and passes cleanly in four. Where it passes, <M>{String.raw`n`}</M> is still 1.9% to 3.3%
+        low. The failures do not follow the size of the dark current: one run at 0.0102 mA passes,
+        while this one, at 0.0114 mA, fails. And correctly handled data fails the test once in the
+        thirteen (by a factor of 1.16) on noise alone.
+      </p>
+      <p>
+        That is a limit on the method, not a flaw in it. The every-bar test asks whether a line is
+        consistent with the scatter of the points, and a wrong zero is consistent with itself: it
+        shifts every reading the same way, run after run. Passing the test is not evidence that the
+        answer is right. The only defence is measuring the zero, here by blocking the beam and
+        reading the meter, before taking anything else.
       </p>
     </>
   ),

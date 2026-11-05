@@ -30,6 +30,7 @@ Deploys on push to `main` via Vercel (auto-detects Next.js, no config needed).
   - **`--muted` is the floor for readable text**: 5.4:1 on `--panel`, 5.7:1 on `--ink`, still 4.7:1 on the faintly trace-tinted active backgrounds — WCAG AA (4.5:1) with little room to spare. Never dim text below it with `opacity` or an alpha colour (half-opacity `--muted` is 2.2:1); dim decoration instead. Every control needs an explicit style — an unstyled `<button>` falls back to the browser's bright default chrome and outshines everything beside it. Text a student works with — the plot's labels, notes, readout and buttons, the bench notes, the problem pane's guide links — is `--chalk`, not `--muted`; `--muted` is for secondary labelling only.
   - **Exception — plot line colours**: `components/Plot.js` needs up to four saved student-drawn lines to stay visually distinct from each other *and* from the data points/axes, which a single accent can't do. It uses a small fixed palette (`LINE_COLORS` in `lib/experiment/usePlotConfig.js`) of four hues at the same saturation/lightness as `--trace`, reserved for saved/current lines only — points, axes, and everything else on the plot still key off `--trace` alone. This is a deliberate, scoped exception; don't extend the palette to other UI or collapse it back to monochrome.
   - **Exception — oscilloscope screen**: `components/Oscilloscope.js`'s scope screen is green phosphor on black, not `--trace` on `--ink` — a scope is green because phosphor is green, and every real one looks like this. Colors (`SCOPE_BG`/`SCOPE_GRATICULE`/`SCOPE_CH1_COLOR`/`SCOPE_CH2_COLOR`) live in `lib/circuits/oscilloscopeControls.js`. The green also appears once outside the canvas itself: the `OSCILLOSCOPE` nameplate (`.circuit-scope-nameplate` in `globals.css`, hardcoded to match `SCOPE_CH1_COLOR` since CSS can't import the JS constant) — an instrument's case label reads as part of the instrument, not as UI chrome. Everything else in the scope's own panel (section headings, buttons, sliders, control labels) still keys off the normal palette. Channel 2 is a second, distinct hue (amber) rather than a second shade of green, so the two traces stay distinguishable at a glance. Same deliberate-and-scoped rule as the plot line colours above — don't spread the green any further than the screen and its nameplate.
+  - **Exception — wrong data in guide figures**: `--warn` (`#FF8A80`, the same red as the start-over confirm) marks readings carried through wrongly, beside correct ones in `--trace`, in a guide figure — so far only Fig. 5.4 (`content/guide/figures/MicrowavePartB.js`), where the dark current left in is drawn in it and the figure's own text calls it the red line. Not for UI, and not for a second correct data set. The colour never carries the distinction alone: the corrected readings are filled markers and the uncorrected ones hollow, and that redundancy is what makes the exception acceptable rather than merely convenient, so any future use of `--warn` in a figure must pair it with a shape or fill difference the same way.
 - **Type**: IBM Plex Sans for prose/headings, IBM Plex Mono for labels/eyebrows/data readouts/nav — the mono face is what signals "instrument panel" and should be used for anything numeric or tag-like, not for body copy.
   - **Guide pages** (`.guide`/`.prose` in `globals.css`) are for reading rather than operating an instrument, so their typography differs in scale and rhythm instead of using a new typeface: larger body text, longer leading, a ~68ch measure, and a solid background so the grid and cursor field don't run behind the text. The one addition is a real Plex Sans italic, loaded only on `/guide` routes.
 - **Mobile-first, metered-data-first**: the audience is students in Bangladesh, often on phones with capped/slow data and modest batteries. Concretely this means:
@@ -49,6 +50,12 @@ app/
   globals.css             all styling; CSS vars at the top define the palette/type/spacing
   simulations/[slug]/    one page per category (data-driven, see data/simulations.js)
   papers/[slug]/         one page per collection (data-driven, see data/papers.js)
+  instruments/caliper/   the vernier caliper alone on a bench page, for its layout audit
+                          before a bench mounts it; unlinked and noindex
+  instruments/goniometer/ the microwave goniometer alone, the same way, held to a bench
+                          column's width (952px)
+  simulations/microwave/ the microwave optics experiment (MicrowaveExperiment); not yet in
+                          data/simulations.js and noindex, so unlisted until released
   guide/                 long-form practical-skills guide: page.js is the contents,
                           [slug]/ one page per section (outline from data/guide.js, prose
                           from content/guide/<slug>.js). layout.js loads Plex Sans italic
@@ -95,10 +102,14 @@ components/
   ExperimentGuide.js      renders a part's problem statement/formulae/task/hints from the
                           plain data definition it's given — no method; owns no content of
                           its own. A `task` (pendulum Part A's A1–A3) says what to produce,
-                          never how; `answer` adds an AnswerBox under it
+                          never how; `answer` adds an AnswerBox under it. A part's
+                          `equipment` (a sentence) renders under its own heading before the task
   AnswerBox.js            commit-once value ± uncertainty answer; after commit, reveals the
                           simulation's true value and states flatly whether the interval
-                          contains it — coverage only, never closeness or praise
+                          contains it — coverage only, never closeness or praise. A spec with
+                          `integer: true` (an order of interference) has no ± field, takes a
+                          whole number, and checks equality; `accept` lists every value that
+                          counts (either order), in place of `trueValue` alone
   StartOver.js            quiet "Start Part A over" text button with an inline confirm
                           naming what goes; a rare destructive action, not a control
   BenchHint.js            a bench's how-to note as a strip under the apparatus until
@@ -212,7 +223,59 @@ components/
                           not per experiment (praxis:instrument-<id>-seen). It never covers
                           the bench's .bench-pinned apparatus or leaves the screen, and
                           describes the device only, never the method (that's
-                          content/guide/measurement.js)
+                          content/guide/measurement.js).
+                          VernierCaliper is a panel that spans the panels grid's whole
+                          row: the whole caliper drawn true to scale (lib/instruments/
+                          caliperScene.js), the sliding jaw dragged (or moved with the arrow
+                          keys) continuously, and no readout. Its MAGNIFIER is an
+                          AnchoredPopover beside the panel, tail on the vernier, holding
+                          the same drawCaliper at 200 px/cm. It has no outside-press
+                          dismiss, because dragging the jaw while watching the scales is
+                          the point. It follows the slider, and a sideways drag inside it
+                          looks along the scales. Where the panel has room beside it (a
+                          bench column, the problem column to its left) the magnifier is
+                          sized to open there: below, under a pinned apparatus, a laptop
+                          screen has no room for both. On a phone its foot row is hidden.
+                          The bench offers it `holdables` ({ key, label, kind, cm }): a
+                          solid the main jaws close onto ('outside', the slab) or a gap the
+                          inside jaws, drawn above the beam, open onto ('inside', the
+                          prisms' gap); held, the jaws can't pass it.
+                          MetreRule is a full-row panel too: the rule, a magnifier at
+                          120 px/cm placed as the caliper's is, and `holdables` laid
+                          against its 0 (no readout).
+                          Multimeter is a digital meter's panel: the reading the bench hands
+                          it (already through the meter's noise and offset) and READ, which
+                          takes the next; it never averages
+  Goniometer.js           the microwave bench's pinned apparatus, seen from above: the
+                          graduated circle (0.5°, numbered every 10°, its 0 on the beam
+                          axis), the fixed source arm with transmitter and
+                          lens, the detector arm with the receiver, and the table. No beam,
+                          no animation: redrawn when the table turns or the canvas resizes.
+                          The arm is geared to the table at 2:1 (docs/microwave-bench.md);
+                          dragging the table, the arm, or the arrow keys turns the table,
+                          whose pointer stops on printed half-degree divisions from 15° to
+                          80° (the arm stays 20° off the straight-through beam, where the
+                          receiver sees nothing). `inLine` (Part B) releases the gearing:
+                          arm straight through, table clamped, nothing turns. It draws what
+                          the bench says is mounted (the slab, the prisms with their gap,
+                          the beam block) true size, and the meter's display beside the
+                          receiver. Controlled by MicrowaveBench (`table`, `onTable`); on
+                          its audit page it keeps its own. Drawn by
+                          lib/microwave/goniometerScene.js
+  MicrowaveExperiment.js / MicrowaveBench.js
+                          the microwave optics experiment: ExperimentWorkspace with QuickEntry
+                          and the parts from app/simulations/microwave/page.js, as the
+                          pendulum's. MicrowaveBench owns the goniometer's state, the
+                          session's meter, the gap and each part's menu (Part A: SLAB,
+                          MULTIMETER, CALIPER, METRE RULE, BEAM BLOCK; Part B: PRISMS,
+                          MULTIMETER, CALIPER, BEAM BLOCK).
+                          The receiver's signal comes only from lib/microwave/model.mjs —
+                          the slab's reflectance at the true angle, the gap's transmission,
+                          the whole beam with the arms in line and nothing mounted, nothing
+                          with the beam blocked or nothing reflecting — and the meter reads
+                          its amplitude. A reading is taken on any change and on READ. The
+                          gap adjuster (GAP, Part B, prisms on) is a bare slider: no value,
+                          not even for a screen reader; the caliper measures the gap
   CircuitBench.js         the circuit-building bench: owns board state (placed components,
                           undo history, armed inventory item) and lib/circuits/
                           useCircuitPhysics's continuous solve loop; renders CircuitCanvas,
@@ -288,6 +351,15 @@ content/guide/            the guide's prose, one file per section: `intro` + `bo
                           since they key the stored answer; `label`/`unitLabel` are the
                           KaTeX shown in their place. Formulae symbols the student must
                           find are \textcolor'd with --trace's hex (KaTeX rejects var())
+  microwaveGuide.js       microwaveParts[] — same shape and caveats as pendulumGuide.js, plus
+                          `equipment` (what each part puts on the bench, the measuring tool
+                          left unnamed where choosing it is the task, the beam block listed
+                          with no reason), an answer's `accept` (every value that counts,
+                          for A3's order: 9 or 10) and `integer` (an exact answer with no
+                          ± field). True values from lib/microwave/model.mjs
+  microwaveDevices.js     microwaveDevices: each instrument's note, device only, plain
+                          strings, so the bench can import them without the guide's KaTeX
+                          (microwaveGuide.js re-exports it)
   circuitsGuide.js        circuitsParts[] — same shape and same JSX-content caveat as
                           pendulumGuide.js, imported by CircuitsExperiment.js. Part A/B share
                           one circuit built up across both — see the "Circuit bench" note
@@ -305,9 +377,41 @@ lib/
   pendulum/scene.js       pure canvas draw functions (pivot, string, bob, vertical scale, angle plate,
                           photogate) shared verbatim between the bench and its press-and-
                           hold lens — see below
+  microwave/model.mjs     microwave optics ground truth: slab reflectance (s-polarised, exact
+                          Airy sum) and frustrated TIR across a gap. The detector reads
+                          amplitude, sqrt(I), not intensity. Verified by
+                          scripts/microwave-verify.mjs
+  microwave/instruments.mjs
+                          the microwave bench's multimeter (noise, session-seeded dark
+                          current), goniometer, caliper and metre rule. Session systematics
+                          come from rng.js and can be overridden, for the verify script.
+                          The goniometer has no printed-zero offset: it doesn't cancel
+                          in n (docs/microwave-bench.md)
+  microwave/goniometerScene.js
+                          pure canvas drawing for Goniometer.js, in units of the circle's
+                          radius; directions are true angles from the source arm (0, left)
+                          through the top (90) to straight through (180)
   instruments/rng.js      session-seeded PRNG for instrument zero-offsets (sessionStorage-
                           backed seed, deterministic per key — stable across reloads)
   instruments/reading.js  quantize(value, resolution) — shared by every instrument
+  instruments/caliper.mjs the vernier caliper: 15 cm, a 20-division vernier over 39 mm
+                          (0.005 cm), and a session jaw zero of ±0.01 cm keyed
+                          'caliper-zero' — one caliper on every bench, so not keyed to an
+                          experiment. microwave/instruments.mjs re-exports it, so the
+                          microwave scripts read the same instrument
+  instruments/rule.mjs    the metre rule: 100 cm, half-millimetre divisions (0.05 cm), 0 at
+                          the end, no zero error. `read` is reading to the nearest division,
+                          as the verify script models choosing it; re-exported by
+                          microwave/instruments.mjs
+  instruments/ruleScene.js
+                          pure canvas drawing for the rule, shared by its panel and its
+                          magnifier. What it holds is drawn true size, so a face falls
+                          between divisions where it really does
+  instruments/caliperScene.js
+                          pure canvas drawing for the caliper, shared by its panel and its
+                          magnifier (the scene.js/lens pattern). The vernier is drawn at the
+                          quantized reading and the jaws at the true opening; they differ by
+                          the zero error
   circuits/model.mjs      DC circuit solver via modified nodal analysis — see the file's own
                           header comment and scripts/circuits-verify.mjs for the physics this
                           is verified against (RC discharge, charge sharing, charge cycling)
@@ -340,6 +444,12 @@ lib/
                           Final once committed: a reload restores it and its reveal rather
                           than offering a fresh attempt; `clear` is called only by the
                           part's start-over, alongside the table and plot resets
+  experiment/revealBelowPinned.js
+                          revealBelowPinned(panel): scrolls a just-placed instrument panel's
+                          own scroller (the bench column, or the page on a phone) down until
+                          the panel is wholly on screen, never so far that it passes under
+                          .bench-pinned. Called by PendulumLab when the stopwatch or
+                          photogate is placed
   experiment/usePlotConfig.js
                           a part's plot state (column choices, axis bounds, current/saved
                           lines) + localStorage persistence at
@@ -380,7 +490,7 @@ Not every instrument is a digital readout. Physical ones (vertical scale, angle 
 
 All bench-object tools start off — `open` in `PendulumLab.js` is `{}`, so the bench is empty until the student brings something in from the instrument menu. Bringing the photogate onto the bench (toggling it on) resets it to a fixed sensible pose near the pendulum, not wherever it was left before being toggled off — see the `toggleInstrument` callback.
 
-The angle plate and vertical scale are the exception to all of that positioning: they're part of the apparatus, and the student toggles whether each is mounted, never where it sits — neither has a ref, a pose, a handle, or anything to drag. The angle plate follows the APhO 2023 apparatus, a large semicircular scale mounted behind the pendulum and centred on the pivot (`ANGLE_PLATE_RADIUS_M`, sized so its graduated arc crosses the string above the bob at every length). It reads the displacement angle directly (0° straight down, 90° at the horizontal each side, 1°/5°/10° graduations, numerals every 10°), with no numeric readout anywhere. The vertical scale is fixed beside the hanging string (`SCALE_EDGE_X_M`, graduated edge facing the string just clear of the bob at rest), physical top level with the pivot, running down past the bob's lowest point at full length; 1/5/10 mm graduations, centimetre numerals, and "cm" printed after every tenth numeral so the unit is in view wherever the lens is. The ticks and centimetre numerals are true scale and need the lens (a centimetre is ~5 px at bench zoom, ~3 px on a phone, so no per-centimetre numeral can read without it); large bold decimetre numerals (10–50, like a metre stick's) are the exception, drawn at max(10 px, true 6 mm) so they read at bench zoom, on a tab in the scale's colour wherever that's wider than the scale body (`printOnScale` in scene.js). The lens is 238 px across (`LENS_RADIUS_PX` in PendulumLens.js, which also sets its CSS size), narrower than the smallest bench canvas; its magnification is set separately in PendulumCanvas.js. Where a length runs to — string end or bob centre — is left entirely to the student. Both are drawn before the pendulum so the string swings in front (the scale in front of the plate, hiding the plate's ~8°–14° graduations on the right; the left half stays fully readable), and the stretch of string over either is redrawn as dark thread (`drawStringOverBackdrops`) since the light bench string would vanish against them. Pressing on either only ever raises the lens: moving before the hold delay cancels rather than dragging. Because the scale sits inside the bob's generous touch margin, `onDown` checks a press directly on the bob first, then the scale, and only then the bob's margin — so holding the scale at the bob's height reads it instead of grabbing the bob.
+The angle plate and vertical scale are the exception to all of that positioning: they're part of the apparatus, and the student toggles whether each is mounted, never where it sits — neither has a ref, a pose, a handle, or anything to drag. The angle plate follows the APhO 2023 apparatus, a large semicircular scale mounted behind the pendulum and centred on the pivot (`ANGLE_PLATE_RADIUS_M`, sized so its graduated arc crosses the string above the bob at every length). It reads the displacement angle directly (0° straight down, 90° at the horizontal each side, 1°/5°/10° graduations, numerals every 10°), with no numeric readout anywhere. The vertical scale is fixed beside the hanging string (`SCALE_EDGE_X_M`, graduated edge facing the string just clear of the bob at rest), physical top level with the pivot, running down past the bob's lowest point at full length; 1/5/10 mm graduations, centimetre numerals, and "cm" printed after every tenth numeral so the unit is in view wherever the lens is. The ticks and centimetre numerals are true scale and need the lens (a centimetre is ~5 px at bench zoom, ~3 px on a phone, so no per-centimetre numeral can read without it); large bold decimetre numerals (10–50, like a metre stick's) are the exception, drawn at max(10 px, true 6 mm) so they read at bench zoom, on a tab in the scale's colour wherever that's wider than the scale body (`printOnScale` in scene.js). The lens is 240 px across (`LENS_RADIUS_PX` in PendulumLens.js, which also sets its CSS size), narrower than the smallest bench canvas; its magnification is set separately in PendulumCanvas.js. Where a length runs to — string end or bob centre — is left entirely to the student. Both are drawn before the pendulum so the string swings in front (the scale in front of the plate, hiding the plate's ~8°–14° graduations on the right; the left half stays fully readable), and the stretch of string over either is redrawn as dark thread (`drawStringOverBackdrops`) since the light bench string would vanish against them. Pressing on either only ever raises the lens: moving before the hold delay cancels rather than dragging. Because the scale sits inside the bob's generous touch margin, `onDown` checks a press directly on the bob first, then the scale, and only then the bob's margin — so holding the scale at the bob's height reads it instead of grabbing the bob. On top of that order, wider zones make the lens easy to reach, checked only after the bob's margin so they never take a press meant for the bob: with the scale on, within 1.5 cm of the scale, within 8 cm of its edge, or within 120 px of the bob; with the angle plate on, 1.5 cm beyond its own margin, or within 120 px of the bob.
 
 ### How much an experiment tells the student (three tiers)
 
@@ -433,6 +543,20 @@ The one laid-out addition, the walkthrough offer at the top of the problem
 pane on narrow screens, keeps a single line in both modes so the pane's height
 doesn't change with the mode.
 
+Instrument panels sit under the pinned region, not beside it. Once the
+pinned region sticks, the first panel starts only the menu row and two gaps
+(~69 px) below it. On the pendulum, the column scrolls ~96 px from where
+the pinned region starts riding up before the panel passes under: less
+than one wheel notch. With the how-to strip still up (85–210 px more of
+pinned region), a laptop or phone had no room for a whole panel at all. So
+placing a panel brings it into view for the student
+(`lib/experiment/revealBelowPinned.js`), and placing the first one
+collapses the strip to its "?" (BenchHint's `collapse`, as the walkthrough
+does). After placing, every panel, the one placed before it and the menu
+row above them are wholly on screen and clear of the pinned region at all
+four audit sizes. Scrolling on past that still takes them under; that is
+what a pinned region does, and the data pane below needs the scroll.
+
 Check layout changes with the audits below rather than by eye.
 
 ## Audits and baselines
@@ -452,14 +576,62 @@ no Playwright dependency. Options: `--sizes` (comma-separated, e.g.
   renders the pendulum, circuits problem 2 and the circuit builder's expanded
   scope in use, and measures rather than eyeballs: panel heights, what's on
   screen from load, whether a reading can be scrolled into view without the
-  pinned apparatus covering it, and where each instrument note opens.
+  pinned apparatus covering it, and where each instrument note opens. Its
+  `pendulum-panels-<size>` pass starts from a fresh load with the how-to
+  strip up, places the stopwatch and then the photogate, and checks each
+  new panel, the panel before it and the menu row are wholly on screen
+  and clear of the pinned region with no scrolling, then records how far
+  the bench can scroll on before the stopwatch passes under
+  (`scrollWhileClear`). The older `reach` checks only ask whether a
+  panel appears when scrolled to, which passed throughout the two months
+  the panels could not be read with the strip up.
+- `layout-audit.mjs --pages caliper` audits the vernier caliper on its own
+  page (`/instruments/caliper`) at session seed 2006, so its jaw zero is the
+  same every run. It covers the note and the magnifier opening on screen and
+  clear of the panel, the panel's height unchanged with either open, the
+  jaws dragged shut, the magnifier panned, and the jaws opened to 10 cm under
+  it. Write it to its own JSON (`--json
+  scripts/audit-output/layout-audit-caliper.json`) and compare with
+  `scripts/layout-audit.caliper.baseline.json`.
+- `layout-audit.mjs --pages goniometer` does the same for the goniometer
+  (`/instruments/goniometer`, seed 2006): the frame's height with the note
+  open and closed, the note on screen and clear of it, and the table's
+  printed reading (the canvas's `data-table`) after a table drag, an arm
+  drag, three arrow keys and a drag past each stop (45 → 30 → 60 → 61.5 →
+  80 → 15). Its JSON goes to `scripts/audit-output/layout-audit-goniometer.json`,
+  compared with `scripts/layout-audit.goniometer.baseline.json`.
+- `layout-audit.mjs --pages microwave` takes the microwave experiment
+  (`/simulations/microwave`, seed 2006) through both parts: the hint and
+  each note (goniometer, multimeter, caliper) on screen and clear of the
+  apparatus; Part A's meter with nothing mounted, at six printed angles
+  with the slab, three READs, and with the beam block; the caliper on the
+  slab, dragged shut onto it, and its magnifier; the metre rule against the
+  slab and its magnifier; Part B's meter in line,
+  at five gaps on the bare slider (and that the slider shows no value), and
+  the caliper opened onto a 2.0 cm gap; the answer boxes' fields and
+  QuickEntry. Panels are scrolled to just under the pinned apparatus before
+  a drag or a popover, as a student would; `panelClear` records that the
+  caliper stays in view with its magnifier open. The meter's noise isn't
+  seeded, so its readings vary in the last digit run to run; compare their
+  size, not their digits. JSON to
+  `scripts/audit-output/layout-audit-microwave.json`, baseline
+  `scripts/layout-audit.microwave.baseline.json`. The default run covers
+  the three pages above and keeps its own baseline.
 - `walkthrough-audit.mjs` (default 1280×800, 390×844) takes the pendulum's
   GUIDED walkthrough end to end, doing each step's action as a student would,
   with the how-to strip up and dismissed: every coach mark on screen and clear
   of the apparatus, each question shown with its answer closed, no instrument
   note opening, panel heights unchanged from step 1 to the end, the last step
   offering NEXT before its condition holds and returning to SELF when it does, Part B showing no offer and no marks, BACK, SWITCH TO
-  SELF, Escape, and on a phone the PROBLEM tab's offer.
+  SELF, Escape, and on a phone the PROBLEM tab's offer. A separate pass, from
+  a fresh load at each size, commits a Part B T₀ and checks the reveal's true
+  value is a number (`<size>-t0Reveal`), so a walkthrough that fails can't
+  hide it: a
+  PendulumLab that stops publishing the bench length (`lib/pendulum/
+  benchLength.js`) commits NaN and marks every T₀ wrong, as one deployed
+  build did. Run it against any PendulumLab before it ships, not only this
+  tree's: a lab that renders its own walkthrough, rather than
+  PendulumWalkthrough, fails at its first step.
 
 Output (JSON and screenshots) goes to `scripts/audit-output/`, which is
 gitignored. Compare a run's JSON with `scripts/layout-audit.baseline.json` /
@@ -479,7 +651,13 @@ by hand.
   which the example explains. Part B and its Figs. 5.1–5.2
   (`content/guide/figures/PartBStageOne.js` / `PartBStageTwo.js`) come from
   `scripts/worked-example-partb.mjs`: the exact AGM period at L = 0.500 m,
-  photogate-quantised. Both draw their lines with `scripts/lib/lines.mjs` —
+  photogate-quantised. The microwave examples, Part A (`two-minima`) and
+  Part B (`straight-and-wrong`), come from
+  `scripts/worked-example-microwave.mjs` at seed 2006, and Part B's
+  cross-seed figures from the same script with `SWEEP=1`; Fig. 5.3
+  (`content/guide/figures/MicrowavePartA.js`, the scan) and Fig. 5.4
+  (`content/guide/figures/MicrowavePartB.js`) are drawn from that seed's
+  output. Every line in them is drawn with `scripts/lib/lines.mjs` —
   best, steepest and shallowest lines through every error bar, never a
   regression. Regenerate from the scripts; never hand-edit the numbers.
 - **The simulations' true values.** The pendulum's g is `G` in
@@ -495,8 +673,16 @@ by hand.
   `circuits-nonlinear-verify.mjs`, `circuits-inductor-verify.mjs`,
   `circuits-capture-verify.mjs` and `circuits-generator-verify.mjs` for the
   circuit solver. Plain Node: `node scripts/<name>.mjs`.
+- **A verify script must model the same procedure the task asks for and the
+  worked example teaches.** `microwave-verify.mjs` subtracted `gon.read(0)`,
+  a zero check the worked example never makes. It passed every check while
+  the bench gave a wrong answer in roughly two sessions out of three. A
+  verification that models a more careful student than the guide teaches
+  verifies nothing. Where a script checks only physics (an integrator
+  against the exact period, the solver against an analytic decay), say so
+  in its header. Then nobody reads it as proof that the task is soluble.
 - **Instrument systematics** (the scale's print margin, the angle plate's
-  offset) are session-seeded through `lib/instruments/rng.js` — fixed for a
+  offset, the caliper's jaw zero, the multimeter's dark current) are session-seeded through `lib/instruments/rng.js` — fixed for a
   session, never hard-coded.
 - **Layout numbers** come from the audits above, against their baselines.
 

@@ -3,15 +3,10 @@
 import { useEffect, useRef } from 'react';
 import { drawScene } from '@/lib/pendulum/scene';
 
-// 238 px across: big enough to read a few centimetres of scale at once,
-// and still narrower than the smallest bench canvas (about 250 px wide on a
-// 320 px phone, never under 280 px tall) and than any phone viewport less
-// its margins. Magnification is set separately (PendulumCanvas.js's
-// LENS_ZOOM_MULT / LENS_MIN_PX_PER_M), so resizing the lens never changes it.
-const LENS_RADIUS_PX = 119;
+const LENS_RADIUS_PX = 120;
 const LENS_SIZE_PX = LENS_RADIUS_PX * 2;
-const LENS_OFFSET_PX = LENS_RADIUS_PX + 26; // raised above the pointer so a finger doesn't cover it
-const VIEWPORT_MARGIN_PX = 8; // keep it fully on-screen, whichever edge it nears
+const LENS_OFFSET_PX = LENS_RADIUS_PX + 30; // raised above the pointer so a finger doesn't cover it
+const VIEWPORT_MARGIN_PX = 10; // keep it fully on-screen, whichever edge it nears
 
 // A floating overlay, not a region clipped inside the bench canvas — it
 // renders as its own small `position:fixed` canvas so it can extend past

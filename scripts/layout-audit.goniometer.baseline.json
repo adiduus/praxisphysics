@@ -1,0 +1,545 @@
+{
+ "results": {
+  "goniometer-1920x1080": {
+   "first": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 651,
+     "left": 484,
+     "right": 1436,
+     "h": 531,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 607,
+     "left": 485,
+     "right": 1435,
+     "h": 486,
+     "w": 950
+    },
+    "controls": {
+     "top": 607,
+     "bottom": 650,
+     "left": 485,
+     "right": 1435,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "right",
+    "visible": "visible",
+    "rect": [
+     1448,
+     601,
+     1728,
+     834
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 651,
+     "left": 484,
+     "right": 1436,
+     "h": 531,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 607,
+     "left": 485,
+     "right": 1435,
+     "h": 486,
+     "w": 950
+    },
+    "controls": {
+     "top": 607,
+     "bottom": 650,
+     "left": 485,
+     "right": 1435,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "last": {
+    "vw": 1920,
+    "vh": 1080,
+    "docH": 1080,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1920,
+     "h": 63,
+     "w": 1920
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 651,
+     "left": 484,
+     "right": 1436,
+     "h": 531,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 607,
+     "left": 485,
+     "right": 1435,
+     "h": 486,
+     "w": 950
+    },
+    "controls": {
+     "top": 607,
+     "bottom": 650,
+     "left": 485,
+     "right": 1435,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "table": {
+    "start": 45,
+    "afterTableDrag": 30,
+    "afterArmDrag": 60,
+    "afterKeys": 61.5,
+    "atMax": 80,
+    "atMin": 15
+   }
+  },
+  "goniometer-1440x900": {
+   "first": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 570,
+     "left": 244,
+     "right": 1196,
+     "h": 450,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 526,
+     "left": 245,
+     "right": 1195,
+     "h": 405,
+     "w": 950
+    },
+    "controls": {
+     "top": 526,
+     "bottom": 569,
+     "left": 245,
+     "right": 1195,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     916,
+     582,
+     1196,
+     815
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 570,
+     "left": 244,
+     "right": 1196,
+     "h": 450,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 526,
+     "left": 245,
+     "right": 1195,
+     "h": 405,
+     "w": 950
+    },
+    "controls": {
+     "top": 526,
+     "bottom": 569,
+     "left": 245,
+     "right": 1195,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "last": {
+    "vw": 1440,
+    "vh": 900,
+    "docH": 900,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1440,
+     "h": 63,
+     "w": 1440
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 570,
+     "left": 244,
+     "right": 1196,
+     "h": 450,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 526,
+     "left": 245,
+     "right": 1195,
+     "h": 405,
+     "w": 950
+    },
+    "controls": {
+     "top": 526,
+     "bottom": 569,
+     "left": 245,
+     "right": 1195,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "table": {
+    "start": 45,
+    "afterTableDrag": 30,
+    "afterArmDrag": 60,
+    "afterKeys": 61.5,
+    "atMax": 80,
+    "atMin": 15
+   }
+  },
+  "goniometer-1280x800": {
+   "first": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 525,
+     "left": 164,
+     "right": 1116,
+     "h": 405,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 481,
+     "left": 165,
+     "right": 1115,
+     "h": 360,
+     "w": 950
+    },
+    "controls": {
+     "top": 481,
+     "bottom": 524,
+     "left": 165,
+     "right": 1115,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     836,
+     537,
+     1116,
+     770
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 525,
+     "left": 164,
+     "right": 1116,
+     "h": 405,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 481,
+     "left": 165,
+     "right": 1115,
+     "h": 360,
+     "w": 950
+    },
+    "controls": {
+     "top": 481,
+     "bottom": 524,
+     "left": 165,
+     "right": 1115,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "last": {
+    "vw": 1280,
+    "vh": 800,
+    "docH": 800,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 1280,
+     "h": 63,
+     "w": 1280
+    },
+    "frame": {
+     "top": 120,
+     "bottom": 525,
+     "left": 164,
+     "right": 1116,
+     "h": 405,
+     "w": 952
+    },
+    "canvas": {
+     "top": 121,
+     "bottom": 481,
+     "left": 165,
+     "right": 1115,
+     "h": 360,
+     "w": 950
+    },
+    "controls": {
+     "top": 481,
+     "bottom": 524,
+     "left": 165,
+     "right": 1115,
+     "h": 43,
+     "w": 950
+    }
+   },
+   "table": {
+    "start": 45,
+    "afterTableDrag": 30,
+    "afterArmDrag": 60,
+    "afterKeys": 61.5,
+    "atMax": 80,
+    "atMin": 15
+   }
+  },
+  "goniometer-390x844": {
+   "first": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "frame": {
+     "top": 114,
+     "bottom": 439,
+     "left": 12,
+     "right": 378,
+     "h": 325,
+     "w": 366
+    },
+    "canvas": {
+     "top": 115,
+     "bottom": 395,
+     "left": 13,
+     "right": 377,
+     "h": 280,
+     "w": 364
+    },
+    "controls": {
+     "top": 395,
+     "bottom": 438,
+     "left": 13,
+     "right": 377,
+     "h": 43,
+     "w": 364
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     98,
+     451,
+     378,
+     684
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "frame": {
+     "top": 114,
+     "bottom": 439,
+     "left": 12,
+     "right": 378,
+     "h": 325,
+     "w": 366
+    },
+    "canvas": {
+     "top": 115,
+     "bottom": 395,
+     "left": 13,
+     "right": 377,
+     "h": 280,
+     "w": 364
+    },
+    "controls": {
+     "top": 395,
+     "bottom": 438,
+     "left": 13,
+     "right": 377,
+     "h": 43,
+     "w": 364
+    }
+   },
+   "last": {
+    "vw": 390,
+    "vh": 844,
+    "docH": 844,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 390,
+     "h": 63,
+     "w": 390
+    },
+    "frame": {
+     "top": 114,
+     "bottom": 439,
+     "left": 12,
+     "right": 378,
+     "h": 325,
+     "w": 366
+    },
+    "canvas": {
+     "top": 115,
+     "bottom": 395,
+     "left": 13,
+     "right": 377,
+     "h": 280,
+     "w": 364
+    },
+    "controls": {
+     "top": 395,
+     "bottom": 438,
+     "left": 13,
+     "right": 377,
+     "h": 43,
+     "w": 364
+    }
+   },
+   "table": {
+    "start": 45,
+    "afterTableDrag": 30,
+    "afterArmDrag": 60,
+    "afterKeys": 61.5,
+    "atMax": 80,
+    "atMin": 15
+   }
+  }
+ },
+ "errs": []
+}
