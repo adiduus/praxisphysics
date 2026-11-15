@@ -169,11 +169,15 @@ function CoachMark({ index, steps, def, target, readBench, showPane, goTo, onExi
       label={`Walkthrough, step ${index + 1} of ${n}`}
       className="coach-mark"
     >
-      <p className="coach-count">
-        STEP {index + 1} OF {n}
-      </p>
-      <p className="coach-text">{def.text}</p>
-      {def.q && <GuideQ q={def.q}>{def.a}</GuideQ>}
+      {/* Scrolls inside the mark when AnchoredPopover caps its height (an
+          opened answer on a short phone); the actions stay in view. */}
+      <div className="coach-body">
+        <p className="coach-count">
+          STEP {index + 1} OF {n}
+        </p>
+        <p className="coach-text">{def.text}</p>
+        {def.q && <GuideQ q={def.q}>{def.a}</GuideQ>}
+      </div>
       <div className="coach-actions">
         <button type="button" onClick={() => goTo(index)} disabled={index === 0}>
           BACK

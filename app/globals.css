@@ -217,6 +217,10 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
   display:block;width:100%;aspect-ratio:4/3;min-height:340px;max-height:52vh;
   touch-action:none;cursor:grab;
 }
+/* A short phone (375x667): the 340px floor left no room under the pinned
+   apparatus for the menu row and a coach mark beside it. At that width the
+   drawing's scale is set by the width, so the height past 4:3 was empty. */
+@media(max-width:899px) and (max-height:700px){#pendulum-canvas{min-height:200px}}
 #pendulum-canvas.swinging{cursor:default}
 #pendulum-canvas.dragging{cursor:grabbing}
 .pendulum-controls{
@@ -237,7 +241,7 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
 /* One row that scrolls sideways rather than wrapping (it took two rows on
    a phone), the same tray treatment as the circuit inventory. */
 .instrument-menu{
-  display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;flex-wrap:wrap;
+  display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;flex-wrap:nowrap;
   scrollbar-width:thin;scrollbar-color:rgba(78,197,255,.3) transparent;overscroll-behavior-x:contain;
 }
 .instrument-menu button{
@@ -247,18 +251,10 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
 }
 .instrument-menu button:hover{color:var(--trace);border-color:var(--trace)}
 .instrument-menu button.active{color:var(--trace);border-color:var(--trace);background:rgba(78,197,255,.08)}
-/* The menu row: the instrument menu, then (the pendulum) the walkthrough's
-   GUIDED / SELF toggle at its end, a pill like the part switch. */
-.bench-tools{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px 12px}
-.bench-tools .instrument-menu{flex:1 1 auto;min-width:0}
-.mode-switch{display:inline-flex;gap:2px;padding:3px;margin-left:auto;border:1px solid var(--edge);border-radius:20px;background:var(--panel-t);flex:none}
-.mode-switch button{
-  padding:5px 12px;border-radius:16px;border:0;background:transparent;
-  font-family:var(--font-mono),monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);cursor:pointer;transition:.16s;
-}
-.mode-switch button:hover{color:var(--trace)}
-.mode-switch button.active{background:var(--trace);color:#04202F}
-.mode-switch button:focus-visible{outline:1px solid var(--trace);outline-offset:2px}
+/* The walkthrough's GUIDED / SELF toggle above the pendulum's apparatus,
+   as on main: a "MODE:" label and two buttons, the active one .btn-fill. */
+.mode-switch{display:flex;gap:10px;align-items:center}
+.mode-switch span{font-family:var(--font-mono),monospace;font-size:12px;color:var(--muted)}
 
 .instrument-panels{
   position:relative;z-index:4;
@@ -313,7 +309,10 @@ footer{border-top:1px solid var(--edge);padding:34px 0 46px}
 @media(max-width:600px){.coach-mark{width:calc(100vw - 16px)}}
 .coach-count{margin:0;font-family:var(--font-mono),monospace;font-size:11px;letter-spacing:.08em;color:var(--muted)}
 .coach-text{margin:0;font-size:13.5px;line-height:1.55;color:var(--chalk)}
-.coach-actions{display:flex;flex-wrap:wrap;gap:8px;width:100%}
+/* The counter, text and question, which scroll when the mark is capped
+   (AnchoredPopover); the actions under them stay put. */
+.coach-body{display:flex;flex-direction:column;gap:10px;width:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.coach-actions{display:flex;flex-wrap:wrap;gap:8px;width:100%;flex:none}
 .coach-actions .coach-exit{margin-left:auto}
 /* A step's question (GuideQ): asked first, its answer behind a disclosure
    the student opens once they've formed a guess. GuideQ carries no styles
@@ -656,6 +655,10 @@ section.bench-page{padding-top:18px}
 }
 .add-col-head button:hover,.pendulum-add-row:hover{color:var(--trace);border-color:var(--trace)}
 .add-col-head{padding:6px}
+/* Pinned to the table's right edge, like the row numbers to its left: on a
+   phone the table scrolls sideways and + COL went past the edge, out of
+   reach of the walkthrough step that asks for it. */
+.pendulum-table thead .add-col-head{position:sticky;right:0;z-index:1;background:var(--panel)}
 .pendulum-add-row{align-self:flex-start}
 
 /* ---------- pendulum plot ---------- */

@@ -539,6 +539,141 @@
     "atMax": 80,
     "atMin": 15
    }
+  },
+  "goniometer-375x667": {
+   "first": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 667,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "frame": {
+     "top": 114,
+     "bottom": 439,
+     "left": 12,
+     "right": 363,
+     "h": 325,
+     "w": 351
+    },
+    "canvas": {
+     "top": 115,
+     "bottom": 395,
+     "left": 13,
+     "right": 362,
+     "h": 280,
+     "w": 349
+    },
+    "controls": {
+     "top": 395,
+     "bottom": 438,
+     "left": 13,
+     "right": 362,
+     "h": 43,
+     "w": 349
+    }
+   },
+   "noteCard": {
+    "present": true,
+    "side": "below",
+    "visible": "visible",
+    "rect": [
+     83,
+     451,
+     363,
+     659
+    ],
+    "onScreen": true,
+    "overlapsPanel": false,
+    "scrollY": 0
+   },
+   "afterNote": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 667,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "frame": {
+     "top": 114,
+     "bottom": 439,
+     "left": 12,
+     "right": 363,
+     "h": 325,
+     "w": 351
+    },
+    "canvas": {
+     "top": 115,
+     "bottom": 395,
+     "left": 13,
+     "right": 362,
+     "h": 280,
+     "w": 349
+    },
+    "controls": {
+     "top": 395,
+     "bottom": 438,
+     "left": 13,
+     "right": 362,
+     "h": 43,
+     "w": 349
+    }
+   },
+   "last": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 667,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "frame": {
+     "top": 114,
+     "bottom": 439,
+     "left": 12,
+     "right": 363,
+     "h": 325,
+     "w": 351
+    },
+    "canvas": {
+     "top": 115,
+     "bottom": 395,
+     "left": 13,
+     "right": 362,
+     "h": 280,
+     "w": 349
+    },
+    "controls": {
+     "top": 395,
+     "bottom": 438,
+     "left": 13,
+     "right": 362,
+     "h": 43,
+     "w": 349
+    }
+   },
+   "table": {
+    "start": 45,
+    "afterTableDrag": 30,
+    "afterArmDrag": 60,
+    "afterKeys": 61.5,
+    "atMax": 80,
+    "atMin": 15
+   }
   }
  },
  "errs": []

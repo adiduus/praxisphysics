@@ -133,10 +133,11 @@ components/
                           "Back to the walkthrough" while GUIDED, so the pane keeps its
                           height). Mode + step persist at praxis:<experimentId>-mode, in a
                           module-level store both offers share. A GUIDED / SELF toggle
-                          (`.mode-switch`) at the end of the bench's menu row, under the
-                          pinned region, reads and sets the same store, so it shows the mode
-                          and switches it whether or not a walkthrough is running (Part A
-                          only). On a phone it takes a 40 px row of its own under the menu. Escape = SWITCH TO SELF
+                          (`.mode-switch`) above the apparatus, as on main — "MODE:" and
+                          two .btn buttons, the active one .btn-fill — reads and sets the
+                          same store, so it shows the mode and switches it whether or not a
+                          walkthrough is running (Part A only). It scrolls away above the
+                          pinned region like the page title. Escape = SWITCH TO SELF
                           (unless an instrument note is open, which takes Escape itself).
                           A twelve-step tutorial through one way of doing Part A, Part A
                           only (`pendulumWalkthroughPart`): no offer and no marks on Part B,
@@ -543,9 +544,16 @@ The experiment pages render `ExperimentWorkspace` outside `.wrap` in a `.bench-w
 Popovers never take layout height and never cover the apparatus. Every
 positioned popover — an instrument's note, a walkthrough coach mark — goes
 through `components/AnchoredPopover.js`: portaled to `<body>`, `position:fixed`,
-on a side with room, scrolling its box into view if it must, never over
-`.bench-pinned`, never off screen. Don't write a second positioning
-implementation. Things that must cost no height either are positioned over
+on a side with room, scrolling its box into view if it must (and out from
+under the apparatus, if the box is hit-tested as covered by it — the menu
+row under a phone's pinned bench), never over `.bench-pinned`, never off
+screen. It watches its own size too: when its content grows or shrinks (a
+coach mark's answer opened) it is placed again as on open, and if no side
+has room for all of it even after a scroll, its height is capped to the
+room below its box and a `min-height:0; overflow-y:auto` child scrolls
+inside it (the coach mark's `.coach-body`; BACK / NEXT / SWITCH TO SELF
+stay in view). It never slides over the box it points at to fit. Don't
+write a second positioning implementation. Things that must cost no height either are positioned over
 empty space rather than laid out: BenchHint's dismissed "?" over the pinned
 region's corner, the walkthrough offer over the canvas's bottom-left corner.
 The one laid-out addition, the walkthrough offer at the top of the problem
@@ -562,9 +570,20 @@ placing a panel brings it into view for the student
 (`lib/experiment/revealBelowPinned.js`), and placing the first one
 collapses the strip to its "?" (BenchHint's `collapse`, as the walkthrough
 does). After placing, every panel, the one placed before it and the menu
-row above them are wholly on screen and clear of the pinned region at all
-four audit sizes. Scrolling on past that still takes them under; that is
-what a pinned region does, and the data pane below needs the scroll.
+row above them are wholly on screen and clear of the pinned region at
+1920×1080; at the smaller sizes the menu row (and, at 375×667, the
+stopwatch once the photogate is placed) goes under it — the layout
+baseline records which. Scrolling on past that still takes them under;
+that is what a pinned region does, and the data pane below needs the
+scroll.
+
+On a short phone (under 900 px wide and 700 px tall; 375×667 is the
+audit's) the pendulum canvas's floor drops from 340 px to 200 px: at that
+width the drawing's scale is set by the width, so the extra height was
+empty, and with it the pinned region left no room for the menu row and a
+coach mark beside it. The instrument menu is one row that scrolls
+sideways, and the table's + COL is sticky at its right edge, so neither
+wraps or scrolls out of reach.
 
 Check layout changes with the audits below rather than by eye.
 
@@ -581,7 +600,8 @@ default Windows path, or `--edge <path>` / `$AUDIT_BROWSER` for anything else;
 no Playwright dependency. Options: `--sizes` (comma-separated, e.g.
 `1280x800,390x844`), `--out`, `--json`.
 
-- `layout-audit.mjs` (default sizes 1920×1080, 1440×900, 1280×800, 390×844)
+- `layout-audit.mjs` (default sizes 1920×1080, 1440×900, 1280×800, 390×844,
+  375×667 — the commonest small phone, and the only one under 844 tall)
   renders the pendulum, circuits problem 2 and the circuit builder's expanded
   scope in use, and measures rather than eyeballs: panel heights, what's on
   screen from load, whether a reading can be scrolled into view without the
@@ -592,13 +612,16 @@ no Playwright dependency. Options: `--sizes` (comma-separated, e.g.
   and clear of the pinned region with no scrolling, then records how far
   the bench can scroll on before the stopwatch passes under
   (`scrollWhileClear`). It also checks the GUIDED / SELF toggle: where it
-  is at load and once scrolled to (on screen, painted on top, clear of the
-  pinned region), and that GUIDED and SELF set the stored mode and show or
-  clear the coach mark (`modeToggleReach`, `modeToggle`). With the taller
-  pendulum canvas from main's CSS (min 340px, max 52vh), placing a panel
-  leaves no room for the menu row above it at 1440×900, 1280×800 and
-  390×844, so the row and its toggle go under the pinned region until the
-  student scrolls back up; the baseline records that. The older `reach` checks only ask whether a
+  is at load and once scrolled to (on screen, painted on top, not
+  overlapping the pinned region), and that GUIDED and SELF set the stored
+  mode and show or clear the coach mark (`modeToggleReach`, `modeToggle`).
+  The toggle sits above the apparatus, so once a panel is placed it has
+  scrolled off the top at 1440×900, 1280×800 and 390×844 (`afterPanels`);
+  the student scrolls back up to it. With the taller pendulum canvas from
+  main's CSS (min 340px, max 52vh) and the toggle's row above it, placing
+  a panel leaves no room for the menu row above it at 1440×900, 1280×800
+  and 390×844, so the row goes under the pinned region until the student
+  scrolls back up; the baseline records that. The older `reach` checks only ask whether a
   panel appears when scrolled to, which passed throughout the two months
   the panels could not be read with the strip up.
 - `layout-audit.mjs --pages caliper` audits the vernier caliper on its own
@@ -633,10 +656,21 @@ no Playwright dependency. Options: `--sizes` (comma-separated, e.g.
   `scripts/audit-output/layout-audit-microwave.json`, baseline
   `scripts/layout-audit.microwave.baseline.json`. The default run covers
   the three pages above and keeps its own baseline.
-- `walkthrough-audit.mjs` (default 1280×800, 390×844) takes the pendulum's
+- `walkthrough-audit.mjs` (default the same five sizes) takes the pendulum's
   GUIDED walkthrough end to end, doing each step's action as a student would,
   with the how-to strip up and dismissed: every coach mark on screen and clear
-  of the apparatus, each question shown with its answer closed, no instrument
+  of the apparatus; the control each step names (SCALE, the slider, the
+  scale and the bob on the canvas, RELEASE, START, + COL, + ROW…) still
+  pressable with the mark up — its centre hit-tested with
+  `elementFromPoint` must land on it, with the share of it under the mark
+  recorded (`reach`; failures under the mark in `controlsCovered`, and
+  any control that can't be pressed for any reason — under the
+  apparatus, the header, off screen — in `controlsUnreachable`), since a
+  mark can be on screen and clear of the apparatus and still sit on the
+  button it names, and the audit's own `.click()`s go straight through it;
+  at each question step, the answer opened and the mark still wholly on
+  screen with its actions in view, capped or not, and the control still
+  reachable (`withAnswer`, failures in `answerOffScreen`); each question shown with its answer closed, no instrument
   note opening, panel heights unchanged from step 1 to the end, the last step
   offering NEXT before its condition holds and returning to SELF when it does, Part B showing no offer and no marks, BACK, SWITCH TO
   SELF, Escape, and on a phone the PROBLEM tab's offer. A separate pass, from

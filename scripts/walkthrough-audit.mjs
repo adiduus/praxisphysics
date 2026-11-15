@@ -2,7 +2,10 @@
 // takes the pendulum's GUIDED walkthrough end to end at each size, doing
 // each step's action as a student would. Per step it records the coach
 // mark's rect and side, whether it is wholly on screen below the header,
-// and whether it touches the pinned apparatus; and the bench's panel
+// and whether it touches the pinned apparatus; whether the control the step
+// tells the student to use can still be pressed (`reach`: its centre
+// hit-tested with elementFromPoint, and how much of it the mark covers);
+// and the bench's panel
 // heights, compared with SELF before the walkthrough. Runs once with the
 // bench's how-to strip up (a first visit: least room under the apparatus
 // on a phone) and once with it dismissed. Also exercises BACK, SWITCH TO
@@ -16,7 +19,7 @@ import { mkdtempSync } from 'node:fs';
 
 // Usage (against a running server — `npm run build && npm run start`, or
 // `npm run dev`):
-//   node scripts/walkthrough-audit.mjs [--base http://localhost:3000] [--sizes 1280x800,390x844]
+//   node scripts/walkthrough-audit.mjs [--base http://localhost:3000] [--sizes 1920x1080,1440x900,1280x800,390x844,375x667]
 //        [--out scripts/audit-output/walkthrough] [--json scripts/audit-output/walkthrough-audit.json]
 //        [--edge <path to msedge/chrome>]
 // Drives a headless Chromium (Edge by default on Windows; --edge or
@@ -27,7 +30,7 @@ import { mkdtempSync } from 'node:fs';
 const { values: opt } = parseArgs({
   options: {
     base: { type: 'string', default: 'http://localhost:3000' },
-    sizes: { type: 'string', default: '1280x800,390x844' },
+    sizes: { type: 'string', default: '1920x1080,1440x900,1280x800,390x844,375x667' },
     out: { type: 'string', default: 'scripts/audit-output/walkthrough' },
     json: { type: 'string', default: 'scripts/audit-output/walkthrough-audit.json' },
     edge: { type: 'string', default: process.env.AUDIT_BROWSER || 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' },
@@ -81,6 +84,10 @@ const MARK = `(() => {
     count: pop.querySelector('.coach-count')?.textContent,
     buttons: [...pop.querySelectorAll('button')].map((b) => b.textContent.trim() + (b.disabled ? '(disabled)' : '')),
     side: pop.dataset.side, visible: getComputedStyle(pop).visibility,
+    // AnchoredPopover's cap when no side has room for all of it; the
+    // actions must still be on screen.
+    capped: pop.style.maxHeight || null,
+    actionsOnScreen: (() => { const a = pop.querySelector('.coach-actions')?.getBoundingClientRect(); return !!a && a.top >= r.top - 0.5 && a.bottom <= Math.min(r.bottom, innerHeight) + 0.5; })(),
     rect: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)],
     pinned: pinShown ? [Math.round(pin.left), Math.round(pin.top), Math.round(pin.right), Math.round(pin.bottom)] : 'hidden',
     onScreen: r.left >= 0 && r.right <= document.documentElement.clientWidth && r.top >= head - 0.5 && r.bottom <= innerHeight + 0.5,
@@ -92,6 +99,54 @@ const MARK = `(() => {
     answerOpen: pop.querySelector('.guide-q details')?.open ?? null,
     instrumentNoteOpen: !!document.querySelector('.instrument-popover'),
   };
+})()`;
+
+// The control each step tells the student to use, by step number: an
+// element (a JS expression), or for what exists only as canvas pixels, a
+// viewport point from the canvas's own transform (as geom() below). A
+// mark that is on screen and clear of the apparatus can still sit over
+// the very button it names; MARK can't see that, and the audit's own
+// clicks (.click()) go straight through it.
+const btnText = (sel, txt) => `[...document.querySelectorAll(${JSON.stringify(sel)})].find((b) => b.textContent.trim() === ${JSON.stringify(txt)})`;
+const GEOM = `(() => { const r = document.getElementById('pendulum-canvas').getBoundingClientRect(); const pxPerM = Math.min(r.height * 0.86 / 0.55, r.width * 0.86 / 1.0); const L = Number(document.querySelector('.length-control input').value) + 0.02; return { x: r.left + r.width / 2, y: r.top + r.height * 0.1, pxPerM, L }; })()`;
+const CONTROLS = {
+  2: [['SCALE', { el: btnText('.instrument-menu button', 'SCALE') }]],
+  3: [['length slider', { el: `document.querySelector('.length-control input')` }]],
+  // Where the audit presses (step 4's action below), 10 cm above the bob.
+  4: [['scale', { pt: `(() => { const g = ${GEOM}; return { x: g.x + 0.035 * g.pxPerM, y: g.y + (g.L - 0.1) * g.pxPerM }; })()` }]],
+  5: [['bob', { pt: `(() => { const g = ${GEOM}; return { x: g.x, y: g.y + g.L * g.pxPerM }; })()` }]],
+  6: [['RELEASE', { el: btnText('.pendulum-actions button', 'RELEASE') }], ['HANG STRAIGHT', { el: btnText('.pendulum-actions button', 'HANG STRAIGHT') }]],
+  7: [['STOPWATCH', { el: btnText('.instrument-menu button', 'STOPWATCH') }]],
+  8: [['START', { el: btnText('.instrument-panels button', 'START') }]],
+  9: [['+ COL', { el: btnText('[data-pane="data"] button', '+ COL') }]],
+  10: [['first cell', { el: `document.querySelector('[data-pane="data"] .pendulum-table tbody td input')` }], ['+ ROW', { el: btnText('[data-pane="data"] button', '+ ROW') }]],
+  11: [['+ COL', { el: btnText('[data-pane="data"] button', '+ COL') }], ['column name', { el: `document.querySelector('[data-pane="data"] .col-label')` }]],
+  12: [['+ ROW', { el: btnText('[data-pane="data"] button', '+ ROW') }]],
+};
+// For each control: whether its centre hit-tests to it (or inside it), what
+// is there instead, and the share of it (an 8x8 grid of points over its
+// on-screen part; a 24 px square for a canvas point) that lands on the
+// coach mark. `covered` is the fail: the centre is under the mark.
+const REACH = (list) => `(() => {
+  const mark = document.querySelector('.coach-mark');
+  const head = document.querySelector('header').getBoundingClientRect().bottom;
+  const vw = document.documentElement.clientWidth;
+  const name = (h) => !h ? null : mark && mark.contains(h) ? 'coach-mark' : h.tagName.toLowerCase() + (h.className && typeof h.className === 'string' ? '.' + h.className.trim().split(/\\s+/).join('.') : '');
+  return [${list.map(([label, c]) => `(() => {
+    const label = ${JSON.stringify(label)};
+    let el, r;
+    ${c.el ? `el = ${c.el}; if (!el) return { label, present: false }; r = el.getBoundingClientRect();` : `const p = ${c.pt}; el = document.getElementById('pendulum-canvas'); r = { left: p.x - 12, right: p.x + 12, top: p.y - 12, bottom: p.y + 12 };`}
+    const cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2;
+    const onScreen = cx >= 0 && cx <= vw && cy >= head && cy <= innerHeight;
+    const h = onScreen ? document.elementFromPoint(cx, cy) : null;
+    const l = Math.max(r.left, 0), t = Math.max(r.top, head), rr = Math.min(r.right, vw), b = Math.min(r.bottom, innerHeight);
+    let n = 0, byMark = 0;
+    if (rr > l && b > t) for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) {
+      const e = document.elementFromPoint(l + (rr - l) * (i + 0.5) / 8, t + (b - t) * (j + 0.5) / 8);
+      n++; if (mark && e && mark.contains(e)) byMark++;
+    }
+    return { label, present: true, at: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)], onScreen, hit: el.contains(h), hitIs: name(h), covered: !!(mark && h && mark.contains(h)), coveredShare: n ? Math.round((byMark / n) * 100) / 100 : null };
+  })()`).join(',')}];
 })()`;
 
 // Type into the table the way a keystroke does (React's onChange needs the
@@ -145,10 +200,25 @@ async function run(s, hintUp) {
   await clickText('.walkthrough-offer', 'New to this bench? Take the walkthrough');
   const snap = async (label) => {
     await sleep(500);
-    const m = { label, mark: await ev(MARK), heights: await ev(HEIGHTS), stored: await stored() };
+    const mark = await ev(MARK);
+    const n = Number(mark.count?.match(/STEP (\d+)/)?.[1]);
+    const m = { label, mark, reach: CONTROLS[n] ? await ev(REACH(CONTROLS[n])) : null, heights: await ev(HEIGHTS), stored: await stored() };
     out.steps.push(m);
     const shot = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync(join(outDir, `${tag}-${String(out.steps.length).padStart(2, '0')}-${label}.png`), Buffer.from(shot.result.data, 'base64'));
+    // A question step, with its answer opened: the mark grows, and must
+    // re-place itself to stay wholly on screen without covering the
+    // control. Closed again after, as the step found it.
+    if (mark.question) {
+      await ev(`document.querySelector('.coach-mark .guide-q summary').click()`);
+      await sleep(500);
+      const open = await ev(MARK);
+      m.withAnswer = { rect: open.rect, side: open.side, onScreen: open.onScreen, capped: open.capped, actionsOnScreen: open.actionsOnScreen, overlapsApparatus: open.overlapsApparatus, answerOpen: open.answerOpen, reach: CONTROLS[n] ? await ev(REACH(CONTROLS[n])) : null };
+      const shot2 = await send('Page.captureScreenshot', { format: 'png' });
+      writeFileSync(join(outDir, `${tag}-${String(out.steps.length).padStart(2, '0')}-${label}-answer.png`), Buffer.from(shot2.result.data, 'base64'));
+      await ev(`document.querySelector('.coach-mark .guide-q summary').click()`);
+      await sleep(500);
+    }
     return m;
   };
 
@@ -211,6 +281,14 @@ async function run(s, hintUp) {
   // with the strip already dismissed, as in SELF before starting).
   const KEYS = ['pinned', 'canvas', 'controls', 'hint', 'menu'];
   const ref = hintUp ? out.steps[0].heights : out.self;
+  // Every step whose named control sits under its own coach mark, with the
+  // answer closed or open; every one that can't be pressed for any reason
+  // (under the apparatus or the header, off screen); and every mark that
+  // leaves the screen once its answer is open.
+  const both = (st) => [...(st.reach ?? []).map((c) => ['', c]), ...(st.withAnswer?.reach ?? []).map((c) => [' (answer open)', c])];
+  out.controlsCovered = out.steps.flatMap((st) => both(st).filter(([, c]) => c.covered).map(([w, c]) => `${st.label}${w}:${c.label} centre under the mark, ${Math.round(c.coveredShare * 100)}% covered`));
+  out.controlsUnreachable = out.steps.flatMap((st) => both(st).filter(([, c]) => c.present && !c.hit).map(([w, c]) => `${st.label}${w}:${c.label} ${c.onScreen ? 'under ' + c.hitIs : 'off screen'}`));
+  out.answerOffScreen = out.steps.filter((st) => st.withAnswer && !(st.withAnswer.onScreen && st.withAnswer.actionsOnScreen)).map((st) => `${st.label}: ${JSON.stringify(st.withAnswer.rect)}`);
   out.heightChanges = out.steps.flatMap((st) => KEYS.filter((k) => st.heights[k] !== 'hidden' && ref[k] !== 'hidden' && st.heights[k] !== ref[k]).map((k) => `${st.label}:${k} ${ref[k]}->${st.heights[k]}`));
   out.after = { mark: await ev(MARK), stored: await stored(), offerBack: await ev(`!!document.querySelector('.walkthrough-offer')`), heights: await ev(HEIGHTS) };
   // Part B: no offer anywhere, and a walkthrough in progress on Part A shows

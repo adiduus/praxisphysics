@@ -23,7 +23,7 @@ import { mkdtempSync } from 'node:fs';
 
 // Usage (against a running server — `npm run build && npm run start`, or
 // `npm run dev`):
-//   node scripts/layout-audit.mjs [--base http://localhost:3000] [--sizes 1920x1080,1440x900,1280x800,390x844]
+//   node scripts/layout-audit.mjs [--base http://localhost:3000] [--sizes 1920x1080,1440x900,1280x800,390x844,375x667]
 //        [--out scripts/audit-output/layout] [--json scripts/audit-output/layout-audit.json]
 //        [--edge <path to msedge/chrome>] [--pages pendulum,circuits,builder | caliper | goniometer | microwave]
 // Drives a headless Chromium (Edge by default on Windows; --edge or
@@ -34,7 +34,7 @@ import { mkdtempSync } from 'node:fs';
 const { values: opt } = parseArgs({
   options: {
     base: { type: 'string', default: 'http://localhost:3000' },
-    sizes: { type: 'string', default: '1920x1080,1440x900,1280x800,390x844' },
+    sizes: { type: 'string', default: '1920x1080,1440x900,1280x800,390x844,375x667' },
     out: { type: 'string', default: 'scripts/audit-output/layout' },
     json: { type: 'string', default: 'scripts/audit-output/layout-audit.json' },
     edge: { type: 'string', default: process.env.AUDIT_BROWSER || 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' },
@@ -68,6 +68,7 @@ const SIZES = [
   { w: 1440, h: 900, mobile: false },
   { w: 1280, h: 800, mobile: false },
   { w: 390, h: 844, mobile: true },
+  { w: 375, h: 667, mobile: true }, // the commonest small phone
 ].filter((s) => ONLY.includes(`${s.w}x${s.h}`));
 
 // Page-coordinate rect of every element we care about, plus viewport size.
@@ -338,7 +339,7 @@ for (const s of SIZES) {
   // pinned apparatus, without the student scrolling. Then how far a
   // student can scroll the bench, from where placing left it, before the
   // first panel passes under (scrollWhileClear). Also the walkthrough's
-  // GUIDED / SELF toggle in the menu row (modeToggle).
+  // GUIDED / SELF toggle above the apparatus (modeToggle).
   await open('/simulations/pendulum');
   if (s.mobile) await clickText('.pendulum-tabs button', 'SIMULATION');
   await sleep(300);
@@ -352,9 +353,9 @@ for (const s of SIZES) {
   })()`;
   const HINT = `document.querySelector('.bench-hint') ? 'strip' : document.querySelector('.bench-hint-reopen') ? 'collapsed to ?' : 'none'`;
   const panels = { hintBefore: await ev(HINT) };
-  // The walkthrough's GUIDED / SELF toggle at the end of the menu row:
-  // where it is at load, and once a student scrolls to it (nearest), on
-  // screen, painted on top and clear of the pinned region; then, after
+  // The walkthrough's GUIDED / SELF toggle above the apparatus: where it
+  // is at load, and once a student scrolls to it (nearest), on screen,
+  // painted on top and not overlapping the pinned region; then, after
   // the panels are placed, driving the stored mode (and the coach marks)
   // both ways.
   const TOGGLE = `(() => {
@@ -363,7 +364,7 @@ for (const s of SIZES) {
     const head = document.querySelector('header').getBoundingClientRect().bottom;
     const pin = document.querySelector('.bench-pinned').getBoundingClientRect();
     const h = document.elementFromPoint((r.left + r.right) / 2, (r.top + r.bottom) / 2);
-    return { present: true, at: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)], clear: r.top >= pin.bottom - 0.5 && r.top >= head - 0.5 && r.bottom <= innerHeight + 0.5 && r.right <= document.documentElement.clientWidth, painted: !!h && e.contains(h), pressed: [...e.querySelectorAll('button')].filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => b.textContent.trim()) };
+    return { present: true, at: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)], clear: !(r.top < pin.bottom - 0.5 && r.bottom > pin.top + 0.5) && r.top >= head - 0.5 && r.bottom <= innerHeight + 0.5 && r.right <= document.documentElement.clientWidth, painted: !!h && e.contains(h), pressed: [...e.querySelectorAll('button')].filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => b.textContent.trim()) };
   })()`;
   const MODE = `(() => { try { return JSON.parse(localStorage.getItem('praxis:pendulum-mode'))?.mode ?? null; } catch { return null; } })()`;
   const MARK_UP = `!!document.querySelector('.coach-mark')`;

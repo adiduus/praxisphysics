@@ -47,67 +47,67 @@
      "w": 760
     },
     "table": {
-     "top": 1107,
-     "bottom": 1394,
+     "top": 1168,
+     "bottom": 1455,
      "left": 904,
      "right": 1804,
      "h": 287,
      "w": 900
     },
     "canvas": {
-     "top": 162,
-     "bottom": 724,
+     "top": 223,
+     "bottom": 785,
      "left": 905,
      "right": 1803,
      "h": 562,
      "w": 898
     },
     "controls": {
-     "top": 724,
-     "bottom": 798,
+     "top": 785,
+     "bottom": 859,
      "left": 905,
      "right": 1803,
      "h": 74,
      "w": 898
     },
     "hint": {
-     "top": 798,
-     "bottom": 883,
+     "top": 859,
+     "bottom": 944,
      "left": 905,
      "right": 1803,
      "h": 85,
      "w": 898
     },
     "pinned": {
-     "top": 161,
-     "bottom": 884,
+     "top": 222,
+     "bottom": 945,
      "left": 904,
      "right": 1804,
      "h": 723,
      "w": 900
     },
     "menu": {
-     "top": 900,
-     "bottom": 937,
+     "top": 961,
+     "bottom": 998,
      "left": 904,
-     "right": 1660,
+     "right": 1804,
      "h": 37,
-     "w": 755
+     "w": 900
     },
     "stopwatch": null,
     "stopwatchRead": null,
     "photogate": null,
     "plot": {
-     "top": 1463,
-     "bottom": 2084,
+     "top": 1524,
+     "bottom": 2145,
      "left": 904,
      "right": 1804,
      "h": 621,
      "w": 900
     },
     "plotCanvas": {
-     "top": 1619,
-     "bottom": 2039,
+     "top": 1680,
+     "bottom": 2100,
      "left": 905,
      "right": 1803,
      "h": 420,
@@ -159,24 +159,24 @@
      "w": 760
     },
     "table": {
-     "top": 1158,
-     "bottom": 1445,
+     "top": 1219,
+     "bottom": 1506,
      "left": 904,
      "right": 1804,
      "h": 287,
      "w": 900
     },
     "canvas": {
-     "top": 162,
-     "bottom": 724,
+     "top": 223,
+     "bottom": 785,
      "left": 905,
      "right": 1803,
      "h": 562,
      "w": 898
     },
     "controls": {
-     "top": 724,
-     "bottom": 798,
+     "top": 785,
+     "bottom": 859,
      "left": 905,
      "right": 1803,
      "h": 74,
@@ -184,32 +184,32 @@
     },
     "hint": null,
     "pinned": {
-     "top": 161,
-     "bottom": 799,
+     "top": 222,
+     "bottom": 860,
      "left": 904,
      "right": 1804,
      "h": 638,
      "w": 900
     },
     "menu": {
-     "top": 815,
-     "bottom": 852,
+     "top": 876,
+     "bottom": 913,
      "left": 904,
-     "right": 1660,
+     "right": 1804,
      "h": 37,
-     "w": 755
+     "w": 900
     },
     "stopwatch": {
-     "top": 868,
-     "bottom": 1004,
+     "top": 929,
+     "bottom": 1065,
      "left": 904,
      "right": 1195,
      "h": 136,
      "w": 291
     },
     "stopwatchRead": {
-     "top": 917,
-     "bottom": 945,
+     "top": 978,
+     "bottom": 1006,
      "left": 921,
      "right": 1178,
      "h": 28,
@@ -217,16 +217,16 @@
     },
     "photogate": null,
     "plot": {
-     "top": 1514,
-     "bottom": 2135,
+     "top": 1575,
+     "bottom": 2196,
      "left": 904,
      "right": 1804,
      "h": 621,
      "w": 900
     },
     "plotCanvas": {
-     "top": 1670,
-     "bottom": 2090,
+     "top": 1731,
+     "bottom": 2151,
      "left": 905,
      "right": 1803,
      "h": 420,
@@ -278,24 +278,24 @@
      "w": 760
     },
     "table": {
-     "top": 1158,
-     "bottom": 1445,
+     "top": 1219,
+     "bottom": 1506,
      "left": 904,
      "right": 1804,
      "h": 287,
      "w": 900
     },
     "canvas": {
-     "top": 162,
-     "bottom": 724,
+     "top": 223,
+     "bottom": 785,
      "left": 905,
      "right": 1803,
      "h": 562,
      "w": 898
     },
     "controls": {
-     "top": 724,
-     "bottom": 798,
+     "top": 785,
+     "bottom": 859,
      "left": 905,
      "right": 1803,
      "h": 74,
@@ -303,32 +303,32 @@
     },
     "hint": null,
     "pinned": {
-     "top": 161,
-     "bottom": 799,
+     "top": 222,
+     "bottom": 860,
      "left": 904,
      "right": 1804,
      "h": 638,
      "w": 900
     },
     "menu": {
-     "top": 815,
-     "bottom": 852,
+     "top": 876,
+     "bottom": 913,
      "left": 904,
-     "right": 1660,
+     "right": 1804,
      "h": 37,
-     "w": 755
+     "w": 900
     },
     "stopwatch": {
-     "top": 868,
-     "bottom": 1004,
+     "top": 929,
+     "bottom": 1065,
      "left": 904,
      "right": 1195,
      "h": 136,
      "w": 291
     },
     "stopwatchRead": {
-     "top": 917,
-     "bottom": 945,
+     "top": 978,
+     "bottom": 1006,
      "left": 921,
      "right": 1178,
      "h": 28,
@@ -336,16 +336,16 @@
     },
     "photogate": null,
     "plot": {
-     "top": 1514,
-     "bottom": 2135,
+     "top": 1575,
+     "bottom": 2196,
      "left": 904,
      "right": 1804,
      "h": 621,
      "w": 900
     },
     "plotCanvas": {
-     "top": 1670,
-     "bottom": 2090,
+     "top": 1731,
+     "bottom": 2151,
      "left": 905,
      "right": 1803,
      "h": 420,
@@ -397,24 +397,24 @@
      "w": 760
     },
     "table": {
-     "top": 1216,
-     "bottom": 1503,
+     "top": 1261,
+     "bottom": 1548,
      "left": 904,
      "right": 1804,
      "h": 287,
      "w": 900
     },
     "canvas": {
-     "top": 162,
-     "bottom": 724,
+     "top": 207,
+     "bottom": 769,
      "left": 905,
      "right": 1803,
      "h": 562,
      "w": 898
     },
     "controls": {
-     "top": 724,
-     "bottom": 798,
+     "top": 769,
+     "bottom": 843,
      "left": 905,
      "right": 1803,
      "h": 74,
@@ -422,56 +422,56 @@
     },
     "hint": null,
     "pinned": {
-     "top": 161,
-     "bottom": 799,
+     "top": 206,
+     "bottom": 844,
      "left": 904,
      "right": 1804,
      "h": 638,
      "w": 900
     },
     "menu": {
-     "top": 815,
-     "bottom": 852,
+     "top": 860,
+     "bottom": 897,
      "left": 904,
-     "right": 1660,
+     "right": 1804,
      "h": 37,
-     "w": 755
+     "w": 900
     },
     "stopwatch": {
-     "top": 868,
-     "bottom": 1063,
+     "top": 913,
+     "bottom": 1108,
      "left": 904,
      "right": 1195,
      "h": 195,
      "w": 291
     },
     "stopwatchRead": {
-     "top": 917,
-     "bottom": 945,
+     "top": 962,
+     "bottom": 990,
      "left": 921,
      "right": 1178,
      "h": 28,
      "w": 257
     },
     "photogate": {
-     "top": 868,
-     "bottom": 1063,
+     "top": 913,
+     "bottom": 1108,
      "left": 1209,
      "right": 1500,
      "h": 195,
      "w": 291
     },
     "plot": {
-     "top": 1573,
-     "bottom": 2194,
+     "top": 1618,
+     "bottom": 2239,
      "left": 904,
      "right": 1804,
      "h": 621,
      "w": 900
     },
     "plotCanvas": {
-     "top": 1729,
-     "bottom": 2149,
+     "top": 1774,
+     "bottom": 2194,
      "left": 905,
      "right": 1803,
      "h": 420,
@@ -485,23 +485,23 @@
      "visible": "visible",
      "rect": [
       1207,
-      868,
+      929,
       1487,
-      988
+      1049
      ],
      "pinned": [
       904,
-      161,
+      222,
       1804,
-      799
+      860
      ],
      "onScreen": true,
      "overlapsApparatus": false,
      "scrollY": 0
     },
     "stopwatch": {
-     "top": 868,
-     "bottom": 1004,
+     "top": 929,
+     "bottom": 1065,
      "left": 904,
      "right": 1195,
      "h": 136,
@@ -513,23 +513,23 @@
      "visible": "visible",
      "rect": [
       1512,
-      868,
+      913,
       1792,
-      969
+      1014
      ],
      "pinned": [
       904,
-      161,
+      206,
       1804,
-      799
+      844
      ],
      "onScreen": true,
      "overlapsApparatus": false,
      "scrollY": 0
     },
     "photogate": {
-     "top": 868,
-     "bottom": 1035,
+     "top": 913,
+     "bottom": 1080,
      "left": 1209,
      "right": 1500,
      "h": 167,
@@ -539,22 +539,22 @@
    "atFold": {
     "canvas": true,
     "canvas@": [
-     162,
-     724
+     223,
+     785
     ],
     "stopwatchRead": true,
     "stopwatchRead@": [
-     917,
-     945
+     978,
+     1006
     ],
     "stopwatch": true,
     "stopwatch@": [
-     868,
-     1004
+     929,
+     1065
     ],
     "pinned@": [
-     161,
-     799
+     222,
+     860
     ],
     "view@": [
      63,
@@ -564,24 +564,24 @@
      "page": 0,
      "max": 261,
      "col": 0,
-     "colMax": 1009
+     "colMax": 1070
     }
    },
    "reach": {
     "toStopwatchRead": {
      "canvas": true,
      "canvas@": [
-      91,
-      653
+      152,
+      714
      ],
      "stopwatchRead": true,
      "stopwatchRead@": [
-      846,
-      874
+      907,
+      935
      ],
      "pinned@": [
-      90,
-      728
+      151,
+      789
      ],
      "view@": [
       63,
@@ -591,23 +591,23 @@
       "page": 71,
       "max": 261,
       "col": 0,
-      "colMax": 1009
+      "colMax": 1070
      }
     },
     "toStopwatch": {
      "canvas": true,
      "canvas@": [
-      91,
-      653
+      152,
+      714
      ],
      "stopwatch": true,
      "stopwatch@": [
-      797,
-      933
+      858,
+      994
      ],
      "pinned@": [
-      90,
-      728
+      151,
+      789
      ],
      "view@": [
       63,
@@ -617,7 +617,7 @@
       "page": 71,
       "max": 261,
       "col": 0,
-      "colMax": 1009
+      "colMax": 1070
      }
     },
     "toPlot": {
@@ -642,8 +642,8 @@
      "scroll": {
       "page": 72,
       "max": 261,
-      "col": 938,
-      "colMax": 1009
+      "col": 999,
+      "colMax": 1070
      }
     },
     "toPlotWhole": {
@@ -668,24 +668,24 @@
      "scroll": {
       "page": 72,
       "max": 261,
-      "col": 983,
-      "colMax": 1009
+      "col": 1044,
+      "colMax": 1070
      }
     },
     "fromLoadToStopwatch": {
      "canvas": true,
      "canvas@": [
-      162,
-      724
+      223,
+      785
      ],
      "stopwatch": true,
      "stopwatch@": [
-      868,
-      1004
+      929,
+      1065
      ],
      "pinned@": [
-      161,
-      799
+      222,
+      860
      ],
      "view@": [
       63,
@@ -695,28 +695,28 @@
       "page": 0,
       "max": 261,
       "col": 0,
-      "colMax": 1009
+      "colMax": 1070
      }
     },
     "toPhotogateWithStopwatch": {
      "canvas": true,
      "canvas@": [
-      91,
-      653
+      152,
+      714
      ],
      "stopwatch": true,
      "stopwatch@": [
-      797,
-      992
+      858,
+      1053
      ],
      "photogate": true,
      "photogate@": [
-      797,
-      992
+      858,
+      1053
      ],
      "pinned@": [
-      90,
-      728
+      151,
+      789
      ],
      "view@": [
       63,
@@ -726,7 +726,7 @@
       "page": 71,
       "max": 261,
       "col": 0,
-      "colMax": 1067
+      "colMax": 1128
      }
     }
    }
@@ -737,10 +737,10 @@
     "atLoad": {
      "present": true,
      "at": [
-      1672,
-      900,
+      904,
+      161,
       1804,
-      932
+      206
      ],
      "clear": true,
      "painted": true,
@@ -751,10 +751,10 @@
     "scrolledTo": {
      "present": true,
      "at": [
-      1672,
-      900,
+      904,
+      161,
       1804,
-      932
+      206
      ],
      "clear": true,
      "painted": true,
@@ -766,23 +766,23 @@
    "stopwatch": {
     "panel": {
      "at": [
-      868,
-      1004
+      929,
+      1065
      ],
      "pinned": [
-      161,
-      799
+      222,
+      860
      ],
      "clear": true
     },
     "menu": {
      "at": [
-      815,
-      852
+      876,
+      913
      ],
      "pinned": [
-      161,
-      799
+      222,
+      860
      ],
      "clear": true
     },
@@ -791,34 +791,34 @@
    "photogate": {
     "panel": {
      "at": [
-      868,
-      1023
+      913,
+      1068
      ],
      "pinned": [
-      161,
-      799
+      206,
+      844
      ],
      "clear": true
     },
     "stopwatchStill": {
      "at": [
-      868,
-      1023
+      913,
+      1068
      ],
      "pinned": [
-      161,
-      799
+      206,
+      844
      ],
      "clear": true
     },
     "menu": {
      "at": [
-      815,
-      852
+      860,
+      897
      ],
      "pinned": [
-      161,
-      799
+      206,
+      844
      ],
      "clear": true
     }
@@ -827,10 +827,10 @@
     "afterPanels": {
      "present": true,
      "at": [
-      1672,
-      815,
+      904,
+      145,
       1804,
-      847
+      190
      ],
      "clear": true,
      "painted": true,
@@ -845,10 +845,10 @@
      "toggle": {
       "present": true,
       "at": [
-       1672,
-       815,
+       904,
+       145,
        1804,
-       847
+       190
       ],
       "clear": true,
       "painted": true,
@@ -863,10 +863,10 @@
      "toggle": {
       "present": true,
       "at": [
-       1672,
-       815,
+       904,
+       145,
        1804,
-       847
+       190
       ],
       "clear": true,
       "painted": true,
@@ -877,7 +877,7 @@
     }
    },
    "scrollWhileClear": {
-    "px": 96
+    "px": 144
    }
   },
   "circuits-thermistor-1920x1080": {
@@ -1507,7 +1507,7 @@
     "scopeDrawn": {
      "w": 606,
      "h": 484,
-     "litPx": 1650
+     "litPx": 1639
     }
    },
    "atFold": {
@@ -1703,67 +1703,67 @@
      "w": 553
     },
     "table": {
-     "top": 1031,
-     "bottom": 1318,
+     "top": 1092,
+     "bottom": 1379,
      "left": 662,
      "right": 1360,
      "h": 287,
      "w": 698
     },
     "canvas": {
-     "top": 162,
-     "bottom": 630,
+     "top": 223,
+     "bottom": 691,
      "left": 663,
      "right": 1359,
      "h": 468,
      "w": 696
     },
     "controls": {
-     "top": 630,
-     "bottom": 704,
+     "top": 691,
+     "bottom": 765,
      "left": 663,
      "right": 1359,
      "h": 74,
      "w": 696
     },
     "hint": {
-     "top": 704,
-     "bottom": 807,
+     "top": 765,
+     "bottom": 868,
      "left": 663,
      "right": 1359,
      "h": 103,
      "w": 696
     },
     "pinned": {
-     "top": 161,
-     "bottom": 808,
+     "top": 222,
+     "bottom": 869,
      "left": 662,
      "right": 1360,
      "h": 647,
      "w": 698
     },
     "menu": {
-     "top": 824,
-     "bottom": 861,
+     "top": 885,
+     "bottom": 922,
      "left": 662,
-     "right": 1215,
+     "right": 1360,
      "h": 37,
-     "w": 553
+     "w": 698
     },
     "stopwatch": null,
     "stopwatchRead": null,
     "photogate": null,
     "plot": {
-     "top": 1388,
-     "bottom": 2009,
+     "top": 1449,
+     "bottom": 2070,
      "left": 662,
      "right": 1360,
      "h": 621,
      "w": 698
     },
     "plotCanvas": {
-     "top": 1544,
-     "bottom": 1964,
+     "top": 1605,
+     "bottom": 2025,
      "left": 663,
      "right": 1359,
      "h": 420,
@@ -1851,9 +1851,9 @@
      "top": 699,
      "bottom": 736,
      "left": 662,
-     "right": 1215,
+     "right": 1360,
      "h": 37,
-     "w": 553
+     "w": 698
     },
     "stopwatch": {
      "top": 752,
@@ -1894,8 +1894,8 @@
     "vh": 900,
     "docH": 1161,
     "header": {
-     "top": 0,
-     "bottom": 63,
+     "top": 7,
+     "bottom": 70,
      "left": 0,
      "right": 1425,
      "h": 63,
@@ -1934,24 +1934,24 @@
      "w": 553
     },
     "table": {
-     "top": 1064,
-     "bottom": 1351,
+     "top": 1125,
+     "bottom": 1412,
      "left": 662,
      "right": 1360,
      "h": 287,
      "w": 698
     },
     "canvas": {
-     "top": 162,
-     "bottom": 630,
+     "top": 223,
+     "bottom": 691,
      "left": 663,
      "right": 1359,
      "h": 468,
      "w": 696
     },
     "controls": {
-     "top": 630,
-     "bottom": 704,
+     "top": 691,
+     "bottom": 765,
      "left": 663,
      "right": 1359,
      "h": 74,
@@ -1959,32 +1959,32 @@
     },
     "hint": null,
     "pinned": {
-     "top": 161,
-     "bottom": 705,
+     "top": 222,
+     "bottom": 766,
      "left": 662,
      "right": 1360,
      "h": 544,
      "w": 698
     },
     "menu": {
-     "top": 721,
-     "bottom": 758,
+     "top": 782,
+     "bottom": 819,
      "left": 662,
-     "right": 1215,
+     "right": 1360,
      "h": 37,
-     "w": 553
+     "w": 698
     },
     "stopwatch": {
-     "top": 774,
-     "bottom": 910,
+     "top": 835,
+     "bottom": 971,
      "left": 662,
      "right": 885,
      "h": 136,
      "w": 223
     },
     "stopwatchRead": {
-     "top": 823,
-     "bottom": 851,
+     "top": 884,
+     "bottom": 912,
      "left": 679,
      "right": 868,
      "h": 28,
@@ -1992,16 +1992,16 @@
     },
     "photogate": null,
     "plot": {
-     "top": 1421,
-     "bottom": 2042,
+     "top": 1482,
+     "bottom": 2103,
      "left": 662,
      "right": 1360,
      "h": 621,
      "w": 698
     },
     "plotCanvas": {
-     "top": 1577,
-     "bottom": 1997,
+     "top": 1638,
+     "bottom": 2058,
      "left": 663,
      "right": 1359,
      "h": 420,
@@ -2089,9 +2089,9 @@
      "top": 660,
      "bottom": 697,
      "left": 662,
-     "right": 1215,
+     "right": 1360,
      "h": 37,
-     "w": 553
+     "w": 698
     },
     "stopwatch": {
      "top": 713,
@@ -2195,49 +2195,49 @@
    "atFold": {
     "canvas": true,
     "canvas@": [
-     162,
-     630
+     216,
+     684
     ],
-    "stopwatchRead": true,
+    "stopwatchRead": false,
     "stopwatchRead@": [
-     823,
-     851
+     877,
+     905
     ],
     "stopwatch": false,
     "stopwatch@": [
-     774,
-     910
+     828,
+     964
     ],
     "pinned@": [
-     161,
-     705
+     215,
+     759
     ],
     "view@": [
      63,
      900
     ],
     "scroll": {
-     "page": 0,
+     "page": 7,
      "max": 261,
      "col": 0,
-     "colMax": 1095
+     "colMax": 1156
     }
    },
    "reach": {
     "toStopwatchRead": {
      "canvas": true,
      "canvas@": [
-      91,
-      559
+      152,
+      620
      ],
      "stopwatchRead": true,
      "stopwatchRead@": [
-      752,
-      780
+      813,
+      841
      ],
      "pinned@": [
-      90,
-      634
+      151,
+      695
      ],
      "view@": [
       63,
@@ -2247,23 +2247,23 @@
       "page": 71,
       "max": 261,
       "col": 0,
-      "colMax": 1095
+      "colMax": 1156
      }
     },
     "toStopwatch": {
      "canvas": true,
      "canvas@": [
-      91,
-      559
+      152,
+      620
      ],
      "stopwatch": true,
      "stopwatch@": [
-      703,
-      839
+      764,
+      900
      ],
      "pinned@": [
-      90,
-      634
+      151,
+      695
      ],
      "view@": [
       63,
@@ -2273,7 +2273,7 @@
       "page": 71,
       "max": 261,
       "col": 0,
-      "colMax": 1095
+      "colMax": 1156
      }
     },
     "toPlot": {
@@ -2298,8 +2298,8 @@
      "scroll": {
       "page": 72,
       "max": 261,
-      "col": 1024,
-      "colMax": 1095
+      "col": 1085,
+      "colMax": 1156
      }
     },
     "toPlotWhole": {
@@ -2324,8 +2324,8 @@
      "scroll": {
       "page": 72,
       "max": 261,
-      "col": 1069,
-      "colMax": 1095
+      "col": 1130,
+      "colMax": 1156
      }
     },
     "fromLoadToStopwatch": {
@@ -2348,41 +2348,41 @@
       900
      ],
      "scroll": {
-      "page": 10,
+      "page": 71,
       "max": 261,
       "col": 0,
-      "colMax": 1095
+      "colMax": 1156
      }
     },
     "toPhotogateWithStopwatch": {
      "canvas": true,
      "canvas@": [
-      91,
-      559
+      114,
+      582
      ],
      "stopwatch": true,
      "stopwatch@": [
-      703,
-      878
+      726,
+      901
      ],
      "photogate": true,
      "photogate@": [
-      703,
-      878
+      726,
+      901
      ],
      "pinned@": [
-      90,
-      634
+      113,
+      657
      ],
      "view@": [
       63,
       900
      ],
      "scroll": {
-      "page": 71,
+      "page": 72,
       "max": 261,
-      "col": 0,
-      "colMax": 1133
+      "col": 37,
+      "colMax": 1194
      }
     }
    }
@@ -2393,10 +2393,10 @@
     "atLoad": {
      "present": true,
      "at": [
-      1227,
-      824,
+      662,
+      161,
       1360,
-      856
+      206
      ],
      "clear": true,
      "painted": true,
@@ -2407,10 +2407,10 @@
     "scrolledTo": {
      "present": true,
      "at": [
-      1227,
-      824,
+      662,
+      161,
       1360,
-      856
+      206
      ],
      "clear": true,
      "painted": true,
@@ -2483,10 +2483,10 @@
     "afterPanels": {
      "present": true,
      "at": [
-      1227,
-      660,
+      662,
+      39,
       1360,
-      692
+      84
      ],
      "clear": false,
      "painted": false,
@@ -2501,10 +2501,10 @@
      "toggle": {
       "present": true,
       "at": [
-       1227,
-       660,
+       662,
+       39,
        1360,
-       692
+       84
       ],
       "clear": false,
       "painted": false,
@@ -2519,13 +2519,13 @@
      "toggle": {
       "present": true,
       "at": [
-       1227,
-       660,
+       662,
+       135,
        1360,
-       692
+       180
       ],
-      "clear": false,
-      "painted": false,
+      "clear": true,
+      "painted": true,
       "pressed": [
        "SELF"
       ]
@@ -3163,7 +3163,7 @@
     "scopeDrawn": {
      "w": 504,
      "h": 403,
-     "litPx": 1404
+     "litPx": 1392
     }
    },
    "atFold": {
@@ -3359,67 +3359,67 @@
      "w": 485
     },
     "table": {
-     "top": 997,
-     "bottom": 1284,
+     "top": 1058,
+     "bottom": 1345,
      "left": 591,
      "right": 1203,
      "h": 287,
      "w": 611
     },
     "canvas": {
-     "top": 162,
-     "bottom": 578,
+     "top": 223,
+     "bottom": 639,
      "left": 592,
      "right": 1202,
      "h": 416,
      "w": 609
     },
     "controls": {
-     "top": 578,
-     "bottom": 652,
+     "top": 639,
+     "bottom": 713,
      "left": 592,
      "right": 1202,
      "h": 74,
      "w": 609
     },
     "hint": {
-     "top": 652,
-     "bottom": 773,
+     "top": 713,
+     "bottom": 834,
      "left": 592,
      "right": 1202,
      "h": 121,
      "w": 609
     },
     "pinned": {
-     "top": 161,
-     "bottom": 774,
+     "top": 222,
+     "bottom": 835,
      "left": 591,
      "right": 1203,
      "h": 613,
      "w": 611
     },
     "menu": {
-     "top": 790,
-     "bottom": 827,
+     "top": 851,
+     "bottom": 888,
      "left": 591,
-     "right": 1058,
+     "right": 1203,
      "h": 37,
-     "w": 467
+     "w": 611
     },
     "stopwatch": null,
     "stopwatchRead": null,
     "photogate": null,
     "plot": {
-     "top": 1353,
-     "bottom": 1961,
+     "top": 1414,
+     "bottom": 2022,
      "left": 591,
      "right": 1203,
      "h": 607,
      "w": 611
     },
     "plotCanvas": {
-     "top": 1509,
-     "bottom": 1916,
+     "top": 1570,
+     "bottom": 1977,
      "left": 592,
      "right": 1202,
      "h": 406,
@@ -3507,9 +3507,9 @@
      "top": 599,
      "bottom": 636,
      "left": 591,
-     "right": 1058,
+     "right": 1203,
      "h": 37,
-     "w": 467
+     "w": 611
     },
     "stopwatch": {
      "top": 652,
@@ -3550,8 +3550,8 @@
     "vh": 800,
     "docH": 1121,
     "header": {
-     "top": 14,
-     "bottom": 77,
+     "top": 75,
+     "bottom": 138,
      "left": 0,
      "right": 1265,
      "h": 63,
@@ -3590,24 +3590,24 @@
      "w": 485
     },
     "table": {
-     "top": 1012,
-     "bottom": 1299,
+     "top": 1076,
+     "bottom": 1363,
      "left": 591,
      "right": 1203,
      "h": 287,
      "w": 611
     },
     "canvas": {
-     "top": 162,
-     "bottom": 578,
+     "top": 226,
+     "bottom": 642,
      "left": 592,
      "right": 1202,
      "h": 416,
      "w": 609
     },
     "controls": {
-     "top": 578,
-     "bottom": 652,
+     "top": 642,
+     "bottom": 716,
      "left": 592,
      "right": 1202,
      "h": 74,
@@ -3615,32 +3615,32 @@
     },
     "hint": null,
     "pinned": {
-     "top": 161,
-     "bottom": 653,
+     "top": 225,
+     "bottom": 717,
      "left": 591,
      "right": 1203,
      "h": 492,
      "w": 611
     },
     "menu": {
-     "top": 669,
-     "bottom": 706,
+     "top": 733,
+     "bottom": 770,
      "left": 591,
-     "right": 1058,
+     "right": 1203,
      "h": 37,
-     "w": 467
+     "w": 611
     },
     "stopwatch": {
-     "top": 722,
-     "bottom": 858,
+     "top": 786,
+     "bottom": 922,
      "left": 591,
      "right": 890,
      "h": 136,
      "w": 299
     },
     "stopwatchRead": {
-     "top": 771,
-     "bottom": 799,
+     "top": 835,
+     "bottom": 863,
      "left": 608,
      "right": 873,
      "h": 28,
@@ -3648,16 +3648,16 @@
     },
     "photogate": null,
     "plot": {
-     "top": 1369,
-     "bottom": 1976,
+     "top": 1432,
+     "bottom": 2039,
      "left": 591,
      "right": 1203,
      "h": 607,
      "w": 611
     },
     "plotCanvas": {
-     "top": 1525,
-     "bottom": 1931,
+     "top": 1588,
+     "bottom": 1994,
      "left": 592,
      "right": 1202,
      "h": 406,
@@ -3745,9 +3745,9 @@
      "top": 586,
      "bottom": 623,
      "left": 591,
-     "right": 1058,
+     "right": 1203,
      "h": 37,
-     "w": 467
+     "w": 611
     },
     "stopwatch": {
      "top": 639,
@@ -3793,12 +3793,12 @@
    "firstUse": {
     "stopwatchCard": {
      "present": true,
-     "side": "right",
+     "side": "left",
      "visible": "visible",
      "rect": [
-      902,
+      299,
       652,
-      1182,
+      579,
       773
      ],
      "pinned": [
@@ -3851,49 +3851,49 @@
    "atFold": {
     "canvas": true,
     "canvas@": [
-     148,
-     564
+     151,
+     567
     ],
     "stopwatchRead": true,
     "stopwatchRead@": [
-     757,
-     785
+     760,
+     788
     ],
     "stopwatch": false,
     "stopwatch@": [
-     708,
-     844
+     711,
+     847
     ],
     "pinned@": [
-     147,
-     639
+     150,
+     642
     ],
     "view@": [
      63,
      800
     ],
     "scroll": {
-     "page": 14,
+     "page": 75,
      "max": 321,
      "col": 0,
-     "colMax": 1129
+     "colMax": 1190
     }
    },
    "reach": {
     "toStopwatchRead": {
      "canvas": true,
      "canvas@": [
-      91,
-      507
+      152,
+      568
      ],
      "stopwatchRead": true,
      "stopwatchRead@": [
-      700,
-      728
+      761,
+      789
      ],
      "pinned@": [
-      90,
-      582
+      151,
+      643
      ],
      "view@": [
       63,
@@ -3903,33 +3903,33 @@
       "page": 71,
       "max": 321,
       "col": 0,
-      "colMax": 1129
+      "colMax": 1190
      }
     },
     "toStopwatch": {
      "canvas": true,
      "canvas@": [
-      91,
-      507
+      104,
+      520
      ],
      "stopwatch": true,
      "stopwatch@": [
-      651,
-      787
+      664,
+      800
      ],
      "pinned@": [
-      90,
-      582
+      103,
+      595
      ],
      "view@": [
       63,
       800
      ],
      "scroll": {
-      "page": 71,
+      "page": 72,
       "max": 321,
-      "col": 0,
-      "colMax": 1129
+      "col": 47,
+      "colMax": 1190
      }
     },
     "toPlot": {
@@ -3954,8 +3954,8 @@
      "scroll": {
       "page": 72,
       "max": 321,
-      "col": 1058,
-      "colMax": 1129
+      "col": 1119,
+      "colMax": 1190
      }
     },
     "toPlotWhole": {
@@ -3980,8 +3980,8 @@
      "scroll": {
       "page": 72,
       "max": 321,
-      "col": 1103,
-      "colMax": 1129
+      "col": 1164,
+      "colMax": 1190
      }
     },
     "fromLoadToStopwatch": {
@@ -4004,10 +4004,10 @@
       800
      ],
      "scroll": {
-      "page": 58,
+      "page": 72,
       "max": 321,
-      "col": 0,
-      "colMax": 1129
+      "col": 47,
+      "colMax": 1190
      }
     },
     "toPhotogateWithStopwatch": {
@@ -4037,8 +4037,8 @@
      "scroll": {
       "page": 72,
       "max": 321,
-      "col": 6,
-      "colMax": 1149
+      "col": 67,
+      "colMax": 1210
      }
     }
    }
@@ -4049,13 +4049,13 @@
     "atLoad": {
      "present": true,
      "at": [
-      1070,
-      790,
+      591,
+      161,
       1203,
-      822
+      206
      ],
-     "clear": false,
-     "painted": false,
+     "clear": true,
+     "painted": true,
      "pressed": [
       "SELF"
      ]
@@ -4063,10 +4063,10 @@
     "scrolledTo": {
      "present": true,
      "at": [
-      1070,
-      768,
+      591,
+      161,
       1203,
-      800
+      206
      ],
      "clear": true,
      "painted": true,
@@ -4139,10 +4139,10 @@
     "afterPanels": {
      "present": true,
      "at": [
-      1070,
-      586,
+      591,
+      17,
       1203,
-      618
+      62
      ],
      "clear": false,
      "painted": false,
@@ -4157,10 +4157,10 @@
      "toggle": {
       "present": true,
       "at": [
-       1070,
-       586,
+       591,
+       17,
        1203,
-       618
+       62
       ],
       "clear": false,
       "painted": false,
@@ -4175,13 +4175,13 @@
      "toggle": {
       "present": true,
       "at": [
-       1070,
-       586,
+       591,
+       135,
        1203,
-       618
+       180
       ],
-      "clear": false,
-      "painted": false,
+      "clear": true,
+      "painted": true,
       "pressed": [
        "SELF"
       ]
@@ -4819,7 +4819,7 @@
     "scopeDrawn": {
      "w": 448,
      "h": 358,
-     "litPx": 1233
+     "litPx": 1235
     }
    },
    "atFold": {
@@ -4973,7 +4973,7 @@
    "before": {
     "vw": 390,
     "vh": 844,
-    "docH": 1294,
+    "docH": 1274,
     "header": {
      "top": 0,
      "bottom": 63,
@@ -4984,10 +4984,10 @@
     },
     "workspace": {
      "top": 128,
-     "bottom": 1078,
+     "bottom": 1058,
      "left": 12,
      "right": 378,
-     "h": 950,
+     "h": 930,
      "w": 366
     },
     "problem": "hidden",
@@ -4995,43 +4995,43 @@
     "answer": "hidden",
     "table": "hidden",
     "canvas": {
-     "top": 244,
-     "bottom": 584,
+     "top": 305,
+     "bottom": 645,
      "left": 36,
      "right": 354,
      "h": 340,
      "w": 318
     },
     "controls": {
-     "top": 584,
-     "bottom": 694,
+     "top": 645,
+     "bottom": 755,
      "left": 36,
      "right": 354,
      "h": 110,
      "w": 318
     },
     "hint": {
-     "top": 694,
-     "bottom": 904,
+     "top": 755,
+     "bottom": 965,
      "left": 36,
      "right": 354,
      "h": 210,
      "w": 318
     },
     "pinned": {
-     "top": 243,
-     "bottom": 905,
+     "top": 304,
+     "bottom": 966,
      "left": 35,
      "right": 355,
      "h": 662,
      "w": 320
     },
     "menu": {
-     "top": 921,
-     "bottom": 999,
+     "top": 982,
+     "bottom": 1019,
      "left": 35,
      "right": 355,
-     "h": 78,
+     "h": 37,
      "w": 320
     },
     "stopwatch": null,
@@ -5043,10 +5043,10 @@
    "withStopwatch": {
     "vw": 390,
     "vh": 844,
-    "docH": 1220,
+    "docH": 1200,
     "header": {
-     "top": 149,
-     "bottom": 212,
+     "top": 257,
+     "bottom": 320,
      "left": 0,
      "right": 390,
      "h": 63,
@@ -5054,10 +5054,10 @@
     },
     "workspace": {
      "top": 128,
-     "bottom": 1004,
+     "bottom": 984,
      "left": 12,
      "right": 378,
-     "h": 876,
+     "h": 856,
      "w": 366
     },
     "problem": "hidden",
@@ -5065,16 +5065,16 @@
     "answer": "hidden",
     "table": "hidden",
     "canvas": {
-     "top": 244,
-     "bottom": 584,
+     "top": 321,
+     "bottom": 661,
      "left": 36,
      "right": 354,
      "h": 340,
      "w": 318
     },
     "controls": {
-     "top": 584,
-     "bottom": 694,
+     "top": 661,
+     "bottom": 771,
      "left": 36,
      "right": 354,
      "h": 110,
@@ -5082,32 +5082,32 @@
     },
     "hint": null,
     "pinned": {
-     "top": 243,
-     "bottom": 695,
+     "top": 320,
+     "bottom": 772,
      "left": 35,
      "right": 355,
      "h": 452,
      "w": 320
     },
     "menu": {
-     "top": 711,
-     "bottom": 789,
+     "top": 772,
+     "bottom": 809,
      "left": 35,
      "right": 355,
-     "h": 78,
+     "h": 37,
      "w": 320
     },
     "stopwatch": {
-     "top": 845,
-     "bottom": 981,
+     "top": 825,
+     "bottom": 961,
      "left": 35,
      "right": 355,
      "h": 136,
      "w": 320
     },
     "stopwatchRead": {
-     "top": 894,
-     "bottom": 922,
+     "top": 874,
+     "bottom": 902,
      "left": 52,
      "right": 338,
      "h": 28,
@@ -5120,10 +5120,10 @@
    "active": {
     "vw": 390,
     "vh": 844,
-    "docH": 1220,
+    "docH": 1200,
     "header": {
-     "top": 0,
-     "bottom": 63,
+     "top": 69,
+     "bottom": 132,
      "left": 0,
      "right": 390,
      "h": 63,
@@ -5131,10 +5131,10 @@
     },
     "workspace": {
      "top": 128,
-     "bottom": 1004,
+     "bottom": 984,
      "left": 12,
      "right": 378,
-     "h": 876,
+     "h": 856,
      "w": 366
     },
     "problem": "hidden",
@@ -5142,16 +5142,16 @@
     "answer": "hidden",
     "table": "hidden",
     "canvas": {
-     "top": 244,
-     "bottom": 584,
+     "top": 305,
+     "bottom": 645,
      "left": 36,
      "right": 354,
      "h": 340,
      "w": 318
     },
     "controls": {
-     "top": 584,
-     "bottom": 694,
+     "top": 645,
+     "bottom": 755,
      "left": 36,
      "right": 354,
      "h": 110,
@@ -5159,32 +5159,32 @@
     },
     "hint": null,
     "pinned": {
-     "top": 243,
-     "bottom": 695,
+     "top": 304,
+     "bottom": 756,
      "left": 35,
      "right": 355,
      "h": 452,
      "w": 320
     },
     "menu": {
-     "top": 711,
-     "bottom": 789,
+     "top": 772,
+     "bottom": 809,
      "left": 35,
      "right": 355,
-     "h": 78,
+     "h": 37,
      "w": 320
     },
     "stopwatch": {
-     "top": 845,
-     "bottom": 981,
+     "top": 825,
+     "bottom": 961,
      "left": 35,
      "right": 355,
      "h": 136,
      "w": 320
     },
     "stopwatchRead": {
-     "top": 894,
-     "bottom": 922,
+     "top": 874,
+     "bottom": 902,
      "left": 52,
      "right": 338,
      "h": 28,
@@ -5197,10 +5197,10 @@
    "withPhotogateToo": {
     "vw": 390,
     "vh": 844,
-    "docH": 1390,
+    "docH": 1370,
     "header": {
-     "top": 319,
-     "bottom": 382,
+     "top": 299,
+     "bottom": 362,
      "left": 0,
      "right": 390,
      "h": 63,
@@ -5208,10 +5208,10 @@
     },
     "workspace": {
      "top": 128,
-     "bottom": 1174,
+     "bottom": 1154,
      "left": 12,
      "right": 378,
-     "h": 1046,
+     "h": 1026,
      "w": 366
     },
     "problem": "hidden",
@@ -5219,16 +5219,16 @@
     "answer": "hidden",
     "table": "hidden",
     "canvas": {
-     "top": 383,
-     "bottom": 723,
+     "top": 363,
+     "bottom": 703,
      "left": 36,
      "right": 354,
      "h": 340,
      "w": 318
     },
     "controls": {
-     "top": 723,
-     "bottom": 833,
+     "top": 703,
+     "bottom": 813,
      "left": 36,
      "right": 354,
      "h": 110,
@@ -5236,40 +5236,40 @@
     },
     "hint": null,
     "pinned": {
-     "top": 382,
-     "bottom": 834,
+     "top": 362,
+     "bottom": 814,
      "left": 35,
      "right": 355,
      "h": 452,
      "w": 320
     },
     "menu": {
-     "top": 711,
-     "bottom": 789,
+     "top": 772,
+     "bottom": 809,
      "left": 35,
      "right": 355,
-     "h": 78,
+     "h": 37,
      "w": 320
     },
     "stopwatch": {
-     "top": 845,
-     "bottom": 981,
+     "top": 825,
+     "bottom": 961,
      "left": 35,
      "right": 355,
      "h": 136,
      "w": 320
     },
     "stopwatchRead": {
-     "top": 894,
-     "bottom": 922,
+     "top": 874,
+     "bottom": 902,
      "left": 52,
      "right": 338,
      "h": 28,
      "w": 286
     },
     "photogate": {
-     "top": 995,
-     "bottom": 1151,
+     "top": 975,
+     "bottom": 1131,
      "left": 35,
      "right": 355,
      "h": 156,
@@ -5281,27 +5281,27 @@
    "firstUse": {
     "stopwatchCard": {
      "present": true,
-     "side": "above",
+     "side": "below",
      "visible": "visible",
      "rect": [
       75,
-      564,
+      716,
       355,
-      684
+      836
      ],
      "pinned": [
       35,
-      94,
+      63,
       355,
-      546
+      515
      ],
      "onScreen": true,
      "overlapsApparatus": false,
-     "scrollY": 149
+     "scrollY": 257
     },
     "stopwatch": {
-     "top": 845,
-     "bottom": 981,
+     "top": 825,
+     "bottom": 961,
      "left": 35,
      "right": 355,
      "h": 136,
@@ -5325,11 +5325,11 @@
      ],
      "onScreen": true,
      "overlapsApparatus": false,
-     "scrollY": 319
+     "scrollY": 299
     },
     "photogate": {
-     "top": 995,
-     "bottom": 1151,
+     "top": 975,
+     "bottom": 1131,
      "left": 35,
      "right": 355,
      "h": 156,
@@ -5339,30 +5339,30 @@
    "atFold": {
     "canvas": true,
     "canvas@": [
-     244,
-     584
+     236,
+     576
     ],
-    "stopwatchRead": false,
+    "stopwatchRead": true,
     "stopwatchRead@": [
-     894,
-     922
+     805,
+     833
     ],
     "stopwatch": false,
     "stopwatch@": [
-     845,
-     981
+     756,
+     892
     ],
     "pinned@": [
-     243,
-     695
+     235,
+     687
     ],
     "view@": [
      63,
      844
     ],
     "scroll": {
-     "page": 0,
-     "max": 376,
+     "page": 69,
+     "max": 356,
      "col": 0,
      "colMax": 0
     }
@@ -5371,65 +5371,17 @@
     "toStopwatchRead": {
      "canvas": true,
      "canvas@": [
-      166,
-      506
+      240,
+      580
      ],
      "stopwatchRead": true,
      "stopwatchRead@": [
-      816,
-      844
+      809,
+      837
      ],
      "pinned@": [
-      165,
-      617
-     ],
-     "view@": [
-      63,
-      844
-     ],
-     "scroll": {
-      "page": 78,
-      "max": 376,
-      "col": 0,
-      "colMax": 0
-     }
-    },
-    "toStopwatch": {
-     "canvas": true,
-     "canvas@": [
-      107,
-      447
-     ],
-     "stopwatch": true,
-     "stopwatch@": [
-      708,
-      844
-     ],
-     "pinned@": [
-      106,
-      558
-     ],
-     "view@": [
-      63,
-      844
-     ],
-     "scroll": {
-      "page": 137,
-      "max": 376,
-      "col": 0,
-      "colMax": 0
-     }
-    },
-    "toPlot": {
-     "canvas": true,
-     "canvas@": [
-      179,
-      519
-     ],
-     "plotCanvas": "hidden",
-     "pinned@": [
-      178,
-      630
+      239,
+      691
      ],
      "view@": [
       63,
@@ -5437,7 +5389,55 @@
      ],
      "scroll": {
       "page": 65,
-      "max": 376,
+      "max": 356,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toStopwatch": {
+     "canvas": true,
+     "canvas@": [
+      188,
+      528
+     ],
+     "stopwatch": true,
+     "stopwatch@": [
+      708,
+      844
+     ],
+     "pinned@": [
+      187,
+      639
+     ],
+     "view@": [
+      63,
+      844
+     ],
+     "scroll": {
+      "page": 117,
+      "max": 356,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toPlot": {
+     "canvas": true,
+     "canvas@": [
+      240,
+      580
+     ],
+     "plotCanvas": "hidden",
+     "pinned@": [
+      239,
+      691
+     ],
+     "view@": [
+      63,
+      844
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 356,
       "col": 0,
       "colMax": 0
      }
@@ -5446,8 +5446,8 @@
      "plot": "hidden",
      "plotCanvas": "hidden",
      "pinned@": [
-      178,
-      630
+      239,
+      691
      ],
      "view@": [
       63,
@@ -5455,7 +5455,7 @@
      ],
      "scroll": {
       "page": 65,
-      "max": 376,
+      "max": 356,
       "col": 0,
       "colMax": 0
      }
@@ -5463,8 +5463,8 @@
     "fromLoadToStopwatch": {
      "canvas": true,
      "canvas@": [
-      107,
-      447
+      188,
+      528
      ],
      "stopwatch": true,
      "stopwatch@": [
@@ -5472,16 +5472,16 @@
       844
      ],
      "pinned@": [
-      106,
-      558
+      187,
+      639
      ],
      "view@": [
       63,
       844
      ],
      "scroll": {
-      "page": 137,
-      "max": 376,
+      "page": 117,
+      "max": 356,
       "col": 0,
       "colMax": 0
      }
@@ -5492,8 +5492,8 @@
       "vh": 844,
       "docH": 1692,
       "header": {
-       "top": 137,
-       "bottom": 200,
+       "top": 117,
+       "bottom": 180,
        "left": 0,
        "right": 390,
        "h": 63,
@@ -5610,8 +5610,8 @@
       844
      ],
      "scroll": {
-      "page": 307,
-      "max": 546,
+      "page": 287,
+      "max": 526,
       "col": 0,
       "colMax": 0
      }
@@ -5624,13 +5624,13 @@
     "atLoad": {
      "present": true,
      "at": [
-      222,
-      1007,
+      35,
+      243,
       355,
-      1039
+      288
      ],
-     "clear": false,
-     "painted": false,
+     "clear": true,
+     "painted": true,
      "pressed": [
       "SELF"
      ]
@@ -5638,10 +5638,10 @@
     "scrolledTo": {
      "present": true,
      "at": [
-      222,
-      812,
+      35,
+      243,
       355,
-      844
+      288
      ],
      "clear": true,
      "painted": true,
@@ -5653,23 +5653,23 @@
    "stopwatch": {
     "panel": {
      "at": [
-      696,
-      832
+      568,
+      704
      ],
      "pinned": [
-      94,
-      546
+      63,
+      515
      ],
      "clear": true
     },
     "menu": {
      "at": [
-      562,
-      640
+      515,
+      552
      ],
      "pinned": [
-      94,
-      546
+      63,
+      515
      ],
      "clear": true
     },
@@ -5700,8 +5700,8 @@
     },
     "menu": {
      "at": [
-      392,
-      470
+      473,
+      510
      ],
      "pinned": [
       63,
@@ -5714,10 +5714,10 @@
     "afterPanels": {
      "present": true,
      "at": [
-      222,
-      478,
+      35,
+      -56,
       355,
-      510
+      -11
      ],
      "clear": false,
      "painted": false,
@@ -5732,10 +5732,10 @@
      "toggle": {
       "present": true,
       "at": [
-       222,
-       478,
+       35,
+       -56,
        355,
-       510
+       -11
       ],
       "clear": false,
       "painted": false,
@@ -5750,10 +5750,10 @@
      "toggle": {
       "present": true,
       "at": [
-       222,
-       478,
+       35,
+       0,
        355,
-       510
+       45
       ],
       "clear": false,
       "painted": false,
@@ -6396,7 +6396,7 @@
     "scopeDrawn": {
      "w": 628,
      "h": 502,
-     "litPx": 4991
+     "litPx": 4977
     }
    },
    "atFold": {
@@ -6542,6 +6542,1582 @@
      "right": 370,
      "h": 122,
      "w": 350
+    }
+   }
+  },
+  "pendulum-375x667": {
+   "hintDismissed": true,
+   "before": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1180,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 963,
+     "left": 12,
+     "right": 363,
+     "h": 835,
+     "w": 351
+    },
+    "problem": "hidden",
+    "task": "hidden",
+    "answer": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 305,
+     "bottom": 532,
+     "left": 36,
+     "right": 339,
+     "h": 227,
+     "w": 303
+    },
+    "controls": {
+     "top": 532,
+     "bottom": 642,
+     "left": 36,
+     "right": 339,
+     "h": 110,
+     "w": 303
+    },
+    "hint": {
+     "top": 642,
+     "bottom": 870,
+     "left": 36,
+     "right": 339,
+     "h": 228,
+     "w": 303
+    },
+    "pinned": {
+     "top": 304,
+     "bottom": 871,
+     "left": 35,
+     "right": 340,
+     "h": 567,
+     "w": 305
+    },
+    "menu": {
+     "top": 887,
+     "bottom": 924,
+     "left": 35,
+     "right": 340,
+     "h": 37,
+     "w": 305
+    },
+    "stopwatch": null,
+    "stopwatchRead": null,
+    "photogate": null,
+    "plot": "hidden",
+    "plotCanvas": "hidden"
+   },
+   "withStopwatch": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1087,
+    "header": {
+     "top": 310,
+     "bottom": 373,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 871,
+     "left": 12,
+     "right": 363,
+     "h": 743,
+     "w": 351
+    },
+    "problem": "hidden",
+    "task": "hidden",
+    "answer": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 374,
+     "bottom": 601,
+     "left": 36,
+     "right": 339,
+     "h": 227,
+     "w": 303
+    },
+    "controls": {
+     "top": 601,
+     "bottom": 711,
+     "left": 36,
+     "right": 339,
+     "h": 110,
+     "w": 303
+    },
+    "hint": null,
+    "pinned": {
+     "top": 373,
+     "bottom": 712,
+     "left": 35,
+     "right": 340,
+     "h": 339,
+     "w": 305
+    },
+    "menu": {
+     "top": 659,
+     "bottom": 696,
+     "left": 35,
+     "right": 340,
+     "h": 37,
+     "w": 305
+    },
+    "stopwatch": {
+     "top": 712,
+     "bottom": 848,
+     "left": 35,
+     "right": 340,
+     "h": 136,
+     "w": 305
+    },
+    "stopwatchRead": {
+     "top": 761,
+     "bottom": 789,
+     "left": 52,
+     "right": 323,
+     "h": 28,
+     "w": 271
+    },
+    "photogate": null,
+    "plot": "hidden",
+    "plotCanvas": "hidden"
+   },
+   "active": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1087,
+    "header": {
+     "top": 154,
+     "bottom": 217,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 871,
+     "left": 12,
+     "right": 363,
+     "h": 743,
+     "w": 351
+    },
+    "problem": "hidden",
+    "task": "hidden",
+    "answer": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 305,
+     "bottom": 532,
+     "left": 36,
+     "right": 339,
+     "h": 227,
+     "w": 303
+    },
+    "controls": {
+     "top": 532,
+     "bottom": 642,
+     "left": 36,
+     "right": 339,
+     "h": 110,
+     "w": 303
+    },
+    "hint": null,
+    "pinned": {
+     "top": 304,
+     "bottom": 643,
+     "left": 35,
+     "right": 340,
+     "h": 339,
+     "w": 305
+    },
+    "menu": {
+     "top": 659,
+     "bottom": 696,
+     "left": 35,
+     "right": 340,
+     "h": 37,
+     "w": 305
+    },
+    "stopwatch": {
+     "top": 712,
+     "bottom": 848,
+     "left": 35,
+     "right": 340,
+     "h": 136,
+     "w": 305
+    },
+    "stopwatchRead": {
+     "top": 761,
+     "bottom": 789,
+     "left": 52,
+     "right": 323,
+     "h": 28,
+     "w": 271
+    },
+    "photogate": null,
+    "plot": "hidden",
+    "plotCanvas": "hidden"
+   },
+   "withPhotogateToo": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1257,
+    "header": {
+     "top": 460,
+     "bottom": 523,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 1041,
+     "left": 12,
+     "right": 363,
+     "h": 913,
+     "w": 351
+    },
+    "problem": "hidden",
+    "task": "hidden",
+    "answer": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 524,
+     "bottom": 751,
+     "left": 36,
+     "right": 339,
+     "h": 227,
+     "w": 303
+    },
+    "controls": {
+     "top": 751,
+     "bottom": 861,
+     "left": 36,
+     "right": 339,
+     "h": 110,
+     "w": 303
+    },
+    "hint": null,
+    "pinned": {
+     "top": 523,
+     "bottom": 862,
+     "left": 35,
+     "right": 340,
+     "h": 339,
+     "w": 305
+    },
+    "menu": {
+     "top": 659,
+     "bottom": 696,
+     "left": 35,
+     "right": 340,
+     "h": 37,
+     "w": 305
+    },
+    "stopwatch": {
+     "top": 712,
+     "bottom": 848,
+     "left": 35,
+     "right": 340,
+     "h": 136,
+     "w": 305
+    },
+    "stopwatchRead": {
+     "top": 761,
+     "bottom": 789,
+     "left": 52,
+     "right": 323,
+     "h": 28,
+     "w": 271
+    },
+    "photogate": {
+     "top": 862,
+     "bottom": 1018,
+     "left": 35,
+     "right": 340,
+     "h": 156,
+     "w": 305
+    },
+    "plot": "hidden",
+    "plotCanvas": "hidden"
+   },
+   "firstUse": {
+    "stopwatchCard": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      60,
+      550,
+      340,
+      658
+     ],
+     "pinned": [
+      35,
+      63,
+      340,
+      402
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 310
+    },
+    "stopwatch": {
+     "top": 712,
+     "bottom": 848,
+     "left": 35,
+     "right": 340,
+     "h": 136,
+     "w": 305
+    },
+    "photogateCard": {
+     "present": true,
+     "side": "below",
+     "visible": "visible",
+     "rect": [
+      60,
+      570,
+      340,
+      659
+     ],
+     "pinned": [
+      35,
+      63,
+      340,
+      402
+     ],
+     "onScreen": true,
+     "overlapsApparatus": false,
+     "scrollY": 460
+    },
+    "photogate": {
+     "top": 862,
+     "bottom": 1018,
+     "left": 35,
+     "right": 340,
+     "h": 156,
+     "w": 305
+    }
+   },
+   "atFold": {
+    "canvas": true,
+    "canvas@": [
+     151,
+     378
+    ],
+    "stopwatchRead": true,
+    "stopwatchRead@": [
+     607,
+     635
+    ],
+    "stopwatch": false,
+    "stopwatch@": [
+     558,
+     694
+    ],
+    "pinned@": [
+     150,
+     489
+    ],
+    "view@": [
+     63,
+     667
+    ],
+    "scroll": {
+     "page": 154,
+     "max": 420,
+     "col": 0,
+     "colMax": 0
+    }
+   },
+   "reach": {
+    "toStopwatchRead": {
+     "canvas": true,
+     "canvas@": [
+      183,
+      410
+     ],
+     "stopwatchRead": true,
+     "stopwatchRead@": [
+      639,
+      667
+     ],
+     "pinned@": [
+      182,
+      521
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 122,
+      "max": 420,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toStopwatch": {
+     "canvas": true,
+     "canvas@": [
+      124,
+      351
+     ],
+     "stopwatch": true,
+     "stopwatch@": [
+      531,
+      667
+     ],
+     "pinned@": [
+      123,
+      462
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 181,
+      "max": 420,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toPlot": {
+     "canvas": true,
+     "canvas@": [
+      240,
+      467
+     ],
+     "plotCanvas": "hidden",
+     "pinned@": [
+      239,
+      578
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 420,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toPlotWhole": {
+     "plot": "hidden",
+     "plotCanvas": "hidden",
+     "pinned@": [
+      239,
+      578
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 420,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "fromLoadToStopwatch": {
+     "canvas": true,
+     "canvas@": [
+      124,
+      351
+     ],
+     "stopwatch": true,
+     "stopwatch@": [
+      531,
+      667
+     ],
+     "pinned@": [
+      123,
+      462
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 181,
+      "max": 420,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "dataTab": {
+     "geom": {
+      "vw": 375,
+      "vh": 667,
+      "docH": 1755,
+      "header": {
+       "top": 181,
+       "bottom": 244,
+       "left": 0,
+       "right": 375,
+       "h": 63,
+       "w": 375
+      },
+      "workspace": {
+       "top": 128,
+       "bottom": 1538,
+       "left": 12,
+       "right": 363,
+       "h": 1410,
+       "w": 351
+      },
+      "problem": "hidden",
+      "task": "hidden",
+      "answer": "hidden",
+      "table": {
+       "top": 470,
+       "bottom": 841,
+       "left": 35,
+       "right": 340,
+       "h": 371,
+       "w": 305
+      },
+      "canvas": "hidden",
+      "controls": "hidden",
+      "hint": null,
+      "pinned": "hidden",
+      "menu": "hidden",
+      "stopwatch": "hidden",
+      "stopwatchRead": "hidden",
+      "photogate": null,
+      "plot": {
+       "top": 952,
+       "bottom": 1515,
+       "left": 35,
+       "right": 340,
+       "h": 563,
+       "w": 305
+      },
+      "plotCanvas": {
+       "top": 1210,
+       "bottom": 1470,
+       "left": 36,
+       "right": 339,
+       "h": 260,
+       "w": 303
+      }
+     },
+     "toTable": {
+      "table": true,
+      "table@": [
+       296,
+       667
+      ],
+      "pinned@": null,
+      "view@": [
+       63,
+       667
+      ],
+      "scroll": {
+       "page": 174,
+       "max": 1088,
+       "col": 0,
+       "colMax": 0
+      }
+     },
+     "toPlotWhole": {
+      "plot": true,
+      "plot@": [
+       104,
+       667
+      ],
+      "plotCanvas": true,
+      "plotCanvas@": [
+       362,
+       622
+      ],
+      "pinned@": null,
+      "view@": [
+       63,
+       667
+      ],
+      "scroll": {
+       "page": 848,
+       "max": 1088,
+       "col": 0,
+       "colMax": 0
+      }
+     }
+    },
+    "toPhotogateWithStopwatch": {
+     "canvas": true,
+     "canvas@": [
+      64,
+      291
+     ],
+     "stopwatch": true,
+     "stopwatch@": [
+      361,
+      497
+     ],
+     "photogate": false,
+     "photogate@": [
+      511,
+      679
+     ],
+     "pinned@": [
+      63,
+      402
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 351,
+      "max": 602,
+      "col": 0,
+      "colMax": 0
+     }
+    }
+   }
+  },
+  "pendulum-panels-375x667": {
+   "hintBefore": "strip",
+   "modeToggleReach": {
+    "atLoad": {
+     "present": true,
+     "at": [
+      35,
+      243,
+      340,
+      288
+     ],
+     "clear": true,
+     "painted": true,
+     "pressed": [
+      "SELF"
+     ]
+    },
+    "scrolledTo": {
+     "present": true,
+     "at": [
+      35,
+      243,
+      340,
+      288
+     ],
+     "clear": true,
+     "painted": true,
+     "pressed": [
+      "SELF"
+     ]
+    }
+   },
+   "stopwatch": {
+    "panel": {
+     "at": [
+      402,
+      538
+     ],
+     "pinned": [
+      63,
+      402
+     ],
+     "clear": true
+    },
+    "menu": {
+     "at": [
+      349,
+      386
+     ],
+     "pinned": [
+      63,
+      402
+     ],
+     "clear": false
+    },
+    "hint": "collapsed to ?"
+   },
+   "photogate": {
+    "panel": {
+     "at": [
+      499,
+      655
+     ],
+     "pinned": [
+      63,
+      402
+     ],
+     "clear": true
+    },
+    "stopwatchStill": {
+     "at": [
+      349,
+      485
+     ],
+     "pinned": [
+      63,
+      402
+     ],
+     "clear": false
+    },
+    "menu": {
+     "at": [
+      296,
+      333
+     ],
+     "pinned": [
+      63,
+      402
+     ],
+     "clear": false
+    }
+   },
+   "modeToggle": {
+    "afterPanels": {
+     "present": true,
+     "at": [
+      35,
+      -120,
+      340,
+      -75
+     ],
+     "clear": false,
+     "painted": false,
+     "pressed": [
+      "SELF"
+     ]
+    },
+    "stored": null,
+    "guided": {
+     "stored": "guided",
+     "coachMark": true,
+     "toggle": {
+      "present": true,
+      "at": [
+       35,
+       -120,
+       340,
+       -75
+      ],
+      "clear": false,
+      "painted": false,
+      "pressed": [
+       "GUIDED"
+      ]
+     }
+    },
+    "self": {
+     "stored": "self",
+     "coachMark": false,
+     "toggle": {
+      "present": true,
+      "at": [
+       35,
+       0,
+       340,
+       45
+      ],
+      "clear": false,
+      "painted": false,
+      "pressed": [
+       "SELF"
+      ]
+     }
+    }
+   },
+   "scrollWhileClear": {
+    "px": 0
+   }
+  },
+  "circuits-thermistor-375x667": {
+   "hintDismissed": true,
+   "before": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1053,
+    "header": {
+     "top": 0,
+     "bottom": 63,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 837,
+     "left": 12,
+     "right": 363,
+     "h": 709,
+     "w": 351
+    },
+    "problem": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 244,
+     "bottom": 524,
+     "left": 36,
+     "right": 339,
+     "h": 280,
+     "w": 303
+    },
+    "hint": {
+     "top": 524,
+     "bottom": 752,
+     "left": 36,
+     "right": 339,
+     "h": 228,
+     "w": 303
+    },
+    "pinned": {
+     "top": 243,
+     "bottom": 753,
+     "left": 35,
+     "right": 340,
+     "h": 510,
+     "w": 305
+    },
+    "toolbar": {
+     "top": 769,
+     "bottom": 814,
+     "left": 35,
+     "right": 340,
+     "h": 45,
+     "w": 305
+    },
+    "inventory": {
+     "top": 769,
+     "bottom": 814,
+     "left": 127,
+     "right": 340,
+     "h": 45,
+     "w": 213
+    },
+    "heater": null,
+    "heaterTemp": null,
+    "meters": null,
+    "plot": "hidden",
+    "plotCanvas": "hidden"
+   },
+   "active": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1104,
+    "header": {
+     "top": 51,
+     "bottom": 114,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 888,
+     "left": 12,
+     "right": 363,
+     "h": 760,
+     "w": 351
+    },
+    "problem": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 244,
+     "bottom": 524,
+     "left": 36,
+     "right": 339,
+     "h": 280,
+     "w": 303
+    },
+    "hint": null,
+    "pinned": {
+     "top": 243,
+     "bottom": 525,
+     "left": 35,
+     "right": 340,
+     "h": 282,
+     "w": 305
+    },
+    "toolbar": {
+     "top": 541,
+     "bottom": 586,
+     "left": 35,
+     "right": 340,
+     "h": 45,
+     "w": 305
+    },
+    "inventory": {
+     "top": 541,
+     "bottom": 586,
+     "left": 127,
+     "right": 340,
+     "h": 45,
+     "w": 213
+    },
+    "heater": {
+     "top": 602,
+     "bottom": 759,
+     "left": 35,
+     "right": 340,
+     "h": 157,
+     "w": 305
+    },
+    "heaterTemp": {
+     "top": 648,
+     "bottom": 673,
+     "left": 256,
+     "right": 323,
+     "h": 26,
+     "w": 67
+    },
+    "meters": {
+     "top": 775,
+     "bottom": 865,
+     "left": 35,
+     "right": 340,
+     "h": 90,
+     "w": 305
+    },
+    "plot": "hidden",
+    "plotCanvas": "hidden",
+    "metersListed": 1,
+    "heaterReading": "26.1 °C"
+   },
+   "withSecondVoltmeter": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1144,
+    "header": {
+     "top": 51,
+     "bottom": 114,
+     "left": 0,
+     "right": 375,
+     "h": 63,
+     "w": 375
+    },
+    "workspace": {
+     "top": 128,
+     "bottom": 928,
+     "left": 12,
+     "right": 363,
+     "h": 800,
+     "w": 351
+    },
+    "problem": "hidden",
+    "table": "hidden",
+    "canvas": {
+     "top": 244,
+     "bottom": 524,
+     "left": 36,
+     "right": 339,
+     "h": 280,
+     "w": 303
+    },
+    "hint": null,
+    "pinned": {
+     "top": 243,
+     "bottom": 525,
+     "left": 35,
+     "right": 340,
+     "h": 282,
+     "w": 305
+    },
+    "toolbar": {
+     "top": 541,
+     "bottom": 586,
+     "left": 35,
+     "right": 340,
+     "h": 45,
+     "w": 305
+    },
+    "inventory": {
+     "top": 541,
+     "bottom": 586,
+     "left": 127,
+     "right": 340,
+     "h": 45,
+     "w": 213
+    },
+    "heater": {
+     "top": 602,
+     "bottom": 759,
+     "left": 35,
+     "right": 340,
+     "h": 157,
+     "w": 305
+    },
+    "heaterTemp": {
+     "top": 648,
+     "bottom": 673,
+     "left": 256,
+     "right": 323,
+     "h": 26,
+     "w": 67
+    },
+    "meters": {
+     "top": 775,
+     "bottom": 905,
+     "left": 35,
+     "right": 340,
+     "h": 130,
+     "w": 305
+    },
+    "plot": "hidden",
+    "plotCanvas": "hidden",
+    "metersListed": 2
+   },
+   "atFold": {
+    "canvas": true,
+    "canvas@": [
+     193,
+     473
+    ],
+    "heaterTemp": true,
+    "heaterTemp@": [
+     597,
+     622
+    ],
+    "heater": false,
+    "heater@": [
+     551,
+     708
+    ],
+    "meters": false,
+    "meters@": [
+     724,
+     814
+    ],
+    "pinned@": [
+     192,
+     474
+    ],
+    "view@": [
+     63,
+     667
+    ],
+    "scroll": {
+     "page": 51,
+     "max": 437,
+     "col": 0,
+     "colMax": 0
+    }
+   },
+   "reach": {
+    "toHeaterTemp": {
+     "canvas": true,
+     "canvas@": [
+      179,
+      459
+     ],
+     "heaterTemp": true,
+     "heaterTemp@": [
+      583,
+      608
+     ],
+     "heater": false,
+     "heater@": [
+      537,
+      694
+     ],
+     "meters": false,
+     "meters@": [
+      710,
+      800
+     ],
+     "pinned@": [
+      178,
+      460
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 437,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toHeater": {
+     "canvas": true,
+     "canvas@": [
+      152,
+      432
+     ],
+     "heaterTemp": true,
+     "heaterTemp@": [
+      556,
+      581
+     ],
+     "heater": true,
+     "heater@": [
+      510,
+      667
+     ],
+     "meters": false,
+     "meters@": [
+      683,
+      773
+     ],
+     "pinned@": [
+      151,
+      433
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 92,
+      "max": 437,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toMeters": {
+     "canvas": true,
+     "canvas@": [
+      64,
+      344
+     ],
+     "heaterTemp": true,
+     "heaterTemp@": [
+      450,
+      475
+     ],
+     "heater": true,
+     "heater@": [
+      404,
+      561
+     ],
+     "meters": true,
+     "meters@": [
+      577,
+      667
+     ],
+     "pinned@": [
+      63,
+      345
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 198,
+      "max": 437,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toPlot": {
+     "canvas": true,
+     "canvas@": [
+      179,
+      459
+     ],
+     "plotCanvas": "hidden",
+     "pinned@": [
+      178,
+      460
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 437,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "toPlotWhole": {
+     "plot": "hidden",
+     "plotCanvas": "hidden",
+     "pinned@": [
+      178,
+      460
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 65,
+      "max": 437,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "fromLoadToHeater": {
+     "canvas": true,
+     "canvas@": [
+      152,
+      432
+     ],
+     "heaterTemp": true,
+     "heaterTemp@": [
+      556,
+      581
+     ],
+     "heater": true,
+     "heater@": [
+      510,
+      667
+     ],
+     "meters": false,
+     "meters@": [
+      683,
+      773
+     ],
+     "pinned@": [
+      151,
+      433
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 92,
+      "max": 437,
+      "col": 0,
+      "colMax": 0
+     }
+    },
+    "dataTab": {
+     "geom": {
+      "vw": 375,
+      "vh": 667,
+      "docH": 1432,
+      "header": {
+       "top": 92,
+       "bottom": 155,
+       "left": 0,
+       "right": 375,
+       "h": 63,
+       "w": 375
+      },
+      "workspace": {
+       "top": 128,
+       "bottom": 1216,
+       "left": 12,
+       "right": 363,
+       "h": 1088,
+       "w": 351
+      },
+      "problem": "hidden",
+      "table": {
+       "top": 243,
+       "bottom": 614,
+       "left": 35,
+       "right": 340,
+       "h": 371,
+       "w": 305
+      },
+      "canvas": "hidden",
+      "hint": null,
+      "pinned": "hidden",
+      "toolbar": "hidden",
+      "inventory": "hidden",
+      "heater": "hidden",
+      "heaterTemp": "hidden",
+      "meters": "hidden",
+      "plot": {
+       "top": 630,
+       "bottom": 1193,
+       "left": 35,
+       "right": 340,
+       "h": 563,
+       "w": 305
+      },
+      "plotCanvas": {
+       "top": 888,
+       "bottom": 1148,
+       "left": 36,
+       "right": 339,
+       "h": 260,
+       "w": 303
+      }
+     },
+     "toTable": {
+      "table": true,
+      "table@": [
+       178,
+       549
+      ],
+      "pinned@": null,
+      "view@": [
+       63,
+       667
+      ],
+      "scroll": {
+       "page": 65,
+       "max": 765,
+       "col": 0,
+       "colMax": 0
+      }
+     },
+     "toPlotWhole": {
+      "plot": true,
+      "plot@": [
+       104,
+       667
+      ],
+      "plotCanvas": true,
+      "plotCanvas@": [
+       362,
+       622
+      ],
+      "pinned@": null,
+      "view@": [
+       63,
+       667
+      ],
+      "scroll": {
+       "page": 526,
+       "max": 765,
+       "col": 0,
+       "colMax": 0
+      }
+     }
+    }
+   }
+  },
+  "builder-scope-375x667": {
+   "collapsed": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1570,
+    "canvas": {
+     "top": 319,
+     "bottom": 599,
+     "left": 21,
+     "right": 354,
+     "h": 280,
+     "w": 333
+    },
+    "scope": {
+     "top": 895,
+     "bottom": 1017,
+     "left": 20,
+     "right": 355,
+     "h": 122,
+     "w": 335
+    },
+    "generators": {
+     "top": 1033,
+     "bottom": 1354,
+     "left": 20,
+     "right": 355,
+     "h": 322,
+     "w": 335
+    }
+   },
+   "expanded": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 2068,
+    "canvas": null,
+    "inventory": null,
+    "scopeScreen": {
+     "top": 414,
+     "bottom": 659,
+     "left": 38,
+     "right": 345,
+     "h": 246,
+     "w": 307
+    },
+    "scopeClose": {
+     "top": 329,
+     "bottom": 374,
+     "left": 260,
+     "right": 346,
+     "h": 45,
+     "w": 86
+    },
+    "scopeControls": {
+     "top": 804,
+     "bottom": 1499,
+     "left": 37,
+     "right": 338,
+     "h": 695,
+     "w": 301
+    },
+    "generators": {
+     "top": 1530,
+     "bottom": 1852,
+     "left": 20,
+     "right": 355,
+     "h": 322,
+     "w": 335
+    },
+    "scopeDrawn": {
+     "w": 614,
+     "h": 491,
+     "litPx": 4915
+    }
+   },
+   "atFold": {
+    "canvas": null,
+    "inventory": null,
+    "scopeScreen": true,
+    "scopeScreen@": [
+     414,
+     659
+    ],
+    "scopeClose": true,
+    "scopeClose@": [
+     329,
+     374
+    ],
+    "scopeControls": false,
+    "scopeControls@": [
+     804,
+     1499
+    ],
+    "generators": false,
+    "generators@": [
+     1530,
+     1852
+    ],
+    "pinned@": [
+     318,
+     671
+    ],
+    "view@": [
+     63,
+     667
+    ],
+    "scroll": {
+     "page": 0,
+     "max": 1401,
+     "col": null,
+     "colMax": null
+    }
+   },
+   "reach": {
+    "toScopeControls": {
+     "canvas": null,
+     "inventory": null,
+     "scopeScreen": true,
+     "scopeScreen@": [
+      159,
+      404
+     ],
+     "scopeClose": true,
+     "scopeClose@": [
+      74,
+      119
+     ],
+     "scopeControls": false,
+     "scopeControls@": [
+      0,
+      695
+     ],
+     "generators": false,
+     "generators@": [
+      726,
+      1048
+     ],
+     "pinned@": [
+      63,
+      416
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 804,
+      "max": 1401,
+      "col": null,
+      "colMax": null
+     }
+    },
+    "toGenerators": {
+     "canvas": null,
+     "inventory": null,
+     "scopeScreen": true,
+     "scopeScreen@": [
+      159,
+      404
+     ],
+     "scopeClose": true,
+     "scopeClose@": [
+      74,
+      119
+     ],
+     "scopeControls": false,
+     "scopeControls@": [
+      -381,
+      314
+     ],
+     "generators": false,
+     "generators@": [
+      345,
+      667
+     ],
+     "pinned@": [
+      63,
+      416
+     ],
+     "view@": [
+      63,
+      667
+     ],
+     "scroll": {
+      "page": 1185,
+      "max": 1401,
+      "col": null,
+      "colMax": null
+     }
+    }
+   },
+   "closedAgain": {
+    "vw": 375,
+    "vh": 667,
+    "docH": 1570,
+    "canvas": {
+     "top": 319,
+     "bottom": 599,
+     "left": 21,
+     "right": 354,
+     "h": 280,
+     "w": 333
+    },
+    "inventory": {
+     "top": 616,
+     "bottom": 661,
+     "left": 112,
+     "right": 355,
+     "h": 45,
+     "w": 243
+    },
+    "scope": {
+     "top": 895,
+     "bottom": 1017,
+     "left": 20,
+     "right": 355,
+     "h": 122,
+     "w": 335
     }
    }
   }
