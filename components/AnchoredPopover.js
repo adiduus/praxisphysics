@@ -21,8 +21,14 @@ import { createPortal } from 'react-dom';
 // popover lands outside it and the tail reaches in.
 //
 // Rules: a side with room (beside first, then below/above), scrolling the
-// box into view if it must; never over the apparatus (.bench-pinned) and
-// never off screen. `onDismiss`, if given, is called on Escape or a press
+// box into view if it must — and out from under the apparatus, if it has
+// gone under it; never over the apparatus (.bench-pinned) and never off
+// screen. When its own content changes size (a coach mark's answer
+// opened), it is placed again from scratch, as on open. If no side has room
+// for all of it even after a scroll, it takes the room there is: its
+// max-height is capped to the space on its side, and a child with
+// `min-height:0; overflow-y:auto` (the coach mark's .coach-body) scrolls
+// inside it, so it never runs off screen nor over what it points at. `onDismiss`, if given, is called on Escape or a press
 // anywhere outside the popover and its anchor; without it the popover stays
 // until its owner closes it (a coach mark waits for the student to act on
 // the bench).
@@ -70,12 +76,23 @@ function apparatusAfter(pin, scroller, delta) {
   return { left: r.left, right: r.right, top, bottom: top + r.height };
 }
 
+// The popover's height with no cap, measured with any cap lifted for the
+// moment (synchronously, so nothing paints and no resize is reported).
+function naturalHeight(pop) {
+  const cap = pop.style.maxHeight;
+  pop.style.maxHeight = 'none';
+  const h = pop.offsetHeight;
+  pop.style.maxHeight = cap;
+  return h;
+}
+
 const overlaps = (r, b) => r.left < b.right && r.left + r.w > b.left && r.top < b.bottom && r.top + r.h > b.top;
 const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
 
 export default function AnchoredPopover({ open, box, anchor, onDismiss, label, className = '', children }) {
   const popRef = useRef(null);
   const sideRef = useRef(null); // chosen once per open; re-chosen on resize
+  const capRef = useRef(null); // max-height when no side has room for all of it
   const [place, setPlace] = useState(null);
   // Latest targets and dismiss handler, read at layout time: callers pass
   // fresh functions every render, which mustn't restart the layout effect.
@@ -85,12 +102,15 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
   useLayoutEffect(() => {
     if (!open) {
       sideRef.current = null;
+      capRef.current = null;
       setPlace(null);
       return undefined;
     }
     let raf = 0;
     let scrolled = false; // the side search's one scroll
     let broughtIntoView = false; // the box's one scroll into view, before that
+    let freed = false; // the box's one scroll out from under the apparatus
+    let laidOutH = 0; // the popover's height when last placed
 
     function layout() {
       raf = 0;
@@ -111,7 +131,8 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
           ? { left: at.x, right: at.x, top: at.y, bottom: at.y }
           : p;
       const w = pop.offsetWidth;
-      const h = pop.offsetHeight;
+      const h = naturalHeight(pop);
+      laidOutH = h;
       const vw = document.documentElement.clientWidth;
       const vh = window.innerHeight;
       const head = document.querySelector('header');
@@ -128,6 +149,22 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
         boxEl.scrollIntoView({ block: 'nearest', behavior: 'instant' });
         layout();
         return;
+      }
+
+      // A box that has gone under the (sticky) apparatus — the menu row
+      // under a phone's pinned bench — is scrolled back out from under it
+      // first: a popover beside a box nobody can press is no use.
+      // Covered, not just overlapping: an instrument panel paints over the
+      // apparatus, so it's hit-tested at its middle rather than compared.
+      if (!sideRef.current && !freed && pin && !pin.contains(boxEl) && getComputedStyle(boxEl).position !== 'sticky') {
+        const under = pin.getBoundingClientRect().bottom - p.top;
+        const hit = under > 0.5 && document.elementFromPoint((p.left + p.right) / 2, clamp((p.top + p.bottom) / 2, minTop, maxBottom));
+        if (hit && pin.contains(hit)) {
+          freed = true;
+          scroller.scrollBy({ top: -Math.ceil(under + MARGIN), behavior: 'instant' });
+          layout();
+          return;
+        }
       }
 
       // Where the box would sit after scrolling down by `delta`. A sticky
@@ -177,6 +214,7 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
       }
 
       if (!sideRef.current) {
+        capRef.current = null;
         // Whatever fits as things sit; failing that (the box just placed
         // near the bottom of the screen), whichever needs the least scroll,
         // then scroll exactly that much. The scroll re-runs layout.
@@ -187,9 +225,14 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
           options.sort((x, y) => x.d - y.d);
           // Nothing works even with a scroll: below, clear of the apparatus
           // above the box, as far on screen as the page allows.
-          const best = options[0] || { s: 'below', d: Math.min(deltaFor('below'), Math.max(0, scrollRoom(scroller))) };
+          // Whatever doesn't fit on screen there is capped (below).
+          // Its scroll stops short of sliding the box under the apparatus.
+          let d = Math.min(deltaFor('below'), Math.max(0, scrollRoom(scroller)));
+          while (d > 0 && pin && p.top - d < apparatusAfter(pin, scroller, d).bottom) d--;
+          const best = options[0] || { s: 'below', d, cap: true };
           pick = best.s;
           delta = best.d;
+          if (best.cap) capRef.current = 'below';
         }
         sideRef.current = pick;
         if (delta > 0 && !scrolled) {
@@ -201,6 +244,9 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
       }
       const avoid = pin && pin.getBoundingClientRect();
       const r = rectFor(sideRef.current);
+      // Capped: from where it sits to the bottom of the screen.
+      const cap = capRef.current ? Math.floor(maxBottom - r.top) : 0;
+      pop.style.maxHeight = cap > 0 && cap < h ? `${cap}px` : '';
       // Once open, it follows the box; if the box scrolls under the
       // apparatus or off screen, the popover goes with it rather than
       // floating over whatever is now there.
@@ -214,6 +260,16 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
       sideRef.current = null;
       schedule();
     };
+    // The popover's own content grew or shrank: place it again from
+    // scratch, with the same one scroll each way that opening allows.
+    const onContentResize = () => {
+      const pop = popRef.current;
+      if (!pop || Math.abs(pop.offsetHeight - laidOutH) < 1) return;
+      sideRef.current = null;
+      scrolled = false;
+      freed = false;
+      schedule();
+    };
 
     layout();
     window.addEventListener('scroll', schedule, true); // capture: the bench column scrolls too
@@ -224,11 +280,17 @@ export default function AnchoredPopover({ open, box, anchor, onDismiss, label, c
       ro = new ResizeObserver(schedule);
       ro.observe(boxEl);
     }
+    let popRo = null;
+    if ('ResizeObserver' in window && popRef.current) {
+      popRo = new ResizeObserver(onContentResize);
+      popRo.observe(popRef.current);
+    }
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('scroll', schedule, true);
       window.removeEventListener('resize', onResize);
       if (ro) ro.disconnect();
+      if (popRo) popRo.disconnect();
     };
   }, [open]);
 

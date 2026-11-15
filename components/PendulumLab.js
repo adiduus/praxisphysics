@@ -1,16 +1,19 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import PendulumCanvas from './PendulumCanvas';
+import PendulumCanvas, { worldToClient } from './PendulumCanvas';
 import PendulumLens from './PendulumLens';
 import BenchHint from './BenchHint';
 import InstrumentMenu from './instruments/InstrumentMenu';
 import Stopwatch from './instruments/Stopwatch';
 import Photogate from './instruments/Photogate';
-import CoachMark from './CoachMark';
+import PendulumWalkthrough, { useWalkthroughMode } from './PendulumWalkthrough';
+import { pendulumWalkthrough, pendulumWalkthroughPart } from '@/data/pendulumWalkthrough';
 import { usePendulumPhysics } from '@/lib/pendulum/usePendulumPhysics';
 import { setBenchLength } from '@/lib/pendulum/benchLength';
+import { revealBelowPinned } from '@/lib/experiment/revealBelowPinned';
 import { sessionRandom, sessionUniform } from '@/lib/instruments/rng';
+import { SCALE_EDGE_X_M, SCALE_WIDTH_M } from '@/lib/pendulum/scene';
 
 const DRAG_CAP_DEG = 85; // the taut-string model is invalid past 90°
 const BOB_RADIUS_M = 0.02;
@@ -41,6 +44,9 @@ const PLATE_OFFSET_MAX_RAD = (1 * Math.PI) / 180;
 // menu only toggles whether each is mounted, never where.
 const PHOTOGATE_DEFAULT = { xM: 0.08, yM: 0.34 };
 
+// The instruments that come with a panel, by the name in its header.
+const PANELS = { stopwatch: 'STOPWATCH', photogate: 'PHOTOGATE' };
+
 const INSTRUMENTS = [
   { key: 'stopwatch', label: 'STOPWATCH' },
   { key: 'scale', label: 'SCALE' },
@@ -48,7 +54,10 @@ const INSTRUMENTS = [
   { key: 'photogate', label: 'PHOTOGATE' },
 ];
 
-export default function PendulumLab() {
+// `dataTable` (the active part's), `experimentId`, `part` and `showPane`
+// come from ExperimentWorkspace, for the GUIDED walkthrough
+// (PendulumWalkthrough.js), which runs on Part A only.
+export default function PendulumLab({ dataTable, experimentId = 'pendulum', part, showPane }) {
   const [stringLength, setStringLength] = useState(DEFAULT_LENGTH_M);
   const [open, setOpen] = useState({}); // every tool off by default — empty bench
 
@@ -57,14 +66,11 @@ export default function PendulumLab() {
   const plateOffsetRef = useRef(0);
   const lensRef = useRef({ active: false, clientX: 0, clientY: 0, worldX: 0, worldY: 0, pxPerM: 1 });
   const sceneStateRef = useRef({});
-
-  const [modeGuided, setModeGuided] = useState(null); // null | 'guided' | 'self'
-  const [guideStep, setGuideStep] = useState(0);
-
-  const canvasRef = useRef(null);
-  const controlsRef = useRef(null);
-  const instrumentMenuRef = useRef(null);
-  const tableRef = useRef(null);
+  const viewRef = useRef(null); // the canvas's scene transform, for pointing at drawn things
+  const lensUsedRef = useRef(false); // the walkthrough's one new fact: has the lens been raised yet
+  const stopwatchStopsRef = useRef({ count: 0, lastS: 0 }); // the stopwatch's stopped readings, from its onStop
+  const labRef = useRef(null);
+  const frameRef = useRef(null);
 
   useEffect(() => {
     printMarginRef.current = sessionUniform('scale-print-margin-m', PRINT_MARGIN_MIN_M, PRINT_MARGIN_MAX_M);
@@ -74,6 +80,7 @@ export default function PendulumLab() {
   }, []);
 
   const effectiveLength = stringLength + BOB_RADIUS_M; // pivot to bob centre
+  useEffect(() => setBenchLength(effectiveLength), [effectiveLength]); // for Part B's T₀ reveal
   const { mode, physicsRef, triggers, clearTriggers, beginDrag, updateDrag, release, stop, hangRest } = usePendulumPhysics({
     length: effectiveLength,
     dragCapDeg: DRAG_CAP_DEG,
@@ -91,6 +98,41 @@ export default function PendulumLab() {
     });
   }, []);
 
+  // A panel just placed is brought wholly into view under the pinned
+  // apparatus, and the first one collapses the how-to strip to its "?"
+  // (as the walkthrough does): with the strip up, the window under the
+  // pinned region is too short for a panel on a laptop or a phone. See
+  // lib/experiment/revealBelowPinned.js.
+  const [panelPlaced, setPanelPlaced] = useState(false);
+  const prevOpenRef = useRef(open);
+  useEffect(() => {
+    const placed = Object.keys(PANELS).filter((k) => open[k] && !prevOpenRef.current[k]);
+    prevOpenRef.current = open;
+    if (!placed.length) return undefined;
+    setPanelPlaced(true);
+    const name = PANELS[placed[placed.length - 1]];
+    // Wait until the panel has stopped moving for two frames: the strip's
+    // collapse is a render of its own, and a fixed two-frame wait sometimes
+    // measured before it landed (1 run in 3 at 1280×800) and scrolled too
+    // little. At most ~20 frames.
+    let raf = 0;
+    let lastTop = null;
+    let still = 0;
+    let frames = 0;
+    const tick = () => {
+      const el = [...(labRef.current?.querySelectorAll('.instrument-panels .instrument') ?? [])].find(
+        (e) => e.querySelector('.instrument-head b')?.textContent === name
+      );
+      const top = el?.getBoundingClientRect().top ?? null;
+      still = top !== null && top === lastTop ? still + 1 : 0;
+      lastTop = top;
+      if (still >= 2 || ++frames >= 20) revealBelowPinned(el);
+      else raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [open]);
+
   const visible = useMemo(
     () => ({ scale: !!open.scale, anglePlate: !!open.anglePlate, photogate: !!open.photogate }),
     [open.scale, open.anglePlate, open.photogate]
@@ -98,96 +140,111 @@ export default function PendulumLab() {
 
   const swinging = mode === 'swinging';
 
-  const handleStop = useCallback(() => {
-    if (swinging) {
-      stop();
-    } else {
-      hangRest();
-    }
-  }, [swinging, stop, hangRest]);
+  // A new length mid-swing stops the bob first (where it is) rather than
+  // resizing a moving pendulum.
+  const changeLength = (e) => {
+    if (swinging) stop();
+    setStringLength(Number(e.target.value));
+  };
 
-  useEffect(() => {
-    // track lens usage if needed
+  const walk = useWalkthroughMode(experimentId, pendulumWalkthrough.length);
+  const onWalkPart = part === pendulumWalkthroughPart;
+
+  // What each step's condition reads — state the bench and the part's table
+  // already hold, plus lensUsedRef and the stopwatch's stops. Read live: the
+  // physics angle is a ref, not state.
+  const benchRef = useRef(null);
+  benchRef.current = { scaleOn: !!open.scale, stopwatchOn: !!open.stopwatch, length: stringLength, mode, table: dataTable?.table };
+  const readBench = () => ({
+    ...benchRef.current,
+    theta: physicsRef.current.theta,
+    lensUsed: lensUsedRef.current,
+    stopwatchStops: stopwatchStopsRef.current.count,
+    stopwatchLastS: stopwatchStopsRef.current.lastS,
+  });
+  const onStopwatchStop = useCallback((s) => {
+    stopwatchStopsRef.current = { count: stopwatchStopsRef.current.count + 1, lastS: s };
   }, []);
 
-  const handleBeginDrag = useCallback(
-    (angle) => {
-      beginDrag(angle);
+  // Each coach mark's box and anchor (see AnchoredPopover). Anything inside
+  // the apparatus is pointed at from outside it: the box is the whole
+  // pinned frame. The scale and the bob exist only as canvas pixels, so
+  // their anchors are world points through the scene's own transform.
+  const find = (sel) => () => labRef.current?.querySelector(sel);
+  const atWorld = (xM, yM) => () => worldToClient(viewRef.current, xM, yM);
+  const walkTargets = {
+    bench: { box: frameRef },
+    instruments: { box: find('.instrument-menu') },
+    length: { box: frameRef, anchor: find('.length-control input') },
+    scale: { box: frameRef, anchor: atWorld(SCALE_EDGE_X_M + SCALE_WIDTH_M / 2, effectiveLength) },
+    bob: {
+      box: frameRef,
+      anchor: () => {
+        const th = physicsRef.current.theta;
+        return worldToClient(viewRef.current, Math.sin(th) * effectiveLength, Math.cos(th) * effectiveLength);
+      },
     },
-    [beginDrag]
-  );
-
-  const handleRelease = useCallback(() => {
-    release();
-  }, [release]);
-
-  const guideSteps = [
-    { text: 'This walkthrough takes you through Part A one step at a time. You can switch to SELF at any point.', placement: 'bottom', target: () => canvasRef.current },
-    { text: 'Add the SCALE and the STOPWATCH.', placement: 'top', target: () => instrumentMenuRef.current },
-    { text: 'Set a length with this slider. The bench doesn\'t show the number; you read it off the scale.', placement: 'top', target: () => document.querySelector('.length-control') },
-    { text: "Press STOP or HANG STRAIGHT so the string hangs still, then press and hold on the scale to magnify it. Read where the bob's centre is. The scale reads to 1 mm, so your uncertainty is about half a millimetre, 0.0005 m.", placement: 'bottom', target: () => document.querySelector('.pendulum-frame') },
-    { text: "Drag the bob a little to one side, about 5°. Add the ANGLE PLATE if you want to check. Part A's formula only holds for small swings; at 20° your g will drift and you won't see why.", placement: 'bottom', target: () => canvasRef.current },
-    { text: "Release it. Watch for the moment the bob passes the centre: that's where you'll start and stop timing.", placement: 'top', target: () => document.querySelector('.pendulum-controls') },
-    { text: "One oscillation is the bob going out, coming back, and passing the centre the same way again. Start the watch as the bob passes the centre and stop it after 20 oscillations.", placement: 'top', target: () => document.querySelector('.instrument-panels') },
-    { text: "How big is your timing error? Time 20 oscillations at this same length five times and type the five times in. The spread of those five tells you your Δt. ", placement: 'top', target: () => document.getElementById('pendulum-data-table') || document.querySelector('.pendulum-table-box') },
-    { text: "Add columns with + COL and name them by typing, e.g. L, t_{20}, T_0, T_0^2, Δ(T_0^2) (rendered as math). If T0 has uncertainty ΔT_0, then Δ(T0^2) = 2T_0·ΔT_0.", placement: 'top', target: () => document.getElementById('pendulum-data-table') || document.querySelector('.pendulum-table-box') },
-    { text: "Now repeat for at least six lengths.", placement: 'top', target: () => document.getElementById('pendulum-data-table') || document.querySelector('.pendulum-table-box') },
-  ];
-
-  const canAdvanceGuide = () => {
-    if (!modeGuided) return true;
-    if (guideStep === 0) return true;
-    if (guideStep === 1) return !!open.scale && !!open.stopwatch;
-    if (guideStep === 2) return true;
-    if (guideStep === 3) return !!open.scale;
-    if (guideStep === 4) return true;
-    if (guideStep === 5) return true;
-    if (guideStep === 6) return true;
-    if (guideStep === 7) return true;
-    if (guideStep === 8) return true;
-    if (guideStep === 9) return true;
-    return true;
+    controls: { box: frameRef, anchor: find('.pendulum-actions') },
+    stopwatch: {
+      box: () =>
+        [...(labRef.current?.querySelectorAll('.instrument-panels .instrument') ?? [])].find(
+          (e) => e.querySelector('.instrument-head b')?.textContent === 'STOPWATCH'
+        ),
+    },
+    table: {
+      box: () => labRef.current?.closest('.pendulum-workspace')?.querySelector('[data-pane="data"] .pendulum-table-box'),
+    },
   };
 
   return (
-    <div className="pendulum-lab">
-      {modeGuided === null && (
-        <div className="pendulum-mode-select" style={{ marginBottom: '12px', display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--muted)' }}>MODE:</span>
-          <button type="button" className="btn btn-fill" onClick={() => { setModeGuided('guided'); setGuideStep(0); }}>
+    <div className="pendulum-lab" ref={labRef}>
+      {/* The walkthrough's GUIDED / SELF toggle, above the apparatus as on
+          main: "MODE:" and two buttons, the active one filled. The same
+          stored mode as the offers and the coach marks
+          (useWalkthroughMode), so it shows and sets the mode whether or not
+          a walkthrough is running. Part A only, like the offers: Part B has
+          no walkthrough. */}
+      {onWalkPart && (
+        <div className="mode-switch" role="group" aria-label="Walkthrough mode">
+          <span>MODE:</span>
+          <button type="button" aria-pressed={walk.mode === 'guided'} className={`btn ${walk.mode === 'guided' ? 'btn-fill' : 'btn-line'}`} onClick={() => walk.mode !== 'guided' && walk.start()}>
             GUIDED
           </button>
-          <button type="button" className="btn btn-line" onClick={() => { setModeGuided('self'); }}>
+          <button type="button" aria-pressed={walk.mode === 'self'} className={`btn ${walk.mode === 'self' ? 'btn-fill' : 'btn-line'}`} onClick={() => walk.mode !== 'self' && walk.exit()}>
             SELF
           </button>
         </div>
       )}
-      {modeGuided !== null && (
-        <div className="pendulum-mode-select" style={{ marginBottom: '12px', display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--muted)' }}>MODE: {modeGuided.toUpperCase()}</span>
-          <button type="button" className="btn btn-line" onClick={() => { setModeGuided(null); setGuideStep(0); }}>
-            CHANGE MODE
-          </button>
+      <div className="pendulum-frame bench-pinned" ref={frameRef}>
+        <div className="pendulum-stage">
+          <PendulumCanvas
+            physicsRef={physicsRef}
+            mode={mode}
+            length={effectiveLength}
+            bobRadius={BOB_RADIUS_M}
+            dragCapRad={DRAG_CAP_RAD}
+            photogateRef={photogateRef}
+            printMarginRef={printMarginRef}
+            plateOffsetRef={plateOffsetRef}
+            visible={visible}
+            lensRef={lensRef}
+            sceneStateRef={sceneStateRef}
+            viewRef={viewRef}
+            lensUsedRef={lensUsedRef}
+            onBeginDrag={beginDrag}
+            onUpdateDrag={updateDrag}
+          />
+          {/* Offered, never imposed: SELF is the default and there's no
+              dialog on load. Over the canvas's empty bottom-left corner, so
+              it takes no height. Part A only. */}
+          {walk.mode === 'self' && onWalkPart && (
+            <button type="button" className="walkthrough-offer" onClick={walk.start}>
+              New to this bench? Take the walkthrough
+            </button>
+          )}
         </div>
-      )}
-      <div className="pendulum-frame bench-pinned" ref={canvasRef} style={{ margin: '0 auto', maxWidth: '900px' }}>
-        <PendulumCanvas
-          physicsRef={physicsRef}
-          mode={mode}
-          length={effectiveLength}
-          bobRadius={BOB_RADIUS_M}
-          dragCapRad={DRAG_CAP_RAD}
-          photogateRef={photogateRef}
-          printMarginRef={printMarginRef}
-          plateOffsetRef={plateOffsetRef}
-          visible={visible}
-          lensRef={lensRef}
-          sceneStateRef={sceneStateRef}
-          onBeginDrag={handleBeginDrag}
-          onUpdateDrag={updateDrag}
-        />
         <PendulumLens lensRef={lensRef} sceneStateRef={sceneStateRef} />
-        <div className="pendulum-controls" ref={controlsRef}>
+        <div className="pendulum-controls">
           <label className="length-control">
             <span>LENGTH</span>
             <input
@@ -196,21 +253,21 @@ export default function PendulumLab() {
               max={MAX_LENGTH_M}
               step={0.01}
               value={stringLength}
-              disabled={swinging}
-              onChange={(e) => {
-                setStringLength(Number(e.target.value));
-              }}
+              onChange={changeLength}
               aria-label="String length"
             />
           </label>
-          <button type="button" className="btn btn-line" onClick={handleStop}>
-            {swinging ? 'STOP' : 'HANG STRAIGHT'}
-          </button>
-          <button type="button" className="btn btn-fill" onClick={handleRelease} disabled={swinging}>
-            {swinging ? 'SWINGING' : 'RELEASE'}
-          </button>
+          <div className="pendulum-actions">
+            <button type="button" className="btn btn-line" onClick={hangRest}>
+              HANG STRAIGHT
+            </button>
+            {/* One button, two jobs, so stopping costs the row no height. */}
+            <button type="button" className="btn btn-fill" onClick={swinging ? stop : release}>
+              {swinging ? 'STOP' : 'RELEASE'}
+            </button>
+          </div>
         </div>
-        <BenchHint id="pendulum">
+        <BenchHint id="pendulum" collapse={(walk.mode === 'guided' && onWalkPart) || panelPlaced}>
           Drag the bob to set a release angle (capped at {DRAG_CAP_DEG}°), then press Release.
           Stop halts it where it is, so you can reposition it; Hang straight brings it to rest
           on the vertical, for reading a length or the angle plate&rsquo;s zero. Bring instruments
@@ -219,32 +276,21 @@ export default function PendulumLab() {
         </BenchHint>
       </div>
 
-      <div ref={instrumentMenuRef} style={{ marginTop: '12px' }}>
-        <InstrumentMenu items={INSTRUMENTS} open={open} onToggle={toggleInstrument} />
-      </div>
+      <InstrumentMenu items={INSTRUMENTS} open={open} onToggle={toggleInstrument} />
 
       <div className="instrument-panels">
-        {open.stopwatch && <Stopwatch />}
+        {open.stopwatch && <Stopwatch onStop={onStopwatchStop} />}
         {open.photogate && <Photogate triggers={triggers} onClear={clearTriggers} />}
       </div>
 
-      {modeGuided === 'guided' && (
-        <CoachMark
-          active={true}
-          text={guideSteps[guideStep]?.text || ''}
-          target={guideSteps[guideStep]?.target}
-          placement={guideSteps[guideStep]?.placement || 'bottom'}
-          nextLabel={guideStep === guideSteps.length - 1 ? 'DONE' : 'NEXT'}
-          canAdvance={canAdvanceGuide()}
-          onNext={() => {
-            if (guideStep < guideSteps.length - 1) {
-              setGuideStep((s) => s + 1);
-            } else {
-              setModeGuided('self');
-            }
-          }}
-        />
-      )}
+      <PendulumWalkthrough
+        walk={walk}
+        steps={pendulumWalkthrough}
+        targets={walkTargets}
+        readBench={readBench}
+        showPane={showPane}
+        active={onWalkPart}
+      />
     </div>
   );
 }

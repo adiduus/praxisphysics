@@ -202,7 +202,8 @@ export default function PendulumCanvas({
       // generous touch margin — and the bob's height is exactly where a
       // student wants to hold the lens. So a press on the bob itself grabs
       // it; a press on the scale (even within that margin) raises the lens;
-      // only then does the margin catch near-misses for the bob.
+      // only then does the margin catch near-misses for the bob; and only
+      // after that do the wider zones that make the lens easy to reach.
       const world = toWorld(px, py);
       const bob = bobPos();
       const rPx = Math.max(6, bobRadius * pxPerM);
@@ -214,22 +215,33 @@ export default function PendulumCanvas({
         return;
       }
 
-      // 3. vertical scale — fixed apparatus: press and hold raises the lens
-      // Allow magnifier anywhere on bench near scale/bob for easier access
-      if (v.scale && (isOnScale(world.x, world.y, 0.015) || bobDist < 120 || Math.abs(world.x - SCALE_EDGE_X_M) < 0.08)) {
+      // 3. vertical scale, pressed on — fixed apparatus: press and hold
+      // raises the lens
+      if (v.scale && isOnScale(world.x, world.y, 0)) {
         beginHold(px, py, e.pointerId, e.clientX, e.clientY);
         return;
       }
 
-      // 4. bob, within its touch margin — ahead of the angle plate, since
-      // the margin reaches over the plate's edge
+      // 4. bob, within its touch margin — ahead of the lens's wider zones
+      // and the angle plate, since the margin reaches over both
       if (bobDist <= rPx + GRAB_PAD_PX) {
         beginBobDrag(e);
         return;
       }
 
-      // 5. angle plate — same press-and-hold as the scale
-      if (v.anglePlate && (isOnAnglePlate(world.x, world.y, BODY_GRAB_PAD_PX / pxPerM + 0.015) || bobDist < 120 || Math.sqrt((world.x - anglePlatePos.x) ** 2 + (world.y - anglePlatePos.y) ** 2) < 0.15)) {
+      // 5. easier access to the lens: near the scale (1.5 cm round it, or
+      // within 8 cm of its edge) or anywhere within 120 px of the bob
+      if (v.scale && (isOnScale(world.x, world.y, 0.015) || bobDist < 120 || Math.abs(world.x - SCALE_EDGE_X_M) < 0.08)) {
+        beginHold(px, py, e.pointerId, e.clientX, e.clientY);
+        return;
+      }
+
+      // 6. angle plate — same press-and-hold, with 1.5 cm more than its own
+      // touch margin, or anywhere within 120 px of the bob. (The plate is
+      // centred on the pivot, so its padded test already covers the whole
+      // plate; a separate distance-from-the-plate test added only empty
+      // bench above the pivot.)
+      if (v.anglePlate && (isOnAnglePlate(world.x, world.y, BODY_GRAB_PAD_PX / pxPerM + 0.015) || bobDist < 120)) {
         beginHold(px, py, e.pointerId, e.clientX, e.clientY);
       }
     }
